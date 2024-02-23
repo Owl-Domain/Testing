@@ -18,7 +18,7 @@ public class NullAssertTests
       IAssert result = AssertExtensions.IsNull(_assert.Object, value);
 
       // Assert
-      _assert.VerifyFailFormat(Times.Never);
+      _assert.VerifyFailFormat(Times.Never());
       _assert.VerifyNoOtherCalls();
 
       MSAssert.AreSame(_assert.Object, result);
@@ -34,7 +34,7 @@ public class NullAssertTests
       IAssert result = AssertExtensions.IsNull(_assert.Object, value);
 
       // Assert
-      _assert.VerifyFailFormat(Times.Once);
+      _assert.VerifyFailFormat(Times.Once());
       _assert.VerifyNoOtherCalls();
 
       MSAssert.AreSame(_assert.Object, result);
@@ -52,7 +52,7 @@ public class NullAssertTests
       IAssert result = AssertExtensions.IsNotNull(_assert.Object, value);
 
       // Assert
-      _assert.VerifyFailFormat(Times.Once);
+      _assert.VerifyFailFormat(Times.Once());
       _assert.VerifyNoOtherCalls();
 
       MSAssert.AreSame(_assert.Object, result);
@@ -68,7 +68,7 @@ public class NullAssertTests
       IAssert result = AssertExtensions.IsNotNull(_assert.Object, value);
 
       // Assert
-      _assert.VerifyFailFormat(Times.Never);
+      _assert.VerifyFailFormat(Times.Never());
       _assert.VerifyNoOtherCalls();
 
       MSAssert.AreSame(_assert.Object, result);

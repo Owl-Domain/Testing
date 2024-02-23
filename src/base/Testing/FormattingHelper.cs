@@ -35,7 +35,7 @@ public static class FormattingHelper
       if (TryTypeReplacement(argument, out string? typeReplacement))
          return typeReplacement;
 
-      string? str = argument?.ToString();
+      string? str = argument.ToString();
       if (str is null)
          return "<null>";
 
@@ -65,7 +65,7 @@ public static class FormattingHelper
       return str;
    }
 
-   private static bool TryTypeReplacement(object? argument, [NotNullWhen(true)] out string? replacement)
+   private static bool TryTypeReplacement([NotNullWhen(false)] object? argument, [NotNullWhen(true)] out string? replacement)
    {
       replacement = argument switch
       {
@@ -95,7 +95,6 @@ public static class FormattingHelper
 
          _ => null
       };
-
 
       return replacement is not null;
    }
@@ -169,10 +168,8 @@ public static class FormattingHelper
       return category switch
       {
          UnicodeCategory.Control => true,
-         UnicodeCategory.OtherNotAssigned => true,
          UnicodeCategory.ParagraphSeparator => true,
          UnicodeCategory.LineSeparator => true,
-         UnicodeCategory.Surrogate => true,
 
          _ => false
       };
