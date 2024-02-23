@@ -12,7 +12,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
-  <!-- Nuget Package -->
+  <!-- Nuget package -->
   <PropertyGroup Label="nuget">
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     
