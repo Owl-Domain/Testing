@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "base", "base", "{72570ED4-970B-4AAE-B377-8F9F3833467C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testing", "base\Testing\Testing.csproj", "{1F2E8311-E34B-400D-A7E4-326969A61AA4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testing.MSTest", "Testing.MSTest\Testing.MSTest.csproj", "{3CD24AEE-6D56-43C7-82C4-F2C9030D6A54}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "local", "local", "{596A18C1-A013-4439-9667-A04F9EA2556F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Playground", "local\Playground\Playground.csproj", "{988E6CF3-C991-4456-93CC-854B35367D91}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mics", "mics", "{C47F88EC-8E3D-4BE8-9680-D5363875D04E}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitattributes = ..\.gitattributes
+		..\.gitignore = ..\.gitignore
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1F2E8311-E34B-400D-A7E4-326969A61AA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F2E8311-E34B-400D-A7E4-326969A61AA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F2E8311-E34B-400D-A7E4-326969A61AA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F2E8311-E34B-400D-A7E4-326969A61AA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CD24AEE-6D56-43C7-82C4-F2C9030D6A54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CD24AEE-6D56-43C7-82C4-F2C9030D6A54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CD24AEE-6D56-43C7-82C4-F2C9030D6A54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CD24AEE-6D56-43C7-82C4-F2C9030D6A54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{988E6CF3-C991-4456-93CC-854B35367D91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{988E6CF3-C991-4456-93CC-854B35367D91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{988E6CF3-C991-4456-93CC-854B35367D91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{988E6CF3-C991-4456-93CC-854B35367D91}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1F2E8311-E34B-400D-A7E4-326969A61AA4} = {72570ED4-970B-4AAE-B377-8F9F3833467C}
+		{988E6CF3-C991-4456-93CC-854B35367D91} = {596A18C1-A013-4439-9667-A04F9EA2556F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {153A90C1-E9F0-413E-8BC2-D786196F31CA}
+	EndGlobalSection
+EndGlobal
