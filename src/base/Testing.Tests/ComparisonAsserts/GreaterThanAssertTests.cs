@@ -154,7 +154,7 @@ public class GreaterThanAssertTests
    }
 
    [TestMethod]
-   public void IsGreaterThanOrEqualTo_BothNullable_WithLowerValue_CallsFail()
+   public void IsGreaterThanOrEqualTo_BothNullable_WithLesserValue_CallsFail()
    {
       // Arrange
       int? value = 4;
@@ -186,7 +186,7 @@ public class GreaterThanAssertTests
    }
 
    [TestMethod]
-   public void IsGreaterThanOrEqualTo_ValueNullable_WithLowerValue_CallsFail()
+   public void IsGreaterThanOrEqualTo_ValueNullable_WithLesserValue_CallsFail()
    {
       // Arrange
       int? value = 4;
@@ -218,7 +218,7 @@ public class GreaterThanAssertTests
    }
 
    [TestMethod]
-   public void IsGreaterThanOrEqualTo_ThresholdNullable_WithLowerValue_CallsFail()
+   public void IsGreaterThanOrEqualTo_ThresholdNullable_WithLesserValue_CallsFail()
    {
       // Arrange
       int value = 4;
@@ -250,7 +250,7 @@ public class GreaterThanAssertTests
    }
 
    [TestMethod]
-   public void IsGreaterThanOrEqualTo_Comparable_WithLowerValue_CallsFail()
+   public void IsGreaterThanOrEqualTo_Comparable_WithLesserValue_CallsFail()
    {
       // Arrange
       IComparable<int> value = 4;
@@ -414,7 +414,7 @@ public class GreaterThanAssertTests
    }
 
    [TestMethod]
-   public void IsNotGreaterThanOrEqualTo_BothNullable_WithLowerValue_DoesNothing()
+   public void IsNotGreaterThanOrEqualTo_BothNullable_WithLesserValue_DoesNothing()
    {
       // Arrange
       int? value = 4;
@@ -446,7 +446,7 @@ public class GreaterThanAssertTests
    }
 
    [TestMethod]
-   public void IsNotGreaterThanOrEqualTo_ValueNullable_WithLowerValue_DoesNothing()
+   public void IsNotGreaterThanOrEqualTo_ValueNullable_WithLesserValue_DoesNothing()
    {
       // Arrange
       int? value = 4;
@@ -478,7 +478,7 @@ public class GreaterThanAssertTests
    }
 
    [TestMethod]
-   public void IsNotGreaterThanOrEqualTo_ThresholdNullable_WithLowerValue_DoesNothing()
+   public void IsNotGreaterThanOrEqualTo_ThresholdNullable_WithLesserValue_DoesNothing()
    {
       // Arrange
       int value = 4;
@@ -510,7 +510,7 @@ public class GreaterThanAssertTests
    }
 
    [TestMethod]
-   public void IsNotGreaterThanOrEqualTo_Comparable_WithLowerValue_DoesNothing()
+   public void IsNotGreaterThanOrEqualTo_Comparable_WithLesserValue_DoesNothing()
    {
       // Arrange
       IComparable<int> value = 4;
