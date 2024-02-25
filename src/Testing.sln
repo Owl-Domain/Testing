@@ -13,15 +13,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "local", "local", "{596A18C1
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Playground", "local\Playground\Playground.csproj", "{988E6CF3-C991-4456-93CC-854B35367D91}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mics", "mics", "{C47F88EC-8E3D-4BE8-9680-D5363875D04E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{C47F88EC-8E3D-4BE8-9680-D5363875D04E}"
 	ProjectSection(SolutionItems) = preProject
 		..\.gitattributes = ..\.gitattributes
 		..\.gitignore = ..\.gitignore
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing.MSTest.Tests", "Testing.MSTest.Tests\Testing.MSTest.Tests.csproj", "{C894BEE2-F76F-4FDE-AA9A-917A8AD3E32E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testing.MSTest.Tests", "Testing.MSTest.Tests\Testing.MSTest.Tests.csproj", "{C894BEE2-F76F-4FDE-AA9A-917A8AD3E32E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing.Tests", "base\Testing.Tests\Testing.Tests.csproj", "{938FBFB1-125B-420B-B850-548384862BAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testing.Tests", "base\Testing.Tests\Testing.Tests.csproj", "{938FBFB1-125B-420B-B850-548384862BAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
