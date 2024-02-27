@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Testing.Tests.ComparisonAsserts;
+﻿namespace Testing.Tests.ComparisonAsserts;
 
 [TestClass]
 public class GreaterThanWithComparerAssertTests
