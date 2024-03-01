@@ -26,12 +26,7 @@ public static partial class AssertExtensions
       return assert;
    }
 
-   /// <summary>Asserts that the given <paramref name="value"/> is <see langword="true"/>.</summary>
-   /// <param name="assert">The assertion instance.</param>
-   /// <param name="value">The value to check.</param>
-   /// <param name="valueArgument">The argument expression that was passed in as the <paramref name="value"/>.</param>
-   /// <param name="line">The line in the source file where this assertion was made.</param>
-   /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
+   /// <inheritdoc cref="IsTrue(IAssert, bool, string, int)"/>
    public static IAssert IsTrue(
       this IAssert assert,
       [DoesNotReturnIf(false), NotNull] bool? value,
@@ -62,12 +57,7 @@ public static partial class AssertExtensions
       return assert;
    }
 
-   /// <summary>Asserts that the given <paramref name="value"/> is not <see langword="true"/>.</summary>
-   /// <param name="assert">The assertion instance.</param>
-   /// <param name="value">The value to check.</param>
-   /// <param name="valueArgument">The argument expression that was passed in as the <paramref name="value"/>.</param>
-   /// <param name="line">The line in the source file where this assertion was made.</param>
-   /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
+   /// <inheritdoc cref="IsNotTrue(IAssert, bool, string, int)"/>
    public static IAssert IsNotTrue(
       this IAssert assert,
       [DoesNotReturnIf(true)] bool? value,

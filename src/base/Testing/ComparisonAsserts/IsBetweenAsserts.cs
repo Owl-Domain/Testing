@@ -43,21 +43,7 @@ public static partial class AssertExtensions
       return assert;
    }
 
-   /// <summary>
-   ///   Asserts that the given <paramref name="value"/> is between the 
-   ///   (inclusive) <paramref name="minimum"/> value, and the 
-   ///   (inclusive) <paramref name="maximum"/> value.
-   /// </summary>
-   /// <typeparam name="T">The type of the <paramref name="value"/> and the <paramref name="minimum"/> and <paramref name="maximum"/> values.</typeparam>
-   /// <param name="assert">The assertion instance.</param>
-   /// <param name="value">The value to check.</param>
-   /// <param name="minimum">The (inclusive) minimum value to compare the <paramref name="value"/> against.</param>
-   /// <param name="maximum">The (inclusive) maximum value to compare the <paramref name="value"/> against.</param>
-   /// <param name="valueArgument">The argument expression that was passed in as the <paramref name="value"/>.</param>
-   /// <param name="minimumArgument">The argument expression that was passed in as the <paramref name="minimum"/> value.</param>
-   /// <param name="maximumArgument">The argument expression that was passed in as the <paramref name="maximum"/> value.</param>
-   /// <param name="line">The line in the source file where this assertion was made.</param>
-   /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
+   /// <inheritdoc cref="IsBetween{T}(IAssert, IComparable{T}, T, T, string, string, string, int)"/>
    public static IAssert IsBetween<T>(
       this IAssert assert,
       [DisallowNull] T? value,
@@ -79,21 +65,7 @@ public static partial class AssertExtensions
       return assert;
    }
 
-   /// <summary>
-   ///   Asserts that the given <paramref name="value"/> is between the 
-   ///   (inclusive) <paramref name="minimum"/> value, and the 
-   ///   (inclusive) <paramref name="maximum"/> value.
-   /// </summary>
-   /// <typeparam name="T">The type of the <paramref name="value"/> and the <paramref name="minimum"/> and <paramref name="maximum"/> values.</typeparam>
-   /// <param name="assert">The assertion instance.</param>
-   /// <param name="value">The value to check.</param>
-   /// <param name="minimum">The (inclusive) minimum value to compare the <paramref name="value"/> against.</param>
-   /// <param name="maximum">The (inclusive) maximum value to compare the <paramref name="value"/> against.</param>
-   /// <param name="valueArgument">The argument expression that was passed in as the <paramref name="value"/>.</param>
-   /// <param name="minimumArgument">The argument expression that was passed in as the <paramref name="minimum"/> value.</param>
-   /// <param name="maximumArgument">The argument expression that was passed in as the <paramref name="maximum"/> value.</param>
-   /// <param name="line">The line in the source file where this assertion was made.</param>
-   /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
+   /// <inheritdoc cref="IsBetween{T}(IAssert, IComparable{T}, T, T, string, string, string, int)"/>
    public static IAssert IsBetween<T>(
       this IAssert assert,
       T value,
@@ -115,21 +87,7 @@ public static partial class AssertExtensions
       return assert;
    }
 
-   /// <summary>
-   ///   Asserts that the given <paramref name="value"/> is between the 
-   ///   (inclusive) <paramref name="minimum"/> value, and the 
-   ///   (inclusive) <paramref name="maximum"/> value.
-   /// </summary>
-   /// <typeparam name="T">The type of the <paramref name="value"/> and the <paramref name="minimum"/> and <paramref name="maximum"/> values.</typeparam>
-   /// <param name="assert">The assertion instance.</param>
-   /// <param name="value">The value to check.</param>
-   /// <param name="minimum">The (inclusive) minimum value to compare the <paramref name="value"/> against.</param>
-   /// <param name="maximum">The (inclusive) maximum value to compare the <paramref name="value"/> against.</param>
-   /// <param name="valueArgument">The argument expression that was passed in as the <paramref name="value"/>.</param>
-   /// <param name="minimumArgument">The argument expression that was passed in as the <paramref name="minimum"/> value.</param>
-   /// <param name="maximumArgument">The argument expression that was passed in as the <paramref name="maximum"/> value.</param>
-   /// <param name="line">The line in the source file where this assertion was made.</param>
-   /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
+   /// <inheritdoc cref="IsBetween{T}(IAssert, IComparable{T}, T, T, string, string, string, int)"/>
    public static IAssert IsBetween<T>(
       this IAssert assert,
       T value,
@@ -151,21 +109,7 @@ public static partial class AssertExtensions
       return assert;
    }
 
-   /// <summary>
-   ///   Asserts that the given <paramref name="value"/> is between the 
-   ///   (inclusive) <paramref name="minimum"/> value, and the 
-   ///   (inclusive) <paramref name="maximum"/> value.
-   /// </summary>
-   /// <typeparam name="T">The type of the <paramref name="value"/> and the <paramref name="minimum"/> and <paramref name="maximum"/> values.</typeparam>
-   /// <param name="assert">The assertion instance.</param>
-   /// <param name="value">The value to check.</param>
-   /// <param name="minimum">The (inclusive) minimum value to compare the <paramref name="value"/> against.</param>
-   /// <param name="maximum">The (inclusive) maximum value to compare the <paramref name="value"/> against.</param>
-   /// <param name="valueArgument">The argument expression that was passed in as the <paramref name="value"/>.</param>
-   /// <param name="minimumArgument">The argument expression that was passed in as the <paramref name="minimum"/> value.</param>
-   /// <param name="maximumArgument">The argument expression that was passed in as the <paramref name="maximum"/> value.</param>
-   /// <param name="line">The line in the source file where this assertion was made.</param>
-   /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
+   /// <inheritdoc cref="IsBetween{T}(IAssert, IComparable{T}, T, T, string, string, string, int)"/>
    public static IAssert IsBetween<T>(
       this IAssert assert,
       [DisallowNull] T? value,
@@ -187,21 +131,7 @@ public static partial class AssertExtensions
       return assert;
    }
 
-   /// <summary>
-   ///   Asserts that the given <paramref name="value"/> is between the 
-   ///   (inclusive) <paramref name="minimum"/> value, and the 
-   ///   (inclusive) <paramref name="maximum"/> value.
-   /// </summary>
-   /// <typeparam name="T">The type of the <paramref name="value"/> and the <paramref name="minimum"/> and <paramref name="maximum"/> values.</typeparam>
-   /// <param name="assert">The assertion instance.</param>
-   /// <param name="value">The value to check.</param>
-   /// <param name="minimum">The (inclusive) minimum value to compare the <paramref name="value"/> against.</param>
-   /// <param name="maximum">The (inclusive) maximum value to compare the <paramref name="value"/> against.</param>
-   /// <param name="valueArgument">The argument expression that was passed in as the <paramref name="value"/>.</param>
-   /// <param name="minimumArgument">The argument expression that was passed in as the <paramref name="minimum"/> value.</param>
-   /// <param name="maximumArgument">The argument expression that was passed in as the <paramref name="maximum"/> value.</param>
-   /// <param name="line">The line in the source file where this assertion was made.</param>
-   /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
+   /// <inheritdoc cref="IsBetween{T}(IAssert, IComparable{T}, T, T, string, string, string, int)"/>
    public static IAssert IsBetween<T>(
       this IAssert assert,
       [DisallowNull] T? value,
@@ -223,21 +153,7 @@ public static partial class AssertExtensions
       return assert;
    }
 
-   /// <summary>
-   ///   Asserts that the given <paramref name="value"/> is between the 
-   ///   (inclusive) <paramref name="minimum"/> value, and the 
-   ///   (inclusive) <paramref name="maximum"/> value.
-   /// </summary>
-   /// <typeparam name="T">The type of the <paramref name="value"/> and the <paramref name="minimum"/> and <paramref name="maximum"/> values.</typeparam>
-   /// <param name="assert">The assertion instance.</param>
-   /// <param name="value">The value to check.</param>
-   /// <param name="minimum">The (inclusive) minimum value to compare the <paramref name="value"/> against.</param>
-   /// <param name="maximum">The (inclusive) maximum value to compare the <paramref name="value"/> against.</param>
-   /// <param name="valueArgument">The argument expression that was passed in as the <paramref name="value"/>.</param>
-   /// <param name="minimumArgument">The argument expression that was passed in as the <paramref name="minimum"/> value.</param>
-   /// <param name="maximumArgument">The argument expression that was passed in as the <paramref name="maximum"/> value.</param>
-   /// <param name="line">The line in the source file where this assertion was made.</param>
-   /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
+   /// <inheritdoc cref="IsBetween{T}(IAssert, IComparable{T}, T, T, string, string, string, int)"/>
    public static IAssert IsBetween<T>(
       this IAssert assert,
       T value,
@@ -259,21 +175,7 @@ public static partial class AssertExtensions
       return assert;
    }
 
-   /// <summary>
-   ///   Asserts that the given <paramref name="value"/> is between the 
-   ///   (inclusive) <paramref name="minimum"/> value, and the 
-   ///   (inclusive) <paramref name="maximum"/> value.
-   /// </summary>
-   /// <typeparam name="T">The type of the <paramref name="value"/> and the <paramref name="minimum"/> and <paramref name="maximum"/> values.</typeparam>
-   /// <param name="assert">The assertion instance.</param>
-   /// <param name="value">The value to check.</param>
-   /// <param name="minimum">The (inclusive) minimum value to compare the <paramref name="value"/> against.</param>
-   /// <param name="maximum">The (inclusive) maximum value to compare the <paramref name="value"/> against.</param>
-   /// <param name="valueArgument">The argument expression that was passed in as the <paramref name="value"/>.</param>
-   /// <param name="minimumArgument">The argument expression that was passed in as the <paramref name="minimum"/> value.</param>
-   /// <param name="maximumArgument">The argument expression that was passed in as the <paramref name="maximum"/> value.</param>
-   /// <param name="line">The line in the source file where this assertion was made.</param>
-   /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
+   /// <inheritdoc cref="IsBetween{T}(IAssert, IComparable{T}, T, T, string, string, string, int)"/>
    public static IAssert IsBetween<T>(
       this IAssert assert,
       [DisallowNull] T? value,
@@ -332,21 +234,7 @@ public static partial class AssertExtensions
       return assert;
    }
 
-   /// <summary>
-   ///   Asserts that the given <paramref name="value"/> is not between the 
-   ///   (inclusive) <paramref name="minimum"/> value, and the 
-   ///   (inclusive) <paramref name="maximum"/> value.
-   /// </summary>
-   /// <typeparam name="T">The type of the <paramref name="value"/> and the <paramref name="minimum"/> and <paramref name="maximum"/> values.</typeparam>
-   /// <param name="assert">The assertion instance.</param>
-   /// <param name="value">The value to check.</param>
-   /// <param name="minimum">The (inclusive) minimum value to compare the <paramref name="value"/> against.</param>
-   /// <param name="maximum">The (inclusive) maximum value to compare the <paramref name="value"/> against.</param>
-   /// <param name="valueArgument">The argument expression that was passed in as the <paramref name="value"/>.</param>
-   /// <param name="minimumArgument">The argument expression that was passed in as the <paramref name="minimum"/> value.</param>
-   /// <param name="maximumArgument">The argument expression that was passed in as the <paramref name="maximum"/> value.</param>
-   /// <param name="line">The line in the source file where this assertion was made.</param>
-   /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
+   /// <inheritdoc cref="IsNotBetween{T}(IAssert, IComparable{T}, T, T, string, string, string, int)"/>
    public static IAssert IsNotBetween<T>(
       this IAssert assert,
       [DisallowNull] T? value,
@@ -368,21 +256,7 @@ public static partial class AssertExtensions
       return assert;
    }
 
-   /// <summary>
-   ///   Asserts that the given <paramref name="value"/> is not between the 
-   ///   (inclusive) <paramref name="minimum"/> value, and the 
-   ///   (inclusive) <paramref name="maximum"/> value.
-   /// </summary>
-   /// <typeparam name="T">The type of the <paramref name="value"/> and the <paramref name="minimum"/> and <paramref name="maximum"/> values.</typeparam>
-   /// <param name="assert">The assertion instance.</param>
-   /// <param name="value">The value to check.</param>
-   /// <param name="minimum">The (inclusive) minimum value to compare the <paramref name="value"/> against.</param>
-   /// <param name="maximum">The (inclusive) maximum value to compare the <paramref name="value"/> against.</param>
-   /// <param name="valueArgument">The argument expression that was passed in as the <paramref name="value"/>.</param>
-   /// <param name="minimumArgument">The argument expression that was passed in as the <paramref name="minimum"/> value.</param>
-   /// <param name="maximumArgument">The argument expression that was passed in as the <paramref name="maximum"/> value.</param>
-   /// <param name="line">The line in the source file where this assertion was made.</param>
-   /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
+   /// <inheritdoc cref="IsNotBetween{T}(IAssert, IComparable{T}, T, T, string, string, string, int)"/>
    public static IAssert IsNotBetween<T>(
       this IAssert assert,
       T value,
@@ -404,21 +278,7 @@ public static partial class AssertExtensions
       return assert;
    }
 
-   /// <summary>
-   ///   Asserts that the given <paramref name="value"/> is not between the 
-   ///   (inclusive) <paramref name="minimum"/> value, and the 
-   ///   (inclusive) <paramref name="maximum"/> value.
-   /// </summary>
-   /// <typeparam name="T">The type of the <paramref name="value"/> and the <paramref name="minimum"/> and <paramref name="maximum"/> values.</typeparam>
-   /// <param name="assert">The assertion instance.</param>
-   /// <param name="value">The value to check.</param>
-   /// <param name="minimum">The (inclusive) minimum value to compare the <paramref name="value"/> against.</param>
-   /// <param name="maximum">The (inclusive) maximum value to compare the <paramref name="value"/> against.</param>
-   /// <param name="valueArgument">The argument expression that was passed in as the <paramref name="value"/>.</param>
-   /// <param name="minimumArgument">The argument expression that was passed in as the <paramref name="minimum"/> value.</param>
-   /// <param name="maximumArgument">The argument expression that was passed in as the <paramref name="maximum"/> value.</param>
-   /// <param name="line">The line in the source file where this assertion was made.</param>
-   /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
+   /// <inheritdoc cref="IsNotBetween{T}(IAssert, IComparable{T}, T, T, string, string, string, int)"/>
    public static IAssert IsNotBetween<T>(
       this IAssert assert,
       T value,
@@ -440,21 +300,7 @@ public static partial class AssertExtensions
       return assert;
    }
 
-   /// <summary>
-   ///   Asserts that the given <paramref name="value"/> is not between the 
-   ///   (inclusive) <paramref name="minimum"/> value, and the 
-   ///   (inclusive) <paramref name="maximum"/> value.
-   /// </summary>
-   /// <typeparam name="T">The type of the <paramref name="value"/> and the <paramref name="minimum"/> and <paramref name="maximum"/> values.</typeparam>
-   /// <param name="assert">The assertion instance.</param>
-   /// <param name="value">The value to check.</param>
-   /// <param name="minimum">The (inclusive) minimum value to compare the <paramref name="value"/> against.</param>
-   /// <param name="maximum">The (inclusive) maximum value to compare the <paramref name="value"/> against.</param>
-   /// <param name="valueArgument">The argument expression that was passed in as the <paramref name="value"/>.</param>
-   /// <param name="minimumArgument">The argument expression that was passed in as the <paramref name="minimum"/> value.</param>
-   /// <param name="maximumArgument">The argument expression that was passed in as the <paramref name="maximum"/> value.</param>
-   /// <param name="line">The line in the source file where this assertion was made.</param>
-   /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
+   /// <inheritdoc cref="IsNotBetween{T}(IAssert, IComparable{T}, T, T, string, string, string, int)"/>
    public static IAssert IsNotBetween<T>(
       this IAssert assert,
       [DisallowNull] T? value,
@@ -476,21 +322,7 @@ public static partial class AssertExtensions
       return assert;
    }
 
-   /// <summary>
-   ///   Asserts that the given <paramref name="value"/> is not between the 
-   ///   (inclusive) <paramref name="minimum"/> value, and the 
-   ///   (inclusive) <paramref name="maximum"/> value.
-   /// </summary>
-   /// <typeparam name="T">The type of the <paramref name="value"/> and the <paramref name="minimum"/> and <paramref name="maximum"/> values.</typeparam>
-   /// <param name="assert">The assertion instance.</param>
-   /// <param name="value">The value to check.</param>
-   /// <param name="minimum">The (inclusive) minimum value to compare the <paramref name="value"/> against.</param>
-   /// <param name="maximum">The (inclusive) maximum value to compare the <paramref name="value"/> against.</param>
-   /// <param name="valueArgument">The argument expression that was passed in as the <paramref name="value"/>.</param>
-   /// <param name="minimumArgument">The argument expression that was passed in as the <paramref name="minimum"/> value.</param>
-   /// <param name="maximumArgument">The argument expression that was passed in as the <paramref name="maximum"/> value.</param>
-   /// <param name="line">The line in the source file where this assertion was made.</param>
-   /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
+   /// <inheritdoc cref="IsNotBetween{T}(IAssert, IComparable{T}, T, T, string, string, string, int)"/>
    public static IAssert IsNotBetween<T>(
       this IAssert assert,
       [DisallowNull] T? value,
@@ -512,21 +344,7 @@ public static partial class AssertExtensions
       return assert;
    }
 
-   /// <summary>
-   ///   Asserts that the given <paramref name="value"/> is not between the 
-   ///   (inclusive) <paramref name="minimum"/> value, and the 
-   ///   (inclusive) <paramref name="maximum"/> value.
-   /// </summary>
-   /// <typeparam name="T">The type of the <paramref name="value"/> and the <paramref name="minimum"/> and <paramref name="maximum"/> values.</typeparam>
-   /// <param name="assert">The assertion instance.</param>
-   /// <param name="value">The value to check.</param>
-   /// <param name="minimum">The (inclusive) minimum value to compare the <paramref name="value"/> against.</param>
-   /// <param name="maximum">The (inclusive) maximum value to compare the <paramref name="value"/> against.</param>
-   /// <param name="valueArgument">The argument expression that was passed in as the <paramref name="value"/>.</param>
-   /// <param name="minimumArgument">The argument expression that was passed in as the <paramref name="minimum"/> value.</param>
-   /// <param name="maximumArgument">The argument expression that was passed in as the <paramref name="maximum"/> value.</param>
-   /// <param name="line">The line in the source file where this assertion was made.</param>
-   /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
+   /// <inheritdoc cref="IsNotBetween{T}(IAssert, IComparable{T}, T, T, string, string, string, int)"/>
    public static IAssert IsNotBetween<T>(
       this IAssert assert,
       T value,
@@ -548,21 +366,7 @@ public static partial class AssertExtensions
       return assert;
    }
 
-   /// <summary>
-   ///   Asserts that the given <paramref name="value"/> is not between the 
-   ///   (inclusive) <paramref name="minimum"/> value, and the 
-   ///   (inclusive) <paramref name="maximum"/> value.
-   /// </summary>
-   /// <typeparam name="T">The type of the <paramref name="value"/> and the <paramref name="minimum"/> and <paramref name="maximum"/> values.</typeparam>
-   /// <param name="assert">The assertion instance.</param>
-   /// <param name="value">The value to check.</param>
-   /// <param name="minimum">The (inclusive) minimum value to compare the <paramref name="value"/> against.</param>
-   /// <param name="maximum">The (inclusive) maximum value to compare the <paramref name="value"/> against.</param>
-   /// <param name="valueArgument">The argument expression that was passed in as the <paramref name="value"/>.</param>
-   /// <param name="minimumArgument">The argument expression that was passed in as the <paramref name="minimum"/> value.</param>
-   /// <param name="maximumArgument">The argument expression that was passed in as the <paramref name="maximum"/> value.</param>
-   /// <param name="line">The line in the source file where this assertion was made.</param>
-   /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
+   /// <inheritdoc cref="IsNotBetween{T}(IAssert, IComparable{T}, T, T, string, string, string, int)"/>
    public static IAssert IsNotBetween<T>(
       this IAssert assert,
       [DisallowNull] T? value,

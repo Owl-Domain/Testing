@@ -13,72 +13,6 @@ public static partial class AssertExtensions
    /// <summary>
    ///   Asserts that the given <paramref name="value"/> is greater than (>) the 
    ///   <paramref name="threshold"/> using the given <paramref name="comparer"/>.
-   /// </summary>
-   /// <typeparam name="T">The type of the <paramref name="value"/> and the <paramref name="threshold"/>.</typeparam>
-   /// <param name="assert">The assertion instance.</param>
-   /// <param name="value">The value to check against the <paramref name="threshold"/>.</param>
-   /// <param name="threshold">The threshold that the <paramref name="value"/> has to be greater than.</param>
-   /// <param name="comparer">The <see cref="IComparer{T}"/> used to compare the <paramref name="value"/> against the <paramref name="threshold"/>.</param>
-   /// <param name="valueArgument">The argument expression that was passed in as the <paramref name="value"/>.</param>
-   /// <param name="thresholdArgument">The argument expression that was passed in as the <paramref name="threshold"/>.</param>
-   /// <param name="comparerArgument">The argument expression that was passed in as the <paramref name="comparer"/>.</param>
-   /// <param name="line">The line in the source file where this assertion was made.</param>
-   /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
-   public static IAssert IsGreaterThan<T>(
-      this IAssert assert,
-      [DisallowNull] T? value,
-      [DisallowNull] T? threshold,
-      IComparer<T> comparer,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
-      [CallerArgumentExpression(nameof(comparer))] string comparerArgument = "<comparer>",
-      [CallerLineNumber] int line = 0)
-      where T : struct
-   {
-      int comparison = comparer.Compare(value.Value, threshold.Value);
-
-      if (comparison <= 0)
-         assert.Fail(IsGreaterThanWithComparerFormat, value, threshold, comparer, valueArgument, thresholdArgument, comparerArgument, line);
-
-      return assert;
-   }
-
-   /// <summary>
-   ///   Asserts that the given <paramref name="value"/> is greater than (>) the 
-   ///   <paramref name="threshold"/> using the given <paramref name="comparer"/>.
-   /// </summary>
-   /// <typeparam name="T">The type of the <paramref name="value"/> and the <paramref name="threshold"/>.</typeparam>
-   /// <param name="assert">The assertion instance.</param>
-   /// <param name="value">The value to check against the <paramref name="threshold"/>.</param>
-   /// <param name="threshold">The threshold that the <paramref name="value"/> has to be greater than.</param>
-   /// <param name="comparer">The <see cref="IComparer{T}"/> used to compare the <paramref name="value"/> against the <paramref name="threshold"/>.</param>
-   /// <param name="valueArgument">The argument expression that was passed in as the <paramref name="value"/>.</param>
-   /// <param name="thresholdArgument">The argument expression that was passed in as the <paramref name="threshold"/>.</param>
-   /// <param name="comparerArgument">The argument expression that was passed in as the <paramref name="comparer"/>.</param>
-   /// <param name="line">The line in the source file where this assertion was made.</param>
-   /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
-   public static IAssert IsGreaterThan<T>(
-      this IAssert assert,
-      [DisallowNull] T? value,
-      T threshold,
-      IComparer<T> comparer,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
-      [CallerArgumentExpression(nameof(comparer))] string comparerArgument = "<comparer>",
-      [CallerLineNumber] int line = 0)
-      where T : struct
-   {
-      int comparison = comparer.Compare(value.Value, threshold);
-
-      if (comparison <= 0)
-         assert.Fail(IsGreaterThanWithComparerFormat, value, threshold, comparer, valueArgument, thresholdArgument, comparerArgument, line);
-
-      return assert;
-   }
-
-   /// <summary>
-   ///   Asserts that the given <paramref name="value"/> is greater than (>) the 
-   ///   <paramref name="threshold"/> using the given <paramref name="comparer"/>.
    ///   </summary>
    /// <typeparam name="T">The type of the <paramref name="value"/> and the <paramref name="threshold"/>.</typeparam>
    /// <param name="assert">The assertion instance.</param>
@@ -107,24 +41,9 @@ public static partial class AssertExtensions
 
       return assert;
    }
-   #endregion
 
-   #region IsGreaterThanOrEqualTo methods
-   /// <summary>
-   ///   Asserts that the given <paramref name="value"/> is greater than or equal to 
-   ///   (>=) the <paramref name="threshold"/> using the given <paramref name="comparer"/>.
-   /// </summary>
-   /// <typeparam name="T">The type of the <paramref name="value"/> and the <paramref name="threshold"/>.</typeparam>
-   /// <param name="assert">The assertion instance.</param>
-   /// <param name="value">The value to check against the <paramref name="threshold"/>.</param>
-   /// <param name="threshold">The threshold that the <paramref name="value"/> has to be greater than or equal to.</param>
-   /// <param name="comparer">The <see cref="IComparer{T}"/> used to compare the <paramref name="value"/> against the <paramref name="threshold"/>.</param>
-   /// <param name="valueArgument">The argument expression that was passed in as the <paramref name="value"/>.</param>
-   /// <param name="thresholdArgument">The argument expression that was passed in as the <paramref name="threshold"/>.</param>
-   /// <param name="comparerArgument">The argument expression that was passed in as the <paramref name="comparer"/>.</param>
-   /// <param name="line">The line in the source file where this assertion was made.</param>
-   /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
-   public static IAssert IsGreaterThanOrEqualTo<T>(
+   /// <inheritdoc cref="IsGreaterThan{T}(IAssert, T, T, IComparer{T}, string, string, string, int)"/>
+   public static IAssert IsGreaterThan<T>(
       this IAssert assert,
       [DisallowNull] T? value,
       [DisallowNull] T? threshold,
@@ -137,27 +56,14 @@ public static partial class AssertExtensions
    {
       int comparison = comparer.Compare(value.Value, threshold.Value);
 
-      if (comparison < 0)
-         assert.Fail(IsGreaterThanOrEqualToWithComparerFormat, value, threshold, comparer, valueArgument, thresholdArgument, comparerArgument, line);
+      if (comparison <= 0)
+         assert.Fail(IsGreaterThanWithComparerFormat, value, threshold, comparer, valueArgument, thresholdArgument, comparerArgument, line);
 
       return assert;
    }
 
-   /// <summary>
-   ///   Asserts that the given <paramref name="value"/> is greater than or equal to 
-   ///   (>=) the <paramref name="threshold"/> using the given <paramref name="comparer"/>.
-   /// </summary>
-   /// <typeparam name="T">The type of the <paramref name="value"/> and the <paramref name="threshold"/>.</typeparam>
-   /// <param name="assert">The assertion instance.</param>
-   /// <param name="value">The value to check against the <paramref name="threshold"/>.</param>
-   /// <param name="threshold">The threshold that the <paramref name="value"/> has to be greater than or equal to.</param>
-   /// <param name="comparer">The <see cref="IComparer{T}"/> used to compare the <paramref name="value"/> against the <paramref name="threshold"/>.</param>
-   /// <param name="valueArgument">The argument expression that was passed in as the <paramref name="value"/>.</param>
-   /// <param name="thresholdArgument">The argument expression that was passed in as the <paramref name="threshold"/>.</param>
-   /// <param name="comparerArgument">The argument expression that was passed in as the <paramref name="comparer"/>.</param>
-   /// <param name="line">The line in the source file where this assertion was made.</param>
-   /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
-   public static IAssert IsGreaterThanOrEqualTo<T>(
+   /// <inheritdoc cref="IsGreaterThan{T}(IAssert, T, T, IComparer{T}, string, string, string, int)"/>
+   public static IAssert IsGreaterThan<T>(
       this IAssert assert,
       [DisallowNull] T? value,
       T threshold,
@@ -170,12 +76,14 @@ public static partial class AssertExtensions
    {
       int comparison = comparer.Compare(value.Value, threshold);
 
-      if (comparison < 0)
-         assert.Fail(IsGreaterThanOrEqualToWithComparerFormat, value, threshold, comparer, valueArgument, thresholdArgument, comparerArgument, line);
+      if (comparison <= 0)
+         assert.Fail(IsGreaterThanWithComparerFormat, value, threshold, comparer, valueArgument, thresholdArgument, comparerArgument, line);
 
       return assert;
    }
+   #endregion
 
+   #region IsGreaterThanOrEqualTo methods
    /// <summary>
    ///   Asserts that the given <paramref name="value"/> is greater than or equal to
    ///   (>=) the <paramref name="threshold"/> using the given <paramref name="comparer"/>.
@@ -207,24 +115,9 @@ public static partial class AssertExtensions
 
       return assert;
    }
-   #endregion
 
-   #region IsNotGreaterThan methods
-   /// <summary>
-   ///   Asserts that the given <paramref name="value"/> is not greater than (&lt;=)
-   ///   the <paramref name="threshold"/> using the given <paramref name="comparer"/>.
-   /// </summary>
-   /// <typeparam name="T">The type of the <paramref name="value"/> and the <paramref name="threshold"/>.</typeparam>
-   /// <param name="assert">The assertion instance.</param>
-   /// <param name="value">The value to check against the <paramref name="threshold"/>.</param>
-   /// <param name="threshold">The threshold that the <paramref name="value"/> has to not be greater than.</param>
-   /// <param name="comparer">The <see cref="IComparer{T}"/> used to compare the <paramref name="value"/> against the <paramref name="threshold"/>.</param>
-   /// <param name="valueArgument">The argument expression that was passed in as the <paramref name="value"/>.</param>
-   /// <param name="thresholdArgument">The argument expression that was passed in as the <paramref name="threshold"/>.</param>
-   /// <param name="comparerArgument">The argument expression that was passed in as the <paramref name="comparer"/>.</param>
-   /// <param name="line">The line in the source file where this assertion was made.</param>
-   /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
-   public static IAssert IsNotGreaterThan<T>(
+   /// <inheritdoc cref="IsGreaterThanOrEqualTo{T}(IAssert, T, T, IComparer{T}, string, string, string, int)"/>
+   public static IAssert IsGreaterThanOrEqualTo<T>(
       this IAssert assert,
       [DisallowNull] T? value,
       [DisallowNull] T? threshold,
@@ -237,27 +130,14 @@ public static partial class AssertExtensions
    {
       int comparison = comparer.Compare(value.Value, threshold.Value);
 
-      if (comparison > 0)
-         assert.Fail(IsNotGreaterThanWithComparerFormat, value, threshold, comparer, valueArgument, thresholdArgument, comparerArgument, line);
+      if (comparison < 0)
+         assert.Fail(IsGreaterThanOrEqualToWithComparerFormat, value, threshold, comparer, valueArgument, thresholdArgument, comparerArgument, line);
 
       return assert;
    }
 
-   /// <summary>
-   ///   Asserts that the given <paramref name="value"/> is not greater than (&lt;=) 
-   ///   the <paramref name="threshold"/> using the given <paramref name="comparer"/>.
-   /// </summary>
-   /// <typeparam name="T">The type of the <paramref name="value"/> and the <paramref name="threshold"/>.</typeparam>
-   /// <param name="assert">The assertion instance.</param>
-   /// <param name="value">The value to check against the <paramref name="threshold"/>.</param>
-   /// <param name="threshold">The threshold that the <paramref name="value"/> has to not be greater than.</param>
-   /// <param name="comparer">The <see cref="IComparer{T}"/> used to compare the <paramref name="value"/> against the <paramref name="threshold"/>.</param>
-   /// <param name="valueArgument">The argument expression that was passed in as the <paramref name="value"/>.</param>
-   /// <param name="thresholdArgument">The argument expression that was passed in as the <paramref name="threshold"/>.</param>
-   /// <param name="comparerArgument">The argument expression that was passed in as the <paramref name="comparer"/>.</param>
-   /// <param name="line">The line in the source file where this assertion was made.</param>
-   /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
-   public static IAssert IsNotGreaterThan<T>(
+   /// <inheritdoc cref="IsGreaterThanOrEqualTo{T}(IAssert, T, T, IComparer{T}, string, string, string, int)"/>
+   public static IAssert IsGreaterThanOrEqualTo<T>(
       this IAssert assert,
       [DisallowNull] T? value,
       T threshold,
@@ -270,12 +150,14 @@ public static partial class AssertExtensions
    {
       int comparison = comparer.Compare(value.Value, threshold);
 
-      if (comparison > 0)
-         assert.Fail(IsNotGreaterThanWithComparerFormat, value, threshold, comparer, valueArgument, thresholdArgument, comparerArgument, line);
+      if (comparison < 0)
+         assert.Fail(IsGreaterThanOrEqualToWithComparerFormat, value, threshold, comparer, valueArgument, thresholdArgument, comparerArgument, line);
 
       return assert;
    }
+   #endregion
 
+   #region IsNotGreaterThan methods
    /// <summary>
    ///   Asserts that the given <paramref name="value"/> is not greater than (&lt;=) 
    ///   the <paramref name="threshold"/> using the given <paramref name="comparer"/>.
@@ -301,6 +183,46 @@ public static partial class AssertExtensions
       [CallerLineNumber] int line = 0)
    {
       int comparison = comparer.Compare(value, threshold);
+
+      if (comparison > 0)
+         assert.Fail(IsNotGreaterThanWithComparerFormat, value, threshold, comparer, valueArgument, thresholdArgument, comparerArgument, line);
+
+      return assert;
+   }
+
+   /// <inheritdoc cref="IsNotGreaterThan{T}(IAssert, T, T, IComparer{T}, string, string, string, int)"/>
+   public static IAssert IsNotGreaterThan<T>(
+      this IAssert assert,
+      [DisallowNull] T? value,
+      [DisallowNull] T? threshold,
+      IComparer<T> comparer,
+      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
+      [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
+      [CallerArgumentExpression(nameof(comparer))] string comparerArgument = "<comparer>",
+      [CallerLineNumber] int line = 0)
+      where T : struct
+   {
+      int comparison = comparer.Compare(value.Value, threshold.Value);
+
+      if (comparison > 0)
+         assert.Fail(IsNotGreaterThanWithComparerFormat, value, threshold, comparer, valueArgument, thresholdArgument, comparerArgument, line);
+
+      return assert;
+   }
+
+   /// <inheritdoc cref="IsNotGreaterThan{T}(IAssert, T, T, IComparer{T}, string, string, string, int)"/>
+   public static IAssert IsNotGreaterThan<T>(
+      this IAssert assert,
+      [DisallowNull] T? value,
+      T threshold,
+      IComparer<T> comparer,
+      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
+      [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
+      [CallerArgumentExpression(nameof(comparer))] string comparerArgument = "<comparer>",
+      [CallerLineNumber] int line = 0)
+      where T : struct
+   {
+      int comparison = comparer.Compare(value.Value, threshold);
 
       if (comparison > 0)
          assert.Fail(IsNotGreaterThanWithComparerFormat, value, threshold, comparer, valueArgument, thresholdArgument, comparerArgument, line);
@@ -311,72 +233,6 @@ public static partial class AssertExtensions
 
    #region IsGreaterThanOrEqualTo methods
    /// <summary>
-   ///   Asserts that the given <paramref name="value"/> is not greater than or equal to
-   ///   (&lt;) the <paramref name="threshold"/> using the given <paramref name="comparer"/>.
-   /// </summary>
-   /// <typeparam name="T">The type of the <paramref name="value"/> and the <paramref name="threshold"/>.</typeparam>
-   /// <param name="assert">The assertion instance.</param>
-   /// <param name="value">The value to check against the <paramref name="threshold"/>.</param>
-   /// <param name="threshold">The threshold that the <paramref name="value"/> has to not be greater than or equal to.</param>
-   /// <param name="comparer">The <see cref="IComparer{T}"/> used to compare the <paramref name="value"/> against the <paramref name="threshold"/>.</param>
-   /// <param name="valueArgument">The argument expression that was passed in as the <paramref name="value"/>.</param>
-   /// <param name="thresholdArgument">The argument expression that was passed in as the <paramref name="threshold"/>.</param>
-   /// <param name="comparerArgument">The argument expression that was passed in as the <paramref name="comparer"/>.</param>
-   /// <param name="line">The line in the source file where this assertion was made.</param>
-   /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
-   public static IAssert IsNotGreaterThanOrEqualTo<T>(
-      this IAssert assert,
-      [DisallowNull] T? value,
-      [DisallowNull] T? threshold,
-      IComparer<T> comparer,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
-      [CallerArgumentExpression(nameof(comparer))] string comparerArgument = "<comparer>",
-      [CallerLineNumber] int line = 0)
-      where T : struct
-   {
-      int comparison = comparer.Compare(value.Value, threshold.Value);
-
-      if (comparison >= 0)
-         assert.Fail(IsNotGreaterThanOrEqualToWithComparerFormat, value, threshold, comparer, valueArgument, thresholdArgument, comparerArgument, line);
-
-      return assert;
-   }
-
-   /// <summary>
-   ///   Asserts that the given <paramref name="value"/> is not greater than or equal to 
-   ///   (&lt;) the <paramref name="threshold"/> using the given <paramref name="comparer"/>.
-   /// </summary>
-   /// <typeparam name="T">The type of the <paramref name="value"/> and the <paramref name="threshold"/>.</typeparam>
-   /// <param name="assert">The assertion instance.</param>
-   /// <param name="value">The value to check against the <paramref name="threshold"/>.</param>
-   /// <param name="threshold">The threshold that the <paramref name="value"/> has to not be greater than or equal to.</param>
-   /// <param name="comparer">The <see cref="IComparer{T}"/> used to compare the <paramref name="value"/> against the <paramref name="threshold"/>.</param>
-   /// <param name="valueArgument">The argument expression that was passed in as the <paramref name="value"/>.</param>
-   /// <param name="thresholdArgument">The argument expression that was passed in as the <paramref name="threshold"/>.</param>
-   /// <param name="comparerArgument">The argument expression that was passed in as the <paramref name="comparer"/>.</param>
-   /// <param name="line">The line in the source file where this assertion was made.</param>
-   /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
-   public static IAssert IsNotGreaterThanOrEqualTo<T>(
-      this IAssert assert,
-      [DisallowNull] T? value,
-      T threshold,
-      IComparer<T> comparer,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
-      [CallerArgumentExpression(nameof(comparer))] string comparerArgument = "<comparer>",
-      [CallerLineNumber] int line = 0)
-      where T : struct
-   {
-      int comparison = comparer.Compare(value.Value, threshold);
-
-      if (comparison >= 0)
-         assert.Fail(IsNotGreaterThanOrEqualToWithComparerFormat, value, threshold, comparer, valueArgument, thresholdArgument, comparerArgument, line);
-
-      return assert;
-   }
-
-   /// <summary>
    ///   Asserts that the given <paramref name="value"/> is not greater than or equal to 
    ///   (&lt;) the <paramref name="threshold"/> using the given <paramref name="comparer"/>.
    /// </summary>
@@ -406,5 +262,46 @@ public static partial class AssertExtensions
 
       return assert;
    }
+
+   /// <inheritdoc cref="IsNotGreaterThanOrEqualTo{T}(IAssert, T, T, IComparer{T}, string, string, string, int)"/>
+   public static IAssert IsNotGreaterThanOrEqualTo<T>(
+      this IAssert assert,
+      [DisallowNull] T? value,
+      [DisallowNull] T? threshold,
+      IComparer<T> comparer,
+      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
+      [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
+      [CallerArgumentExpression(nameof(comparer))] string comparerArgument = "<comparer>",
+      [CallerLineNumber] int line = 0)
+      where T : struct
+   {
+      int comparison = comparer.Compare(value.Value, threshold.Value);
+
+      if (comparison >= 0)
+         assert.Fail(IsNotGreaterThanOrEqualToWithComparerFormat, value, threshold, comparer, valueArgument, thresholdArgument, comparerArgument, line);
+
+      return assert;
+   }
+
+   /// <inheritdoc cref="IsNotGreaterThanOrEqualTo{T}(IAssert, T, T, IComparer{T}, string, string, string, int)"/>
+   public static IAssert IsNotGreaterThanOrEqualTo<T>(
+      this IAssert assert,
+      [DisallowNull] T? value,
+      T threshold,
+      IComparer<T> comparer,
+      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
+      [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
+      [CallerArgumentExpression(nameof(comparer))] string comparerArgument = "<comparer>",
+      [CallerLineNumber] int line = 0)
+      where T : struct
+   {
+      int comparison = comparer.Compare(value.Value, threshold);
+
+      if (comparison >= 0)
+         assert.Fail(IsNotGreaterThanOrEqualToWithComparerFormat, value, threshold, comparer, valueArgument, thresholdArgument, comparerArgument, line);
+
+      return assert;
+   }
    #endregion
 }
+
