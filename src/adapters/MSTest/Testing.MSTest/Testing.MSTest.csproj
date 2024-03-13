@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Project -->
+  <PropertyGroup Label="project">
+    <TargetFrameworks>netstandard2.1; netcoreapp3.0; net5.0; net7.0</TargetFrameworks>
+    <LangVersion>12</LangVersion>
+    <Nullable>enable</Nullable>
+
+    <AssemblyName>OwlDomain.Testing.MSTest</AssemblyName>
+    <RootNamespace>OwlDomain.Testing.MSTest</RootNamespace>
+
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+
+  <!-- Nuget package -->
+  <PropertyGroup Label="nuget">
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+    <Title>OwlDomain.Testing.MSTest</Title>
+    <Description>An MSTest specific package for testing assertions.</Description>
+    <PackageTags>owldomain, testing, mstest</PackageTags>
+    
+    <Version>1.0.0</Version>
+
+    <Authors>Owl Domain, Nightowl</Authors>
+    <Company>OwlDomain</Company>
+
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/Owl-Domain/Testing</PackageProjectUrl>
+  </PropertyGroup>
+  
+  <!-- Project references -->
+  <ItemGroup Label="projects">
+    <ProjectReference Include="..\..\..\base\Testing.Base\Testing.Base.csproj" />
+  </ItemGroup>
+
+  <!-- Package references -->
+  <ItemGroup Label="packages">
+    <PackageReference Include="MSTest.TestFramework" Version="3.0.0" />
+  </ItemGroup>
+
+  <!-- Readme -->
+  <ItemGroup Label="readme">
+    <None Include="readme.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <!-- Repository -->
+  <PropertyGroup Label="repository">
+    <RepositoryType>git</RepositoryType>
+    <RepositoryBranch>master</RepositoryBranch>
+    <RepositoryUrl>https://github.com/Owl-Domain/Testing</RepositoryUrl>
+  </PropertyGroup>
+
+</Project>
