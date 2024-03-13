@@ -1,5 +1,6 @@
 Testing
 ===
+
 A testing library which provides easily extensible assertions that can be used in test projects.
 
 The main purpose of this library is to provide a unified way of calling the assertion
@@ -10,81 +11,106 @@ a test being inconclusive.
 
 ## Structure
 
-This project is split into multiple components, the base library which provides
-all the 
+This project is split into 3 areas: the base library, the assertions library, and the
+test framework adapters.
+
+- Base library - This library contains the `IAssert` interface that all the assertion
+  extension methods are	expected to be based on, along with the `FormattingHelper` static 
+  class which can be used to normalise and format the arguments used for the test result output.
+
+- Assertions library - This library contains all of the provided assertion extension
+  methods, the reason why it is separated from OwlDomain.Testing.Base is so that if you want to
+  you can fully replace all of the assertion methods with your own custom ones.
+
+- Test framework adapters - The purpose of these adapters is to provide implementations for
+  the `IAssert` interface and a way to access them.
+
+The project has been split up in this manner to make it easy to add/replace the assertion
+methods, as well as making it extremely easy to create new test framework adapters.
 
 
-### Base library
-This project is split into multiple components, the main component being the 
-`OwlDomain.Testing` project, this project provides all the assertion methods
-as extension methods on the `IAssert` interface, meaning that you can 
-easily add your own assertions on top of that in the same manner.
 
-The base library also provides a static `FormattingHelper` class with a single
-static function `FormatArguments` which helps to normalise and format any arguments
-for the test result messages. 
+## Currently supported test framework adapters
 
-### Adapter libraries
+- OwlDomain.Testing.MSTest for [MSTest](https://github.com/microsoft/testfx) >= 3.0.0
 
-After there each test framework can have it's own adapter library, which only has to 
-provide the implementations for the `IAssert` interface, and a way to access them, 
-for the `OwlDomain.Testing.MSTest` adapter library that looks something like this:
-```csharp
-using MSAssert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
-public sealed class FailAssert : IAssert
-{
-   [DoesNotReturn, ExcludeFromCodeCoverage]
-   public void Fail(string message) => MSAssert.Fail(message);
 
-   [DoesNotReturn, ExcludeFromCodeCoverage]
-   public void Fail(string format, params object?[] arguments)
-   {
-      string[] newArguments = FormattingHelper.FormatArguments(arguments);
-      MSAssert.Fail(format, newArguments);
-   }
-}
+## Installation
 
-public sealed class InconclusiveAssert : IAssert
-{
-   [DoesNotReturn, ExcludeFromCodeCoverage]
-   public void Fail(string message) => MSAssert.Inconclusive(message);
+To use this package, first pick out which adapter you want to use from the list above,
+afterwards download the latest release files for the base library, the assertions library
+and the adapter that you chose. 
 
-   [DoesNotReturn, ExcludeFromCodeCoverage]
-   public void Fail(string format, params object?[] arguments)
-   {
-      string[] newArguments = FormattingHelper.FormatArguments(arguments);
-      MSAssert.Inconclusive(format, newArguments);
-   }
-}
+Then add them to a 
+[local NuGet feed](https://learn.microsoft.com/en-us/nuget/hosting-packages/local-feeds),
+after that you can reference it from your .NET tests project.
+An official [nuget.org](https://www.nuget.org/) package will be released at a later point in time.
 
-public static class Assert
-{
-   /// <summary>An <see cref="IAssert"/> where failed assertions will result in the test being marked as failed.</summary>
-   public static IAssert That { get; } = new FailAssert();
-
-   /// <summary>An <see cref="IAssert"/> where failed assertions will result in the test being marked as inconclusive.</summary>
-   public static IAssert IsConclusiveIf { get; } = new InconclusiveAssert();
-}
+In C# and for the MSTest adapter, that would look like this:
+```csproj
+<ItemGroup>
+  <PackageReference Include="OwlDomain.Testing.Assertions" Version="1.0.0" />
+  <PackageReference Include="OwlDomain.Testing.MSTest" Version="1.0.0" />
+</ItemGroup>
 ```
+Remember to add any other dependencies that the testing framework requires as the adapter
+only references the bare minimum it needs to in order to function.
 
-This means that the same assertion methods can be used to mark the test as failed, or as inconclusive, 
-with the usage looking something like this:
+
+
+## Usage
+
+The optimal way to use these libraries is by using
+[global usings](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-directive#global-modifier).
+For the MSTest adapter that would look like this:
 ```csharp
-// fails the test if the value is not true.
+global using Assert = OwlDomain.Testing.MSTest.Assert;
+global using OwlDomain.Testing.Assertions;
+```
+The first using helps to prevent ambiguity as MSTest also provides an `Assert` class, the second
+using will allow you to access any of the assert extensions methods anywhere in your tests project.
+
+After that, you can call the assertion methods like this:
+```csharp
+// Marks the test as failed if the value is not true.
 Assert.That.IsTrue(value);
 
-// marks the test as inconclusive if the value is not true.
+// Marks the test as inconclusive if the value is not true.
 Assert.IsConclusiveIf.IsTrue(value);
 ```
+(this will depend on the adapter that you choose, but all of the supported adapters will be similar)
 
-The simplicity of the adapter library means that even though
-[MSTest](https://github.com/microsoft/testfx)
-is the only currently supported test framework, it is trivial
-to add support for any test framework you want yourself.
+The assertion methods in the `OwlDomain.Testing.Assertions` library also makes use of the
+[CallerArgumentExpressionAttribute](https://learn.microsoft.com/en-gb/dotnet/api/system.runtime.compilerservices.callerargumentexpressionattribute)
+and the 
+[CallerLineNumberAttribute](https://learn.microsoft.com/en-gb/dotnet/api/system.runtime.compilerservices.callerlinenumberattribute)
+to provide extra information in the test result output, meaning that if you have
+code like this (the numbers on the left representing the line numbers):
+```csharp
+1 
+2 // Act
+3 bool result = ...;
+4 
+5 // Assert
+6 Assert.That.IsTrue(result);
+```
 
-## Currently supported test frameworks
-- [MSTest](https://github.com/microsoft/testfx) >= 3.0.0
+Then if the test fails (meaning that the `result` was false) the test output would look like this:
+```
+"result" was expected to be true, but it was false instead.
+Line: 6
+```
+
+Assertion methods can also be chained in a manner like so:
+```csharp
+bool result1 = ...;
+bool result2 = ...;
+
+Assert.That
+   .IsTrue(result1)
+   .IsTrue(result2);
+```
 
 
 

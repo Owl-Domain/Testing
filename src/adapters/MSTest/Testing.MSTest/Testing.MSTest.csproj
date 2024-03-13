@@ -21,7 +21,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
 
     <Title>OwlDomain.Testing.MSTest</Title>
-    <Description>An MSTest specific package for testing assertions.</Description>
+    <Description>An MSTest adapter package for the OwlDomain.Testing framework.</Description>
     <PackageTags>owldomain, testing, mstest</PackageTags>
     
     <Version>1.0.0</Version>
