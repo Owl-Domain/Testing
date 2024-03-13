@@ -1,2 +1,3 @@
-﻿global using OwlDomain.Testing.Base;
-global using MSAssert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
+﻿global using System.Diagnostics.CodeAnalysis;
+global using Microsoft.VisualStudio.TestTools.UnitTesting;
+global using OwlDomain.Testing.Base;

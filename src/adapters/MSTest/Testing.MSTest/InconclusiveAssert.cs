@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace OwlDomain.Testing.MSTest;
+﻿namespace OwlDomain.Testing.MSTest;
 
 /// <summary>
 /// Represents an <see cref="IAssert"/> implementation which will mark the tests as inconclusive.
@@ -9,15 +7,17 @@ public sealed class InconclusiveAssert : IAssert
 {
    #region Methods
    /// <inheritdoc/>
-   [DoesNotReturn, ExcludeFromCodeCoverage]
-   public void Fail(string message) => MSAssert.Inconclusive(message);
+   [DoesNotReturn]
+   public void Fail(string message) => throw new AssertInconclusiveException(message);
 
    /// <inheritdoc/>
-   [DoesNotReturn, ExcludeFromCodeCoverage]
+   [DoesNotReturn]
    public void Fail(string format, params object?[] arguments)
    {
       string[] newArguments = FormattingHelper.FormatArguments(arguments);
-      MSAssert.Inconclusive(format, newArguments);
+      string message = string.Format(format, newArguments);
+
+      throw new AssertInconclusiveException(message);
    }
    #endregion
 }

@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace OwlDomain.Testing.MSTest;
+﻿namespace OwlDomain.Testing.MSTest;
 
 /// <summary>
 /// Represents an <see cref="IAssert"/> implementation which will mark the tests as failed.
@@ -9,15 +7,17 @@ public sealed class FailAssert : IAssert
 {
    #region Methods
    /// <inheritdoc/>
-   [DoesNotReturn, ExcludeFromCodeCoverage]
-   public void Fail(string message) => MSAssert.Fail(message);
+   [DoesNotReturn]
+   public void Fail(string message) => throw new AssertFailedException(message);
 
    /// <inheritdoc/>
-   [DoesNotReturn, ExcludeFromCodeCoverage]
+   [DoesNotReturn]
    public void Fail(string format, params object?[] arguments)
    {
       string[] newArguments = FormattingHelper.FormatArguments(arguments);
-      MSAssert.Fail(format, newArguments);
+      string message = string.Format(format, newArguments);
+
+      throw new AssertFailedException(message);
    }
    #endregion
 }
