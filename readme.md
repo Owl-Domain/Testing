@@ -88,18 +88,17 @@ and the
 to provide extra information in the test result output, meaning that if you have
 code like this (the numbers on the left representing the line numbers):
 ```csharp
-1 
-2 // Act
-3 bool result = ...;
-4 
-5 // Assert
-6 Assert.That.IsTrue(result);
+1 // Act
+2 bool result = ...;
+3 
+4 // Assert
+5 Assert.That.IsTrue(result);
 ```
 
 Then if the test fails (meaning that the `result` was false) the test output would look like this:
 ```
 "result" was expected to be true, but it was false instead.
-Line: 6
+Line: 5
 ```
 
 Assertion methods can also be chained in a manner like so:
