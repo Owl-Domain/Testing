@@ -19,8 +19,8 @@ test framework adapters.
   class which can be used to normalise and format the arguments used for the test result output.
 
 - Assertions library - This library contains all of the provided assertion extension
-  methods, the reason why it is separated from OwlDomain.Testing.Base is so that if you want to
-  you can fully replace all of the assertion methods with your own custom ones.
+  methods, it is separated from OwlDomain.Testing.Base so that you can fully replace 
+  all of the assertion methods with your own custom ones.
 
 - Test framework adapters - The purpose of these adapters is to provide implementations for
   the `IAssert` interface and a way to access them.
@@ -38,14 +38,12 @@ methods, as well as making it extremely easy to create new test framework adapte
 
 ## Installation
 
-To use this package, first pick out which adapter you want to use from the list above,
-afterwards download the latest release files for the base library, the assertions library
-and the adapter that you chose. 
-
-Then add them to a 
-[local NuGet feed](https://learn.microsoft.com/en-us/nuget/hosting-packages/local-feeds),
-after that you can reference it from your .NET tests project.
-An official [nuget.org](https://www.nuget.org/) package will be released at a later point in time.
+1. Pick out which adapter you want to use from the list above.
+2. Download the latest release files for the base library, the assertions library
+    and the adapter that you chose.
+3. Add them to a [local NuGet feed](https://learn.microsoft.com/en-us/nuget/hosting-packages/local-feeds).
+   An official [nuget.org](https://www.nuget.org/) package will be released at a later point in time.
+4. Reference the packages from your .NET tests project. 
 
 In C# and for the MSTest adapter, that would look like this:
 ```csproj
@@ -79,7 +77,7 @@ Assert.That.IsTrue(value);
 // Marks the test as inconclusive if the value is not true.
 Assert.IsConclusiveIf.IsTrue(value);
 ```
-(this will depend on the adapter that you choose, but all of the supported adapters will be similar)
+(this will depend on the adapter that you chose, but all of the supported adapters are/will be similar)
 
 The assertion methods in the `OwlDomain.Testing.Assertions` library also makes use of the
 [CallerArgumentExpressionAttribute](https://learn.microsoft.com/en-gb/dotnet/api/system.runtime.compilerservices.callerargumentexpressionattribute)
