@@ -6,7 +6,3 @@ global using OwlDomain.Testing.Base;
 #else
 [assembly: Parallelize(Scope = ExecutionScope.MethodLevel, Workers = 0)]
 #endif
-
-internal static class Category
-{
-}
