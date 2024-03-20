@@ -41,7 +41,7 @@ methods, as well as making it extremely easy to create new test framework adapte
 1. Pick out which adapter you want to use from the list above.
 2. Download the latest release files for the base library, the assertions library
     and the adapter that you chose.
-3. Add them to a [local NuGet feed](https://learn.microsoft.com/en-us/nuget/hosting-packages/local-feeds).
+3. Add them to a [local NuGet feed](https://learn.microsoft.com/nuget/hosting-packages/local-feeds).
    An official [nuget.org](https://www.nuget.org/) package will be released at a later point in time.
 4. Reference the packages from your .NET tests project. 
 
@@ -60,7 +60,7 @@ only references the bare minimum it needs to in order to function.
 ## Usage
 
 The optimal way to use these libraries is by using
-[global usings](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-directive#global-modifier).
+[global usings](https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/using-directive#global-modifier).
 For the MSTest adapter that would look like this:
 ```csharp
 global using Assert = OwlDomain.Testing.MSTest.Assert;
@@ -80,9 +80,9 @@ Assert.IsConclusiveIf.IsTrue(value);
 (this will depend on the adapter that you chose, but all of the supported adapters are/will be similar)
 
 The assertion methods in the `OwlDomain.Testing.Assertions` library also makes use of the
-[CallerArgumentExpressionAttribute](https://learn.microsoft.com/en-gb/dotnet/api/system.runtime.compilerservices.callerargumentexpressionattribute)
+[CallerArgumentExpressionAttribute](https://learn.microsoft.com/dotnet/api/system.runtime.compilerservices.callerargumentexpressionattribute)
 and the 
-[CallerLineNumberAttribute](https://learn.microsoft.com/en-gb/dotnet/api/system.runtime.compilerservices.callerlinenumberattribute)
+[CallerLineNumberAttribute](https://learn.microsoft.com/dotnet/api/system.runtime.compilerservices.callerlinenumberattribute)
 to provide extra information in the test result output, meaning that if you have
 code like this (the numbers on the left representing the line numbers):
 ```csharp
@@ -122,5 +122,5 @@ concern / suggestion has already been raised.
 
 ## License
 
-This project is not currently under any license, all rights are reserved, however it will become more
-permissive at a later date.
+This project (the source, and the release files, e.t.c) are not currently under any license, 
+all rights are reserved, however it will become more permissive at a later date.

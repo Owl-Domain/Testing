@@ -15,7 +15,7 @@ to reference the package with the assertion methods as well.
 ## Usage
 
 The optimal way to use these libraries is by using
-[global usings](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-directive#global-modifier).
+[global usings](https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/using-directive#global-modifier).
 For the MSTest adapter that would look like this:
 ```csharp
 global using Assert = OwlDomain.Testing.MSTest.Assert;
@@ -32,3 +32,10 @@ Assert.That.IsTrue(value);
 // Marks the test as inconclusive if the value is not true.
 Assert.IsConclusiveIf.IsTrue(value);
 ```
+
+
+
+## License
+
+This project (the source, and the release files, e.t.c) are not currently under any license, 
+all rights are reserved, however it will become more permissive at a later date.
