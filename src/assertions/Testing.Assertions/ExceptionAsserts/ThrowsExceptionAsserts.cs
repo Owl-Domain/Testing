@@ -30,11 +30,13 @@ public static partial class AssertExtensions
       try
       {
          action.Invoke();
-
-         assert.Fail(ThrowsAnyExceptionFormat, action, actionArgument, line);
       }
-      catch { }
+      catch
+      {
+         return assert;
+      }
 
+      assert.Fail(ThrowsAnyExceptionFormat, action, actionArgument, line);
       return assert;
    }
 
@@ -55,15 +57,15 @@ public static partial class AssertExtensions
       try
       {
          action.Invoke();
-
-         assert.Fail(ThrowsAnyExceptionFormat, action, actionArgument, line);
-
-         exception = null;
       }
       catch (Exception ex)
       {
          exception = ex;
+         return assert;
       }
+
+      assert.Fail(ThrowsAnyExceptionFormat, action, actionArgument, line);
+      exception = null;
 
       return assert;
    }
@@ -88,15 +90,16 @@ public static partial class AssertExtensions
       try
       {
          action.Invoke();
-
-         assert.Fail(ThrowsExceptionOfTypeNoExceptionFormat, action, typeof(T), actionArgument, line);
       }
       catch (Exception exception)
       {
          if (exception is not T)
             assert.Fail(ThrowsExceptionOfTypeWrongTypeFormat, action, typeof(T), exception, exception.GetType(), actionArgument, line);
+
+         return assert;
       }
 
+      assert.Fail(ThrowsExceptionOfTypeNoExceptionFormat, action, typeof(T), actionArgument, line);
       return assert;
    }
 
@@ -122,25 +125,23 @@ public static partial class AssertExtensions
       try
       {
          action.Invoke();
-
-         assert.Fail(ThrowsExceptionOfTypeNoExceptionFormat, action, typeof(T), actionArgument, line);
-
-         // Note(Nightowl): Never reached;
-         exception = null;
       }
       catch (Exception ex)
       {
          if (ex is not T typedException)
          {
             assert.Fail(ThrowsExceptionOfTypeWrongTypeFormat, action, typeof(T), ex, ex.GetType(), actionArgument, line);
-
-            // Note(Nightowl): Never reached;
             exception = null;
          }
          else
             exception = typedException;
+
+         return assert;
       }
 
+      assert.Fail(ThrowsExceptionOfTypeNoExceptionFormat, action, typeof(T), actionArgument, line);
+
+      exception = null;
       return assert;
    }
 
@@ -164,15 +165,16 @@ public static partial class AssertExtensions
       try
       {
          action.Invoke();
-
-         assert.Fail(ThrowsExactExceptionNoExceptionFormat, action, typeof(T), actionArgument, line);
       }
       catch (Exception exception)
       {
          if (exception.GetType() != typeof(T))
             assert.Fail(ThrowsExactExceptionWrongTypeFormat, action, typeof(T), exception, exception.GetType(), actionArgument, line);
+
+         return assert;
       }
 
+      assert.Fail(ThrowsExactExceptionNoExceptionFormat, action, typeof(T), actionArgument, line);
       return assert;
    }
 
@@ -198,25 +200,23 @@ public static partial class AssertExtensions
       try
       {
          action.Invoke();
-
-         assert.Fail(ThrowsExactExceptionNoExceptionFormat, action, typeof(T), actionArgument, line);
-
-         // Note(Nightowl): Never reached;
-         exception = null;
       }
       catch (Exception ex)
       {
          if (ex.GetType() != typeof(T))
          {
             assert.Fail(ThrowsExactExceptionWrongTypeFormat, action, typeof(T), ex, ex.GetType(), actionArgument, line);
-
-            // Note(Nightowl): Never reached;
             exception = null;
          }
          else
             exception = (T)ex;
+
+         return assert;
       }
 
+      assert.Fail(ThrowsExactExceptionNoExceptionFormat, action, typeof(T), actionArgument, line);
+
+      exception = null;
       return assert;
    }
    #endregion
