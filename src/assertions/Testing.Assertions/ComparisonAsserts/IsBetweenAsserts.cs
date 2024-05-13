@@ -25,159 +25,6 @@ public static partial class AssertExtensions
    /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
    public static IAssert IsBetween<T>(
       this IAssert assert,
-      IComparable<T> value,
-      T minimum,
-      T maximum,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(minimum))] string minimumArgument = "<minimum>",
-      [CallerArgumentExpression(nameof(maximum))] string maximumArgument = "<maximum>",
-      [CallerLineNumber] int line = 0)
-   {
-      bool comparison =
-         value.CompareTo(minimum) >= 0 &&
-         value.CompareTo(maximum) <= 0;
-
-      if (comparison is false)
-         assert.Fail(IsBetweenFormat, value, minimum, maximum, valueArgument, minimumArgument, maximumArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="IsBetween{T}(IAssert, IComparable{T}, T, T, string, string, string, int)"/>
-   public static IAssert IsBetween<T>(
-      this IAssert assert,
-      [DisallowNull] T? value,
-      T minimum,
-      T maximum,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(minimum))] string minimumArgument = "<minimum>",
-      [CallerArgumentExpression(nameof(maximum))] string maximumArgument = "<maximum>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, IComparable<T>
-   {
-      bool comparison =
-         value.Value.CompareTo(minimum) >= 0 &&
-         value.Value.CompareTo(maximum) <= 0;
-
-      if (comparison is false)
-         assert.Fail(IsBetweenFormat, value, minimum, maximum, valueArgument, minimumArgument, maximumArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="IsBetween{T}(IAssert, IComparable{T}, T, T, string, string, string, int)"/>
-   public static IAssert IsBetween<T>(
-      this IAssert assert,
-      T value,
-      [DisallowNull] T? minimum,
-      T maximum,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(minimum))] string minimumArgument = "<minimum>",
-      [CallerArgumentExpression(nameof(maximum))] string maximumArgument = "<maximum>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, IComparable<T>
-   {
-      bool comparison =
-         value.CompareTo(minimum.Value) >= 0 &&
-         value.CompareTo(maximum) <= 0;
-
-      if (comparison is false)
-         assert.Fail(IsBetweenFormat, value, minimum, maximum, valueArgument, minimumArgument, maximumArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="IsBetween{T}(IAssert, IComparable{T}, T, T, string, string, string, int)"/>
-   public static IAssert IsBetween<T>(
-      this IAssert assert,
-      T value,
-      T minimum,
-      [DisallowNull] T? maximum,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(minimum))] string minimumArgument = "<minimum>",
-      [CallerArgumentExpression(nameof(maximum))] string maximumArgument = "<maximum>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, IComparable<T>
-   {
-      bool comparison =
-         value.CompareTo(minimum) >= 0 &&
-         value.CompareTo(maximum.Value) <= 0;
-
-      if (comparison is false)
-         assert.Fail(IsBetweenFormat, value, minimum, maximum, valueArgument, minimumArgument, maximumArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="IsBetween{T}(IAssert, IComparable{T}, T, T, string, string, string, int)"/>
-   public static IAssert IsBetween<T>(
-      this IAssert assert,
-      [DisallowNull] T? value,
-      [DisallowNull] T? minimum,
-      T maximum,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(minimum))] string minimumArgument = "<minimum>",
-      [CallerArgumentExpression(nameof(maximum))] string maximumArgument = "<maximum>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, IComparable<T>
-   {
-      bool comparison =
-         value.Value.CompareTo(minimum.Value) >= 0 &&
-         value.Value.CompareTo(maximum) <= 0;
-
-      if (comparison is false)
-         assert.Fail(IsBetweenFormat, value, minimum, maximum, valueArgument, minimumArgument, maximumArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="IsBetween{T}(IAssert, IComparable{T}, T, T, string, string, string, int)"/>
-   public static IAssert IsBetween<T>(
-      this IAssert assert,
-      [DisallowNull] T? value,
-      T minimum,
-      [DisallowNull] T? maximum,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(minimum))] string minimumArgument = "<minimum>",
-      [CallerArgumentExpression(nameof(maximum))] string maximumArgument = "<maximum>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, IComparable<T>
-   {
-      bool comparison =
-         value.Value.CompareTo(minimum) >= 0 &&
-         value.Value.CompareTo(maximum.Value) <= 0;
-
-      if (comparison is false)
-         assert.Fail(IsBetweenFormat, value, minimum, maximum, valueArgument, minimumArgument, maximumArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="IsBetween{T}(IAssert, IComparable{T}, T, T, string, string, string, int)"/>
-   public static IAssert IsBetween<T>(
-      this IAssert assert,
-      T value,
-      [DisallowNull] T? minimum,
-      [DisallowNull] T? maximum,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(minimum))] string minimumArgument = "<minimum>",
-      [CallerArgumentExpression(nameof(maximum))] string maximumArgument = "<maximum>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, IComparable<T>
-   {
-      bool comparison =
-         value.CompareTo(minimum.Value) >= 0 &&
-         value.CompareTo(maximum.Value) <= 0;
-
-      if (comparison is false)
-         assert.Fail(IsBetweenFormat, value, minimum, maximum, valueArgument, minimumArgument, maximumArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="IsBetween{T}(IAssert, IComparable{T}, T, T, string, string, string, int)"/>
-   public static IAssert IsBetween<T>(
-      this IAssert assert,
       [DisallowNull] T? value,
       [DisallowNull] T? minimum,
       [DisallowNull] T? maximum,
@@ -190,6 +37,28 @@ public static partial class AssertExtensions
       bool comparison =
          value.Value.CompareTo(minimum.Value) >= 0 &&
          value.Value.CompareTo(maximum.Value) <= 0;
+
+      if (comparison is false)
+         assert.Fail(IsBetweenFormat, value, minimum, maximum, valueArgument, minimumArgument, maximumArgument, line);
+
+      return assert;
+   }
+
+   /// <inheritdoc cref="IsBetween{T}(IAssert, T?, T?, T?, string, string, string, int)"/>
+   public static IAssert IsBetween<T>(
+      this IAssert assert,
+      [DisallowNull] T? value,
+      [DisallowNull] T? minimum,
+      [DisallowNull] T? maximum,
+      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
+      [CallerArgumentExpression(nameof(minimum))] string minimumArgument = "<minimum>",
+      [CallerArgumentExpression(nameof(maximum))] string maximumArgument = "<maximum>",
+      [CallerLineNumber] int line = 0)
+      where T : IComparable<T>
+   {
+      bool comparison =
+         value.CompareTo(minimum) >= 0 &&
+         value.CompareTo(maximum) <= 0;
 
       if (comparison is false)
          assert.Fail(IsBetweenFormat, value, minimum, maximum, valueArgument, minimumArgument, maximumArgument, line);
@@ -215,172 +84,41 @@ public static partial class AssertExtensions
    /// <param name="line">The line in the source file where this assertion was made.</param>
    /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
    public static IAssert IsNotBetween<T>(
-      this IAssert assert,
-      IComparable<T> value,
-      T minimum,
-      T maximum,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(minimum))] string minimumArgument = "<minimum>",
-      [CallerArgumentExpression(nameof(maximum))] string maximumArgument = "<maximum>",
-      [CallerLineNumber] int line = 0)
-   {
-      bool comparison =
-         value.CompareTo(minimum) < 0 ||
-         value.CompareTo(maximum) > 0;
-
-      if (comparison is false)
-         assert.Fail(IsNotBetweenFormat, value, minimum, maximum, valueArgument, minimumArgument, maximumArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="IsNotBetween{T}(IAssert, IComparable{T}, T, T, string, string, string, int)"/>
-   public static IAssert IsNotBetween<T>(
-      this IAssert assert,
-      [DisallowNull] T? value,
-      T minimum,
-      T maximum,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(minimum))] string minimumArgument = "<minimum>",
-      [CallerArgumentExpression(nameof(maximum))] string maximumArgument = "<maximum>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, IComparable<T>
-   {
-      bool comparison =
-         value.Value.CompareTo(minimum) < 0 ||
-         value.Value.CompareTo(maximum) > 0;
-
-      if (comparison is false)
-         assert.Fail(IsNotBetweenFormat, value, minimum, maximum, valueArgument, minimumArgument, maximumArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="IsNotBetween{T}(IAssert, IComparable{T}, T, T, string, string, string, int)"/>
-   public static IAssert IsNotBetween<T>(
-      this IAssert assert,
-      T value,
-      [DisallowNull] T? minimum,
-      T maximum,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(minimum))] string minimumArgument = "<minimum>",
-      [CallerArgumentExpression(nameof(maximum))] string maximumArgument = "<maximum>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, IComparable<T>
-   {
-      bool comparison =
-         value.CompareTo(minimum.Value) < 0 ||
-         value.CompareTo(maximum) > 0;
-
-      if (comparison is false)
-         assert.Fail(IsNotBetweenFormat, value, minimum, maximum, valueArgument, minimumArgument, maximumArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="IsNotBetween{T}(IAssert, IComparable{T}, T, T, string, string, string, int)"/>
-   public static IAssert IsNotBetween<T>(
-      this IAssert assert,
-      T value,
-      T minimum,
-      [DisallowNull] T? maximum,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(minimum))] string minimumArgument = "<minimum>",
-      [CallerArgumentExpression(nameof(maximum))] string maximumArgument = "<maximum>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, IComparable<T>
-   {
-      bool comparison =
-         value.CompareTo(minimum) < 0 ||
-         value.CompareTo(maximum.Value) > 0;
-
-      if (comparison is false)
-         assert.Fail(IsNotBetweenFormat, value, minimum, maximum, valueArgument, minimumArgument, maximumArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="IsNotBetween{T}(IAssert, IComparable{T}, T, T, string, string, string, int)"/>
-   public static IAssert IsNotBetween<T>(
-      this IAssert assert,
-      [DisallowNull] T? value,
-      [DisallowNull] T? minimum,
-      T maximum,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(minimum))] string minimumArgument = "<minimum>",
-      [CallerArgumentExpression(nameof(maximum))] string maximumArgument = "<maximum>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, IComparable<T>
-   {
-      bool comparison =
-         value.Value.CompareTo(minimum.Value) < 0 ||
-         value.Value.CompareTo(maximum) > 0;
-
-      if (comparison is false)
-         assert.Fail(IsNotBetweenFormat, value, minimum, maximum, valueArgument, minimumArgument, maximumArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="IsNotBetween{T}(IAssert, IComparable{T}, T, T, string, string, string, int)"/>
-   public static IAssert IsNotBetween<T>(
-      this IAssert assert,
-      [DisallowNull] T? value,
-      T minimum,
-      [DisallowNull] T? maximum,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(minimum))] string minimumArgument = "<minimum>",
-      [CallerArgumentExpression(nameof(maximum))] string maximumArgument = "<maximum>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, IComparable<T>
-   {
-      bool comparison =
-         value.Value.CompareTo(minimum) < 0 ||
-         value.Value.CompareTo(maximum.Value) > 0;
-
-      if (comparison is false)
-         assert.Fail(IsNotBetweenFormat, value, minimum, maximum, valueArgument, minimumArgument, maximumArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="IsNotBetween{T}(IAssert, IComparable{T}, T, T, string, string, string, int)"/>
-   public static IAssert IsNotBetween<T>(
-      this IAssert assert,
-      T value,
-      [DisallowNull] T? minimum,
-      [DisallowNull] T? maximum,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(minimum))] string minimumArgument = "<minimum>",
-      [CallerArgumentExpression(nameof(maximum))] string maximumArgument = "<maximum>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, IComparable<T>
-   {
-      bool comparison =
-         value.CompareTo(minimum.Value) < 0 ||
-         value.CompareTo(maximum.Value) > 0;
-
-      if (comparison is false)
-         assert.Fail(IsNotBetweenFormat, value, minimum, maximum, valueArgument, minimumArgument, maximumArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="IsNotBetween{T}(IAssert, IComparable{T}, T, T, string, string, string, int)"/>
-   public static IAssert IsNotBetween<T>(
-      this IAssert assert,
-      [DisallowNull] T? value,
-      [DisallowNull] T? minimum,
-      [DisallowNull] T? maximum,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(minimum))] string minimumArgument = "<minimum>",
-      [CallerArgumentExpression(nameof(maximum))] string maximumArgument = "<maximum>",
-      [CallerLineNumber] int line = 0)
+         this IAssert assert,
+         [DisallowNull] T? value,
+         [DisallowNull] T? minimum,
+         [DisallowNull] T? maximum,
+         [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
+         [CallerArgumentExpression(nameof(minimum))] string minimumArgument = "<minimum>",
+         [CallerArgumentExpression(nameof(maximum))] string maximumArgument = "<maximum>",
+         [CallerLineNumber] int line = 0)
       where T : struct, IComparable<T>
    {
       bool comparison =
          value.Value.CompareTo(minimum.Value) < 0 ||
          value.Value.CompareTo(maximum.Value) > 0;
+
+      if (comparison is false)
+         assert.Fail(IsNotBetweenFormat, value, minimum, maximum, valueArgument, minimumArgument, maximumArgument, line);
+
+      return assert;
+   }
+
+   /// <inheritdoc cref="IsNotBetween{T}(IAssert, T?, T?, T?, string, string, string, int)"/>
+   public static IAssert IsNotBetween<T>(
+         this IAssert assert,
+         [DisallowNull] T? value,
+         [DisallowNull] T? minimum,
+         [DisallowNull] T? maximum,
+         [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
+         [CallerArgumentExpression(nameof(minimum))] string minimumArgument = "<minimum>",
+         [CallerArgumentExpression(nameof(maximum))] string maximumArgument = "<maximum>",
+         [CallerLineNumber] int line = 0)
+      where T : IComparable<T>
+   {
+      bool comparison =
+         value.CompareTo(minimum) < 0 ||
+         value.CompareTo(maximum) > 0;
 
       if (comparison is false)
          assert.Fail(IsNotBetweenFormat, value, minimum, maximum, valueArgument, minimumArgument, maximumArgument, line);
