@@ -9,39 +9,7 @@ public class TrueAssertTests
 
    #region IsTrue tests
    [TestMethod]
-   public void IsTrue_WithNotNullableTrue_DoesNothing()
-   {
-      // Arrange
-      bool value = true;
-
-      // Act
-      IAssert result = AssertExtensions.IsTrue(_assert.Object, value);
-
-      // Assert
-      _assert.VerifyFailFormat(Times.Never());
-      _assert.VerifyNoOtherCalls();
-
-      MSAssert.AreSame(_assert.Object, result);
-   }
-
-   [TestMethod]
-   public void IsTrue_WithNotNullableFalse_CallsFail()
-   {
-      // Arrange
-      bool value = false;
-
-      // Act
-      IAssert result = AssertExtensions.IsTrue(_assert.Object, value);
-
-      // Assert
-      _assert.VerifyFailFormat(Times.Once());
-      _assert.VerifyNoOtherCalls();
-
-      MSAssert.AreSame(_assert.Object, result);
-   }
-
-   [TestMethod]
-   public void IsTrue_WithWithNullableTrue_DoesNothing()
+   public void IsTrue_WithTrueValue_DoesNothing()
    {
       // Arrange
       bool? value = true;
@@ -59,7 +27,7 @@ public class TrueAssertTests
    [DataRow(data: false, DisplayName = "False")]
    [DataRow(data: null, DisplayName = "Null")]
    [TestMethod]
-   public void IsTrue_WithNullableNotTrueValue_CallsFail(bool? value)
+   public void IsTrue_WitNotTrueValue_CallsFail(bool? value)
    {
       // Act
       IAssert result = AssertExtensions.IsTrue(_assert.Object, value);
@@ -74,39 +42,7 @@ public class TrueAssertTests
 
    #region IsNotTrue tests
    [TestMethod]
-   public void IsNotTrue_WithNotNullableTrue_CallsFail()
-   {
-      // Arrange
-      bool value = true;
-
-      // Act
-      IAssert result = AssertExtensions.IsNotTrue(_assert.Object, value);
-
-      // Assert
-      _assert.VerifyFailFormat(Times.Once());
-      _assert.VerifyNoOtherCalls();
-
-      MSAssert.AreSame(_assert.Object, result);
-   }
-
-   [TestMethod]
-   public void IsNotTrue_WithNotNullableFalse_DoesNothing()
-   {
-      // Arrange
-      bool value = false;
-
-      // Act
-      IAssert result = AssertExtensions.IsNotTrue(_assert.Object, value);
-
-      // Assert
-      _assert.VerifyFailFormat(Times.Never());
-      _assert.VerifyNoOtherCalls();
-
-      MSAssert.AreSame(_assert.Object, result);
-   }
-
-   [TestMethod]
-   public void IsNotTrue_WithWithNullableTrue_CallsFail()
+   public void IsNotTrue_WithTrueValue_CallsFail()
    {
       // Arrange
       bool? value = true;
@@ -124,7 +60,7 @@ public class TrueAssertTests
    [DataRow(data: false, DisplayName = "False")]
    [DataRow(data: null, DisplayName = "Null")]
    [TestMethod]
-   public void IsNotTrue_WithNullableNotTrueValue_DoesNothing(bool? value)
+   public void IsNotTrue_WithNotTrueValue_DoesNothing(bool? value)
    {
       // Act
       IAssert result = AssertExtensions.IsNotTrue(_assert.Object, value);

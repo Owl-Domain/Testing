@@ -9,39 +9,7 @@ public class FalseAssertTests
 
    #region IsFalse tests
    [TestMethod]
-   public void IsFalse_WithNotNullableFalse_DoesNothing()
-   {
-      // Arrange
-      bool value = false;
-
-      // Act
-      IAssert result = AssertExtensions.IsFalse(_assert.Object, value);
-
-      // Assert
-      _assert.VerifyFailFormat(Times.Never());
-      _assert.VerifyNoOtherCalls();
-
-      MSAssert.AreSame(_assert.Object, result);
-   }
-
-   [TestMethod]
-   public void IsFalse_WithNotNullableTrue_CallsFail()
-   {
-      // Arrange
-      bool value = true;
-
-      // Act
-      IAssert result = AssertExtensions.IsFalse(_assert.Object, value);
-
-      // Assert
-      _assert.VerifyFailFormat(Times.Once());
-      _assert.VerifyNoOtherCalls();
-
-      MSAssert.AreSame(_assert.Object, result);
-   }
-
-   [TestMethod]
-   public void IsFalse_WithWithNullableFalse_DoesNothing()
+   public void IsFalse_WithFalseValue_DoesNothing()
    {
       // Arrange
       bool? value = false;
@@ -59,7 +27,7 @@ public class FalseAssertTests
    [DataRow(data: true, DisplayName = "True")]
    [DataRow(data: null, DisplayName = "Null")]
    [TestMethod]
-   public void IsFalse_WithNullableNotFalseValue_CallsFail(bool? value)
+   public void IsFalse_WithNotFalseValue_CallsFail(bool? value)
    {
       // Act
       IAssert result = AssertExtensions.IsFalse(_assert.Object, value);
@@ -74,39 +42,7 @@ public class FalseAssertTests
 
    #region IsNotFalse tests
    [TestMethod]
-   public void IsNotFalse_WithNotNullableFalse_CallsFail()
-   {
-      // Arrange
-      bool value = false;
-
-      // Act
-      IAssert result = AssertExtensions.IsNotFalse(_assert.Object, value);
-
-      // Assert
-      _assert.VerifyFailFormat(Times.Once());
-      _assert.VerifyNoOtherCalls();
-
-      MSAssert.AreSame(_assert.Object, result);
-   }
-
-   [TestMethod]
-   public void IsNotFalse_WithNotNullableTrue_DoesNothing()
-   {
-      // Arrange
-      bool value = true;
-
-      // Act
-      IAssert result = AssertExtensions.IsNotFalse(_assert.Object, value);
-
-      // Assert
-      _assert.VerifyFailFormat(Times.Never());
-      _assert.VerifyNoOtherCalls();
-
-      MSAssert.AreSame(_assert.Object, result);
-   }
-
-   [TestMethod]
-   public void IsNotFalse_WithWithNullableFalse_CallsFail()
+   public void IsNotFalse_WithFalseValue_CallsFail()
    {
       // Arrange
       bool? value = false;
@@ -124,7 +60,7 @@ public class FalseAssertTests
    [DataRow(data: true, DisplayName = "True")]
    [DataRow(data: null, DisplayName = "Null")]
    [TestMethod]
-   public void IsNotFalse_WithNullableNotFalseValue_DoesNothing(bool? value)
+   public void IsNotFalse_WithNotFalseValue_DoesNothing(bool? value)
    {
       // Act
       IAssert result = AssertExtensions.IsNotFalse(_assert.Object, value);
