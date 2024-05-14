@@ -47,9 +47,9 @@ public static partial class AssertExtensions
    /// <inheritdoc cref="IsBetween{T}(IAssert, T?, T?, T?, string, string, string, int)"/>
    public static IAssert IsBetween<T>(
       this IAssert assert,
-      [DisallowNull] T? value,
-      [DisallowNull] T? minimum,
-      [DisallowNull] T? maximum,
+      [DisallowNull] T value,
+      [DisallowNull] T minimum,
+      [DisallowNull] T maximum,
       [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
       [CallerArgumentExpression(nameof(minimum))] string minimumArgument = "<minimum>",
       [CallerArgumentExpression(nameof(maximum))] string maximumArgument = "<maximum>",
@@ -107,9 +107,9 @@ public static partial class AssertExtensions
    /// <inheritdoc cref="IsNotBetween{T}(IAssert, T?, T?, T?, string, string, string, int)"/>
    public static IAssert IsNotBetween<T>(
          this IAssert assert,
-         [DisallowNull] T? value,
-         [DisallowNull] T? minimum,
-         [DisallowNull] T? maximum,
+         [DisallowNull] T value,
+         [DisallowNull] T minimum,
+         [DisallowNull] T maximum,
          [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
          [CallerArgumentExpression(nameof(minimum))] string minimumArgument = "<minimum>",
          [CallerArgumentExpression(nameof(maximum))] string maximumArgument = "<maximum>",
