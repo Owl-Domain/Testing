@@ -21,23 +21,6 @@ public static partial class AssertExtensions
    /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
    public static IAssert IsGreaterThan<T>(
       this IAssert assert,
-      IComparable<T> value,
-      T threshold,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
-      [CallerLineNumber] int line = 0)
-   {
-      int comparison = value.CompareTo(threshold);
-
-      if (comparison <= 0)
-         assert.Fail(IsGreaterThanFormat, value, threshold, valueArgument, thresholdArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="IsGreaterThan{T}(IAssert, IComparable{T}, T, string, string, int)"/>
-   public static IAssert IsGreaterThan<T>(
-      this IAssert assert,
       [DisallowNull] T? value,
       [DisallowNull] T? threshold,
       [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
@@ -53,24 +36,23 @@ public static partial class AssertExtensions
       return assert;
    }
 
-   /// <inheritdoc cref="IsGreaterThan{T}(IAssert, IComparable{T}, T, string, string, int)"/>
+   /// <inheritdoc cref="IsGreaterThan{T}(IAssert, T?, T?, string, string, int)"/>
    public static IAssert IsGreaterThan<T>(
       this IAssert assert,
-      [DisallowNull] T? value,
-      T threshold,
+      [DisallowNull] T value,
+      [DisallowNull] T threshold,
       [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
       [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
       [CallerLineNumber] int line = 0)
-      where T : struct, IComparable<T>
+      where T : IComparable<T>
    {
-      int comparison = value.Value.CompareTo(threshold);
+      int comparison = value.CompareTo(threshold);
 
       if (comparison <= 0)
          assert.Fail(IsGreaterThanFormat, value, threshold, valueArgument, thresholdArgument, line);
 
       return assert;
    }
-
    #endregion
 
    #region IsGreaterThanOrEqualTo methods
@@ -85,23 +67,6 @@ public static partial class AssertExtensions
    /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
    public static IAssert IsGreaterThanOrEqualTo<T>(
       this IAssert assert,
-      IComparable<T> value,
-      T threshold,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
-      [CallerLineNumber] int line = 0)
-   {
-      int comparison = value.CompareTo(threshold);
-
-      if (comparison < 0)
-         assert.Fail(IsGreaterThanOrEqualToFormat, value, threshold, valueArgument, thresholdArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="IsGreaterThanOrEqualTo{T}(IAssert, IComparable{T}, T, string, string, int)"/>
-   public static IAssert IsGreaterThanOrEqualTo<T>(
-      this IAssert assert,
       [DisallowNull] T? value,
       [DisallowNull] T? threshold,
       [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
@@ -117,17 +82,17 @@ public static partial class AssertExtensions
       return assert;
    }
 
-   /// <inheritdoc cref="IsGreaterThanOrEqualTo{T}(IAssert, IComparable{T}, T, string, string, int)"/>
+   /// <inheritdoc cref="IsGreaterThanOrEqualTo{T}(IAssert, T?, T?, string, string, int)"/>
    public static IAssert IsGreaterThanOrEqualTo<T>(
       this IAssert assert,
-      [DisallowNull] T? value,
-      T threshold,
+      [DisallowNull] T value,
+      [DisallowNull] T threshold,
       [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
       [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
       [CallerLineNumber] int line = 0)
-      where T : struct, IComparable<T>
+      where T : IComparable<T>
    {
-      int comparison = value.Value.CompareTo(threshold);
+      int comparison = value.CompareTo(threshold);
 
       if (comparison < 0)
          assert.Fail(IsGreaterThanOrEqualToFormat, value, threshold, valueArgument, thresholdArgument, line);
@@ -147,30 +112,13 @@ public static partial class AssertExtensions
    /// <param name="line">The line in the source file where this assertion was made.</param>
    /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
    public static IAssert IsNotGreaterThan<T>(
-      this IAssert assert,
-      IComparable<T> value,
-      T threshold,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
-      [CallerLineNumber] int line = 0)
-   {
-      int comparison = value.CompareTo(threshold);
-
-      if (comparison > 0)
-         assert.Fail(IsNotGreaterThanFormat, value, threshold, valueArgument, thresholdArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="IsNotGreaterThan{T}(IAssert, IComparable{T}, T, string, string, int)"/>
-   public static IAssert IsNotGreaterThan<T>(
-      this IAssert assert,
-      [DisallowNull] T? value,
-      [DisallowNull] T? threshold,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, IComparable<T>
+     this IAssert assert,
+     [DisallowNull] T? value,
+     [DisallowNull] T? threshold,
+     [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
+     [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
+     [CallerLineNumber] int line = 0)
+     where T : struct, IComparable<T>
    {
       int comparison = value.Value.CompareTo(threshold.Value);
 
@@ -180,17 +128,17 @@ public static partial class AssertExtensions
       return assert;
    }
 
-   /// <inheritdoc cref="IsNotGreaterThan{T}(IAssert, IComparable{T}, T, string, string, int)"/>
+   /// <inheritdoc cref="IsNotGreaterThan{T}(IAssert, T?, T?, string, string, int)"/>
    public static IAssert IsNotGreaterThan<T>(
       this IAssert assert,
-      [DisallowNull] T? value,
-      T threshold,
+      [DisallowNull] T value,
+      [DisallowNull] T threshold,
       [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
       [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
       [CallerLineNumber] int line = 0)
-      where T : struct, IComparable<T>
+      where T : IComparable<T>
    {
-      int comparison = value.Value.CompareTo(threshold);
+      int comparison = value.CompareTo(threshold);
 
       if (comparison > 0)
          assert.Fail(IsNotGreaterThanFormat, value, threshold, valueArgument, thresholdArgument, line);
@@ -211,23 +159,6 @@ public static partial class AssertExtensions
    /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
    public static IAssert IsNotGreaterThanOrEqualTo<T>(
       this IAssert assert,
-      IComparable<T> value,
-      T threshold,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
-      [CallerLineNumber] int line = 0)
-   {
-      int comparison = value.CompareTo(threshold);
-
-      if (comparison >= 0)
-         assert.Fail(IsNotGreaterThanOrEqualToFormat, value, threshold, valueArgument, thresholdArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="IsNotGreaterThanOrEqualTo{T}(IAssert, IComparable{T}, T, string, string, int)"/>
-   public static IAssert IsNotGreaterThanOrEqualTo<T>(
-      this IAssert assert,
       [DisallowNull] T? value,
       [DisallowNull] T? threshold,
       [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
@@ -243,17 +174,17 @@ public static partial class AssertExtensions
       return assert;
    }
 
-   /// <inheritdoc cref="IsNotGreaterThanOrEqualTo{T}(IAssert, IComparable{T}, T, string, string, int)"/>
+   /// <inheritdoc cref="IsNotGreaterThanOrEqualTo{T}(IAssert, T?, T?, string, string, int)"/>
    public static IAssert IsNotGreaterThanOrEqualTo<T>(
       this IAssert assert,
-      [DisallowNull] T? value,
-      T threshold,
+      [DisallowNull] T value,
+      [DisallowNull] T threshold,
       [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
       [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
       [CallerLineNumber] int line = 0)
-      where T : struct, IComparable<T>
+      where T : IComparable<T>
    {
-      int comparison = value.Value.CompareTo(threshold);
+      int comparison = value.CompareTo(threshold);
 
       if (comparison >= 0)
          assert.Fail(IsNotGreaterThanOrEqualToFormat, value, threshold, valueArgument, thresholdArgument, line);
