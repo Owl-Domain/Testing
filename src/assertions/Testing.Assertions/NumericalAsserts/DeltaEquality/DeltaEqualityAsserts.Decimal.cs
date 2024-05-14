@@ -21,156 +21,36 @@ public static partial class AssertExtensions
    /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
    public static IAssert AreEqual(
       this IAssert assert,
-      decimal value,
-      decimal expected,
-      decimal delta,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
-      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-      [CallerLineNumber] int line = 0)
-   {
-      decimal actualDelta = Math.Max(value, expected) - Math.Min(value, expected);
-      bool equality = actualDelta <= delta;
-
-      if (equality == false)
-         assert.Fail(AreEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="AreEqual(IAssert, decimal, decimal, decimal, string, string, string, int)"/>
-   public static IAssert AreEqual(
-      this IAssert assert,
-      [DisallowNull] decimal? value,
-      decimal expected,
-      decimal delta,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
-      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-      [CallerLineNumber] int line = 0)
-   {
-      decimal actualDelta = Math.Max(value.Value, expected) - Math.Min(value.Value, expected);
-      bool equality = actualDelta <= delta;
-
-      if (equality == false)
-         assert.Fail(AreEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="AreEqual(IAssert, decimal, decimal, decimal, string, string, string, int)"/>
-   public static IAssert AreEqual(
-      this IAssert assert,
-      decimal value,
-      [DisallowNull] decimal? expected,
-      decimal delta,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
-      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-      [CallerLineNumber] int line = 0)
-   {
-      decimal actualDelta = Math.Max(value, expected.Value) - Math.Min(value, expected.Value);
-      bool equality = actualDelta <= delta;
-
-      if (equality == false)
-         assert.Fail(AreEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="AreEqual(IAssert, decimal, decimal, decimal, string, string, string, int)"/>
-   public static IAssert AreEqual(
-      this IAssert assert,
-      [DisallowNull] decimal? value,
-      [DisallowNull] decimal? expected,
-      decimal delta,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
-      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-      [CallerLineNumber] int line = 0)
-   {
-      decimal actualDelta = Math.Max(value.Value, expected.Value) - Math.Min(value.Value, expected.Value);
-      bool equality = actualDelta <= delta;
-
-      if (equality == false)
-         assert.Fail(AreEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="AreEqual(IAssert, decimal, decimal, decimal, string, string, string, int)"/>
-   public static IAssert AreEqual(
-      this IAssert assert,
-      decimal value,
-      decimal expected,
-      [DisallowNull] decimal? delta,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
-      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-      [CallerLineNumber] int line = 0)
-   {
-      decimal actualDelta = Math.Max(value, expected) - Math.Min(value, expected);
-      bool equality = actualDelta <= delta.Value;
-
-      if (equality == false)
-         assert.Fail(AreEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="AreEqual(IAssert, decimal, decimal, decimal, string, string, string, int)"/>
-   public static IAssert AreEqual(
-      this IAssert assert,
-      [DisallowNull] decimal? value,
-      decimal expected,
-      [DisallowNull] decimal? delta,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
-      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-      [CallerLineNumber] int line = 0)
-   {
-      decimal actualDelta = Math.Max(value.Value, expected) - Math.Min(value.Value, expected);
-      bool equality = actualDelta <= delta.Value;
-
-      if (equality == false)
-         assert.Fail(AreEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="AreEqual(IAssert, decimal, decimal, decimal, string, string, string, int)"/>
-   public static IAssert AreEqual(
-      this IAssert assert,
-      decimal value,
-      [DisallowNull] decimal? expected,
-      [DisallowNull] decimal? delta,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
-      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-      [CallerLineNumber] int line = 0)
-   {
-      decimal actualDelta = Math.Max(value, expected.Value) - Math.Min(value, expected.Value);
-      bool equality = actualDelta <= delta.Value;
-
-      if (equality == false)
-         assert.Fail(AreEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="AreEqual(IAssert, decimal, decimal, decimal, string, string, string, int)"/>
-   public static IAssert AreEqual(
-      this IAssert assert,
       [DisallowNull] decimal? value,
       [DisallowNull] decimal? expected,
       [DisallowNull] decimal? delta,
       [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
       [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
       [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-      [CallerLineNumber] int line = 0)
+      [CallerLineNumber] decimal line = 0)
    {
       decimal actualDelta = Math.Max(value.Value, expected.Value) - Math.Min(value.Value, expected.Value);
       bool equality = actualDelta <= delta.Value;
+
+      if (equality == false)
+         assert.Fail(AreEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
+
+      return assert;
+   }
+
+   /// <inheritdoc cref="AreEqual(IAssert, decimal?, decimal?, decimal?, string, string, string, decimal)"/>
+   public static IAssert AreEqual(
+      this IAssert assert,
+      decimal value,
+      decimal expected,
+      decimal delta,
+      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
+      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
+      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
+      [CallerLineNumber] decimal line = 0)
+   {
+      decimal actualDelta = Math.Max(value, expected) - Math.Min(value, expected);
+      bool equality = actualDelta <= delta;
 
       if (equality == false)
          assert.Fail(AreEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
@@ -198,156 +78,36 @@ public static partial class AssertExtensions
    /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
    public static IAssert AreNotEqual(
       this IAssert assert,
-      decimal value,
-      decimal expected,
-      decimal delta,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
-      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-      [CallerLineNumber] int line = 0)
-   {
-      decimal actualDelta = Math.Max(value, expected) - Math.Min(value, expected);
-      bool equality = actualDelta <= delta;
-
-      if (equality)
-         assert.Fail(AreNotEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="AreNotEqual(IAssert, decimal, decimal, decimal, string, string, string, int)"/>
-   public static IAssert AreNotEqual(
-      this IAssert assert,
-      [DisallowNull] decimal? value,
-      decimal expected,
-      decimal delta,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
-      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-      [CallerLineNumber] int line = 0)
-   {
-      decimal actualDelta = Math.Max(value.Value, expected) - Math.Min(value.Value, expected);
-      bool equality = actualDelta <= delta;
-
-      if (equality)
-         assert.Fail(AreNotEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="AreNotEqual(IAssert, decimal, decimal, decimal, string, string, string, int)"/>
-   public static IAssert AreNotEqual(
-      this IAssert assert,
-      decimal value,
-      [DisallowNull] decimal? expected,
-      decimal delta,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
-      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-      [CallerLineNumber] int line = 0)
-   {
-      decimal actualDelta = Math.Max(value, expected.Value) - Math.Min(value, expected.Value);
-      bool equality = actualDelta <= delta;
-
-      if (equality)
-         assert.Fail(AreNotEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="AreNotEqual(IAssert, decimal, decimal, decimal, string, string, string, int)"/>
-   public static IAssert AreNotEqual(
-      this IAssert assert,
-      [DisallowNull] decimal? value,
-      [DisallowNull] decimal? expected,
-      decimal delta,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
-      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-      [CallerLineNumber] int line = 0)
-   {
-      decimal actualDelta = Math.Max(value.Value, expected.Value) - Math.Min(value.Value, expected.Value);
-      bool equality = actualDelta <= delta;
-
-      if (equality)
-         assert.Fail(AreNotEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="AreNotEqual(IAssert, decimal, decimal, decimal, string, string, string, int)"/>
-   public static IAssert AreNotEqual(
-      this IAssert assert,
-      decimal value,
-      decimal expected,
-      [DisallowNull] decimal? delta,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
-      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-      [CallerLineNumber] int line = 0)
-   {
-      decimal actualDelta = Math.Max(value, expected) - Math.Min(value, expected);
-      bool equality = actualDelta <= delta.Value;
-
-      if (equality)
-         assert.Fail(AreNotEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="AreNotEqual(IAssert, decimal, decimal, decimal, string, string, string, int)"/>
-   public static IAssert AreNotEqual(
-      this IAssert assert,
-      [DisallowNull] decimal? value,
-      decimal expected,
-      [DisallowNull] decimal? delta,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
-      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-      [CallerLineNumber] int line = 0)
-   {
-      decimal actualDelta = Math.Max(value.Value, expected) - Math.Min(value.Value, expected);
-      bool equality = actualDelta <= delta.Value;
-
-      if (equality)
-         assert.Fail(AreNotEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="AreNotEqual(IAssert, decimal, decimal, decimal, string, string, string, int)"/>
-   public static IAssert AreNotEqual(
-      this IAssert assert,
-      decimal value,
-      [DisallowNull] decimal? expected,
-      [DisallowNull] decimal? delta,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
-      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-      [CallerLineNumber] int line = 0)
-   {
-      decimal actualDelta = Math.Max(value, expected.Value) - Math.Min(value, expected.Value);
-      bool equality = actualDelta <= delta.Value;
-
-      if (equality)
-         assert.Fail(AreNotEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="AreNotEqual(IAssert, decimal, decimal, decimal, string, string, string, int)"/>
-   public static IAssert AreNotEqual(
-      this IAssert assert,
       [DisallowNull] decimal? value,
       [DisallowNull] decimal? expected,
       [DisallowNull] decimal? delta,
       [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
       [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
       [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-      [CallerLineNumber] int line = 0)
+      [CallerLineNumber] decimal line = 0)
    {
       decimal actualDelta = Math.Max(value.Value, expected.Value) - Math.Min(value.Value, expected.Value);
       bool equality = actualDelta <= delta.Value;
+
+      if (equality)
+         assert.Fail(AreNotEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
+
+      return assert;
+   }
+
+   /// <inheritdoc cref="AreNotEqual(IAssert, decimal?, decimal?, decimal?, string, string, string, decimal)"/>
+   public static IAssert AreNotEqual(
+      this IAssert assert,
+      decimal value,
+      decimal expected,
+      decimal delta,
+      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
+      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
+      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
+      [CallerLineNumber] decimal line = 0)
+   {
+      decimal actualDelta = Math.Max(value, expected) - Math.Min(value, expected);
+      bool equality = actualDelta <= delta;
 
       if (equality)
          assert.Fail(AreNotEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);

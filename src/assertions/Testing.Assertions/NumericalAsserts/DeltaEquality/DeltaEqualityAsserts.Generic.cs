@@ -26,6 +26,27 @@ public static partial class AssertExtensions
    /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
    public static IAssert AreEqual<T>(
       this IAssert assert,
+      [DisallowNull] T? value,
+      [DisallowNull] T? expected,
+      [DisallowNull] T? delta,
+      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
+      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
+      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
+      [CallerLineNumber] int line = 0)
+      where T : struct, INumber<T>
+   {
+      T actualDelta = T.Max(value.Value, expected.Value) - T.Min(value.Value, expected.Value);
+      bool equality = actualDelta <= delta.Value;
+
+      if (equality == false)
+         assert.Fail(AreEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
+
+      return assert;
+   }
+
+   /// <inheritdoc cref="AreEqual{T}(IAssert, T?, T?, T?, string, string, string, int)"/>
+   public static IAssert AreEqual<T>(
+      this IAssert assert,
       T value,
       T expected,
       T delta,
@@ -37,153 +58,6 @@ public static partial class AssertExtensions
    {
       T actualDelta = T.Max(value, expected) - T.Min(value, expected);
       bool equality = actualDelta <= delta;
-
-      if (equality == false)
-         assert.Fail(AreEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="AreEqual{T}(IAssert, T, T, T, string, string, string, int)"/>
-   public static IAssert AreEqual<T>(
-      this IAssert assert,
-      [DisallowNull] T? value,
-      T expected,
-      T delta,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
-      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, INumber<T>
-   {
-      T actualDelta = T.Max(value.Value, expected) - T.Min(value.Value, expected);
-      bool equality = actualDelta <= delta;
-
-      if (equality == false)
-         assert.Fail(AreEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="AreEqual{T}(IAssert, T, T, T, string, string, string, int)"/>
-   public static IAssert AreEqual<T>(
-      this IAssert assert,
-      T value,
-      [DisallowNull] T? expected,
-      T delta,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
-      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, INumber<T>
-   {
-      T actualDelta = T.Max(value, expected.Value) - T.Min(value, expected.Value);
-      bool equality = actualDelta <= delta;
-
-      if (equality == false)
-         assert.Fail(AreEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="AreEqual{T}(IAssert, T, T, T, string, string, string, int)"/>
-   public static IAssert AreEqual<T>(
-     this IAssert assert,
-     T value,
-     T expected,
-     [DisallowNull] T? delta,
-     [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-     [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
-     [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-     [CallerLineNumber] int line = 0)
-     where T : struct, INumber<T>
-   {
-      T actualDelta = T.Max(value, expected) - T.Min(value, expected);
-      bool equality = actualDelta <= delta.Value;
-
-      if (equality == false)
-         assert.Fail(AreEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="AreEqual{T}(IAssert, T, T, T, string, string, string, int)"/>
-   public static IAssert AreEqual<T>(
-      this IAssert assert,
-      [DisallowNull] T? value,
-      [DisallowNull] T? expected,
-      T delta,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
-      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, INumber<T>
-   {
-      T actualDelta = T.Max(value.Value, expected.Value) - T.Min(value.Value, expected.Value);
-      bool equality = actualDelta <= delta;
-
-      if (equality == false)
-         assert.Fail(AreEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="AreEqual{T}(IAssert, T, T, T, string, string, string, int)"/>
-   public static IAssert AreEqual<T>(
-      this IAssert assert,
-      [DisallowNull] T? value,
-      T expected,
-      [DisallowNull] T? delta,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
-      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, INumber<T>
-   {
-      T actualDelta = T.Max(value.Value, expected) - T.Min(value.Value, expected);
-      bool equality = actualDelta <= delta.Value;
-
-      if (equality == false)
-         assert.Fail(AreEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="AreEqual{T}(IAssert, T, T, T, string, string, string, int)"/>
-   public static IAssert AreEqual<T>(
-      this IAssert assert,
-      T value,
-      [DisallowNull] T? expected,
-      [DisallowNull] T? delta,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
-      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, INumber<T>
-   {
-      T actualDelta = T.Max(value, expected.Value) - T.Min(value, expected.Value);
-      bool equality = actualDelta <= delta.Value;
-
-      if (equality == false)
-         assert.Fail(AreEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="AreEqual{T}(IAssert, T, T, T, string, string, string, int)"/>
-   public static IAssert AreEqual<T>(
-      this IAssert assert,
-      [DisallowNull] T? value,
-      [DisallowNull] T? expected,
-      [DisallowNull] T? delta,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
-      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, INumber<T>
-   {
-      T actualDelta = T.Max(value.Value, expected.Value) - T.Min(value.Value, expected.Value);
-      bool equality = actualDelta <= delta.Value;
 
       if (equality == false)
          assert.Fail(AreEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
@@ -212,6 +86,27 @@ public static partial class AssertExtensions
    /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
    public static IAssert AreNotEqual<T>(
       this IAssert assert,
+      [DisallowNull] T? value,
+      [DisallowNull] T? expected,
+      [DisallowNull] T? delta,
+      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
+      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
+      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
+      [CallerLineNumber] int line = 0)
+      where T : struct, INumber<T>
+   {
+      T actualDelta = T.Max(value.Value, expected.Value) - T.Min(value.Value, expected.Value);
+      bool equality = actualDelta <= delta.Value;
+
+      if (equality)
+         assert.Fail(AreNotEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
+
+      return assert;
+   }
+
+   /// <inheritdoc cref="AreNotEqual{T}(IAssert, T?, T?, T?, string, string, string, int)"/>
+   public static IAssert AreNotEqual<T>(
+      this IAssert assert,
       T value,
       T expected,
       T delta,
@@ -223,153 +118,6 @@ public static partial class AssertExtensions
    {
       T actualDelta = T.Max(value, expected) - T.Min(value, expected);
       bool equality = actualDelta <= delta;
-
-      if (equality)
-         assert.Fail(AreNotEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="AreNotEqual{T}(IAssert, T, T, T, string, string, string, int)"/>
-   public static IAssert AreNotEqual<T>(
-      this IAssert assert,
-      [DisallowNull] T? value,
-      T expected,
-      T delta,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
-      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, INumber<T>
-   {
-      T actualDelta = T.Max(value.Value, expected) - T.Min(value.Value, expected);
-      bool equality = actualDelta <= delta;
-
-      if (equality)
-         assert.Fail(AreNotEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="AreNotEqual{T}(IAssert, T, T, T, string, string, string, int)"/>
-   public static IAssert AreNotEqual<T>(
-      this IAssert assert,
-      T value,
-      [DisallowNull] T? expected,
-      T delta,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
-      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, INumber<T>
-   {
-      T actualDelta = T.Max(value, expected.Value) - T.Min(value, expected.Value);
-      bool equality = actualDelta <= delta;
-
-      if (equality)
-         assert.Fail(AreNotEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="AreNotEqual{T}(IAssert, T, T, T, string, string, string, int)"/>
-   public static IAssert AreNotEqual<T>(
-      this IAssert assert,
-      T value,
-      T expected,
-      [DisallowNull] T? delta,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
-      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, INumber<T>
-   {
-      T actualDelta = T.Max(value, expected) - T.Min(value, expected);
-      bool equality = actualDelta <= delta.Value;
-
-      if (equality)
-         assert.Fail(AreNotEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="AreNotEqual{T}(IAssert, T, T, T, string, string, string, int)"/>
-   public static IAssert AreNotEqual<T>(
-      this IAssert assert,
-      [DisallowNull] T? value,
-      [DisallowNull] T? expected,
-      T delta,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
-      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, INumber<T>
-   {
-      T actualDelta = T.Max(value.Value, expected.Value) - T.Min(value.Value, expected.Value);
-      bool equality = actualDelta <= delta;
-
-      if (equality)
-         assert.Fail(AreNotEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="AreNotEqual{T}(IAssert, T, T, T, string, string, string, int)"/>
-   public static IAssert AreNotEqual<T>(
-      this IAssert assert,
-      [DisallowNull] T? value,
-      T expected,
-      [DisallowNull] T? delta,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
-      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, INumber<T>
-   {
-      T actualDelta = T.Max(value.Value, expected) - T.Min(value.Value, expected);
-      bool equality = actualDelta <= delta.Value;
-
-      if (equality)
-         assert.Fail(AreNotEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="AreNotEqual{T}(IAssert, T, T, T, string, string, string, int)"/>
-   public static IAssert AreNotEqual<T>(
-      this IAssert assert,
-      T value,
-      [DisallowNull] T? expected,
-      [DisallowNull] T? delta,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
-      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, INumber<T>
-   {
-      T actualDelta = T.Max(value, expected.Value) - T.Min(value, expected.Value);
-      bool equality = actualDelta <= delta.Value;
-
-      if (equality)
-         assert.Fail(AreNotEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="AreNotEqual{T}(IAssert, T, T, T, string, string, string, int)"/>
-   public static IAssert AreNotEqual<T>(
-      this IAssert assert,
-      [DisallowNull] T? value,
-      [DisallowNull] T? expected,
-      [DisallowNull] T? delta,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(expected))] string expectedArgument = "<expected>",
-      [CallerArgumentExpression(nameof(delta))] string deltaArgument = "<delta>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, INumber<T>
-   {
-      T actualDelta = T.Max(value.Value, expected.Value) - T.Min(value.Value, expected.Value);
-      bool equality = actualDelta <= delta.Value;
 
       if (equality)
          assert.Fail(AreNotEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
