@@ -26,28 +26,9 @@ public static partial class AssertExtensions
    /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
    public static IAssert IsLessThan<T>(
       this IAssert assert,
-      T value,
-      T threshold,
-      IComparer<T> comparer,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
-      [CallerArgumentExpression(nameof(comparer))] string comparerArgument = "<comparer>",
-      [CallerLineNumber] int line = 0)
-   {
-      int comparison = comparer.Compare(value, threshold);
-
-      if (comparison >= 0)
-         assert.Fail(IsLessThanWithComparerFormat, value, threshold, comparer, valueArgument, thresholdArgument, comparerArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="IsLessThan{T}(IAssert, T, T, IComparer{T}, string, string, string, int)"/>
-   public static IAssert IsLessThan<T>(
-      this IAssert assert,
       [DisallowNull] T? value,
       [DisallowNull] T? threshold,
-      IComparer<T> comparer,
+      [DisallowNull] IComparer<T>? comparer,
       [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
       [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
       [CallerArgumentExpression(nameof(comparer))] string comparerArgument = "<comparer>",
@@ -62,19 +43,18 @@ public static partial class AssertExtensions
       return assert;
    }
 
-   /// <inheritdoc cref="IsLessThan{T}(IAssert, T, T, IComparer{T}, string, string, string, int)"/>
+   /// <inheritdoc cref="IsLessThan{T}(IAssert, T?, T?, IComparer{T}?, string, string, string, int)"/>
    public static IAssert IsLessThan<T>(
-      this IAssert assert,
-      [DisallowNull] T? value,
-      T threshold,
-      IComparer<T> comparer,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
-      [CallerArgumentExpression(nameof(comparer))] string comparerArgument = "<comparer>",
-      [CallerLineNumber] int line = 0)
-      where T : struct
+     this IAssert assert,
+     [DisallowNull] T value,
+     [DisallowNull] T threshold,
+     [DisallowNull] IComparer<T>? comparer,
+     [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
+     [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
+     [CallerArgumentExpression(nameof(comparer))] string comparerArgument = "<comparer>",
+     [CallerLineNumber] int line = 0)
    {
-      int comparison = comparer.Compare(value.Value, threshold);
+      int comparison = comparer.Compare(value, threshold);
 
       if (comparison >= 0)
          assert.Fail(IsLessThanWithComparerFormat, value, threshold, comparer, valueArgument, thresholdArgument, comparerArgument, line);
@@ -100,28 +80,9 @@ public static partial class AssertExtensions
    /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
    public static IAssert IsLessThanOrEqualTo<T>(
       this IAssert assert,
-      T value,
-      T threshold,
-      IComparer<T> comparer,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
-      [CallerArgumentExpression(nameof(comparer))] string comparerArgument = "<comparer>",
-      [CallerLineNumber] int line = 0)
-   {
-      int comparison = comparer.Compare(value, threshold);
-
-      if (comparison > 0)
-         assert.Fail(IsLessThanOrEqualToWithComparerFormat, value, threshold, comparer, valueArgument, thresholdArgument, comparerArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="IsLessThanOrEqualTo{T}(IAssert, T, T, IComparer{T}, string, string, string, int)"/>
-   public static IAssert IsLessThanOrEqualTo<T>(
-      this IAssert assert,
       [DisallowNull] T? value,
       [DisallowNull] T? threshold,
-      IComparer<T> comparer,
+      [DisallowNull] IComparer<T>? comparer,
       [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
       [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
       [CallerArgumentExpression(nameof(comparer))] string comparerArgument = "<comparer>",
@@ -136,19 +97,18 @@ public static partial class AssertExtensions
       return assert;
    }
 
-   /// <inheritdoc cref="IsLessThanOrEqualTo{T}(IAssert, T, T, IComparer{T}, string, string, string, int)"/>
+   /// <inheritdoc cref="IsLessThanOrEqualTo{T}(IAssert, T?, T?, IComparer{T}?, string, string, string, int)"/>
    public static IAssert IsLessThanOrEqualTo<T>(
       this IAssert assert,
-      [DisallowNull] T? value,
-      T threshold,
-      IComparer<T> comparer,
+      [DisallowNull] T value,
+      [DisallowNull] T threshold,
+      [DisallowNull] IComparer<T>? comparer,
       [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
       [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
       [CallerArgumentExpression(nameof(comparer))] string comparerArgument = "<comparer>",
       [CallerLineNumber] int line = 0)
-      where T : struct
    {
-      int comparison = comparer.Compare(value.Value, threshold);
+      int comparison = comparer.Compare(value, threshold);
 
       if (comparison > 0)
          assert.Fail(IsLessThanOrEqualToWithComparerFormat, value, threshold, comparer, valueArgument, thresholdArgument, comparerArgument, line);
@@ -174,28 +134,9 @@ public static partial class AssertExtensions
    /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
    public static IAssert IsNotLessThan<T>(
       this IAssert assert,
-      T value,
-      T threshold,
-      IComparer<T> comparer,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
-      [CallerArgumentExpression(nameof(comparer))] string comparerArgument = "<comparer>",
-      [CallerLineNumber] int line = 0)
-   {
-      int comparison = comparer.Compare(value, threshold);
-
-      if (comparison < 0)
-         assert.Fail(IsNotLessThanWithComparerFormat, value, threshold, comparer, valueArgument, thresholdArgument, comparerArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="IsNotLessThan{T}(IAssert, T, T, IComparer{T}, string, string, string, int)"/>
-   public static IAssert IsNotLessThan<T>(
-      this IAssert assert,
       [DisallowNull] T? value,
       [DisallowNull] T? threshold,
-      IComparer<T> comparer,
+      [DisallowNull] IComparer<T>? comparer,
       [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
       [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
       [CallerArgumentExpression(nameof(comparer))] string comparerArgument = "<comparer>",
@@ -210,19 +151,18 @@ public static partial class AssertExtensions
       return assert;
    }
 
-   /// <inheritdoc cref="IsNotLessThan{T}(IAssert, T, T, IComparer{T}, string, string, string, int)"/>
+   /// <inheritdoc cref="IsNotLessThan{T}(IAssert, T?, T?, IComparer{T}?, string, string, string, int)"/>
    public static IAssert IsNotLessThan<T>(
       this IAssert assert,
-      [DisallowNull] T? value,
-      T threshold,
-      IComparer<T> comparer,
+      [DisallowNull] T value,
+      [DisallowNull] T threshold,
+      [DisallowNull] IComparer<T>? comparer,
       [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
       [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
       [CallerArgumentExpression(nameof(comparer))] string comparerArgument = "<comparer>",
       [CallerLineNumber] int line = 0)
-      where T : struct
    {
-      int comparison = comparer.Compare(value.Value, threshold);
+      int comparison = comparer.Compare(value, threshold);
 
       if (comparison < 0)
          assert.Fail(IsNotLessThanWithComparerFormat, value, threshold, comparer, valueArgument, thresholdArgument, comparerArgument, line);
@@ -248,28 +188,9 @@ public static partial class AssertExtensions
    /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
    public static IAssert IsNotLessThanOrEqualTo<T>(
       this IAssert assert,
-      T value,
-      T threshold,
-      IComparer<T> comparer,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
-      [CallerArgumentExpression(nameof(comparer))] string comparerArgument = "<comparer>",
-      [CallerLineNumber] int line = 0)
-   {
-      int comparison = comparer.Compare(value, threshold);
-
-      if (comparison <= 0)
-         assert.Fail(IsNotLessThanOrEqualToWithComparerFormat, value, threshold, comparer, valueArgument, thresholdArgument, comparerArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="IsNotLessThanOrEqualTo{T}(IAssert, T, T, IComparer{T}, string, string, string, int)"/>
-   public static IAssert IsNotLessThanOrEqualTo<T>(
-      this IAssert assert,
       [DisallowNull] T? value,
       [DisallowNull] T? threshold,
-      IComparer<T> comparer,
+      [DisallowNull] IComparer<T>? comparer,
       [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
       [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
       [CallerArgumentExpression(nameof(comparer))] string comparerArgument = "<comparer>",
@@ -284,19 +205,18 @@ public static partial class AssertExtensions
       return assert;
    }
 
-   /// <inheritdoc cref="IsNotLessThanOrEqualTo{T}(IAssert, T, T, IComparer{T}, string, string, string, int)"/>
+   /// <inheritdoc cref="IsNotLessThanOrEqualTo{T}(IAssert, T?, T?, IComparer{T}?, string, string, string, int)"/>
    public static IAssert IsNotLessThanOrEqualTo<T>(
       this IAssert assert,
-      [DisallowNull] T? value,
-      T threshold,
-      IComparer<T> comparer,
+      [DisallowNull] T value,
+      [DisallowNull] T threshold,
+      [DisallowNull] IComparer<T>? comparer,
       [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
       [CallerArgumentExpression(nameof(threshold))] string thresholdArgument = "<threshold>",
       [CallerArgumentExpression(nameof(comparer))] string comparerArgument = "<comparer>",
       [CallerLineNumber] int line = 0)
-      where T : struct
    {
-      int comparison = comparer.Compare(value.Value, threshold);
+      int comparison = comparer.Compare(value, threshold);
 
       if (comparison <= 0)
          assert.Fail(IsNotLessThanOrEqualToWithComparerFormat, value, threshold, comparer, valueArgument, thresholdArgument, comparerArgument, line);
