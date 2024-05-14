@@ -43,75 +43,7 @@ public class HasFlagAsserts
    }
 
    [TestMethod]
-   public void HasFlag_ValueNullable_ValueHasFlag_DoesNothing()
-   {
-      // Arrange
-      TestFlagEnum? value = TestFlagEnum.A | TestFlagEnum.B;
-      TestFlagEnum flag = TestFlagEnum.B;
-
-      // Act
-      IAssert result = AssertExtensions.HasFlag(_assert.Object, value, flag);
-
-      // Assert
-      _assert.VerifyFailFormat(Times.Never());
-      _assert.VerifyNoOtherCalls();
-
-      MSAssert.AreEqual(_assert.Object, result);
-   }
-
-   [TestMethod]
-   public void HasFlag_ValueNullable_ValueWithoutFlag_CallsFail()
-   {
-      // Arrange
-      TestFlagEnum? value = TestFlagEnum.A | TestFlagEnum.B;
-      TestFlagEnum flag = TestFlagEnum.C;
-
-      // Act
-      IAssert result = AssertExtensions.HasFlag(_assert.Object, value, flag);
-
-      // Assert
-      _assert.VerifyFailFormat(Times.Once());
-      _assert.VerifyNoOtherCalls();
-
-      MSAssert.AreEqual(_assert.Object, result);
-   }
-
-   [TestMethod]
-   public void HasFlag_FlagNullable_ValueHasFlag_DoesNothing()
-   {
-      // Arrange
-      TestFlagEnum value = TestFlagEnum.A | TestFlagEnum.B;
-      TestFlagEnum? flag = TestFlagEnum.B;
-
-      // Act
-      IAssert result = AssertExtensions.HasFlag(_assert.Object, value, flag);
-
-      // Assert
-      _assert.VerifyFailFormat(Times.Never());
-      _assert.VerifyNoOtherCalls();
-
-      MSAssert.AreEqual(_assert.Object, result);
-   }
-
-   [TestMethod]
-   public void HasFlag_FlagNullable_ValueWithoutFlag_CallsFail()
-   {
-      // Arrange
-      TestFlagEnum value = TestFlagEnum.A | TestFlagEnum.B;
-      TestFlagEnum? flag = TestFlagEnum.C;
-
-      // Act
-      IAssert result = AssertExtensions.HasFlag(_assert.Object, value, flag);
-
-      // Assert
-      _assert.VerifyFailFormat(Times.Once());
-      _assert.VerifyNoOtherCalls();
-
-      MSAssert.AreEqual(_assert.Object, result);
-   }
-
-   [TestMethod]
-   public void HasFlag_BothNullable_ValueHasFlag_DoesNothing()
+   public void HasFlag_Nullable_ValueHasFlag_DoesNothing()
    {
       // Arrange
       TestFlagEnum? value = TestFlagEnum.A | TestFlagEnum.B;
@@ -128,7 +60,7 @@ public class HasFlagAsserts
    }
 
    [TestMethod]
-   public void HasFlag_BothNullable_ValueWithoutFlag_CallsFail()
+   public void HasFlag_Nullable_ValueWithoutFlag_CallsFail()
    {
       // Arrange
       TestFlagEnum? value = TestFlagEnum.A | TestFlagEnum.B;
@@ -181,75 +113,7 @@ public class HasFlagAsserts
    }
 
    [TestMethod]
-   public void DoesNotHaveFlag_ValueNullable_ValueWithoutFlag_DoesNothing()
-   {
-      // Arrange
-      TestFlagEnum? value = TestFlagEnum.A | TestFlagEnum.B;
-      TestFlagEnum flag = TestFlagEnum.C;
-
-      // Act
-      IAssert result = AssertExtensions.DoesNotHaveFlag(_assert.Object, value, flag);
-
-      // Assert
-      _assert.VerifyFailFormat(Times.Never());
-      _assert.VerifyNoOtherCalls();
-
-      MSAssert.AreEqual(_assert.Object, result);
-   }
-
-   [TestMethod]
-   public void DoesNotHaveFlag_ValueNullable_ValueHasFlag_CallsFail()
-   {
-      // Arrange
-      TestFlagEnum? value = TestFlagEnum.A | TestFlagEnum.B;
-      TestFlagEnum flag = TestFlagEnum.B;
-
-      // Act
-      IAssert result = AssertExtensions.DoesNotHaveFlag(_assert.Object, value, flag);
-
-      // Assert
-      _assert.VerifyFailFormat(Times.Once());
-      _assert.VerifyNoOtherCalls();
-
-      MSAssert.AreEqual(_assert.Object, result);
-   }
-
-   [TestMethod]
-   public void DoesNotHaveFlag_FlagNullable_ValueWithoutFlag_DoesNothing()
-   {
-      // Arrange
-      TestFlagEnum value = TestFlagEnum.A | TestFlagEnum.B;
-      TestFlagEnum? flag = TestFlagEnum.C;
-
-      // Act
-      IAssert result = AssertExtensions.DoesNotHaveFlag(_assert.Object, value, flag);
-
-      // Assert
-      _assert.VerifyFailFormat(Times.Never());
-      _assert.VerifyNoOtherCalls();
-
-      MSAssert.AreEqual(_assert.Object, result);
-   }
-
-   [TestMethod]
-   public void DoesNotHaveFlag_FlagNullable_ValueHasFlag_CallsFail()
-   {
-      // Arrange
-      TestFlagEnum value = TestFlagEnum.A | TestFlagEnum.B;
-      TestFlagEnum? flag = TestFlagEnum.B;
-
-      // Act
-      IAssert result = AssertExtensions.DoesNotHaveFlag(_assert.Object, value, flag);
-
-      // Assert
-      _assert.VerifyFailFormat(Times.Once());
-      _assert.VerifyNoOtherCalls();
-
-      MSAssert.AreEqual(_assert.Object, result);
-   }
-
-   [TestMethod]
-   public void DoesNotHaveFlag_BothNullable_ValueWithoutFlag_DoesNothing()
+   public void DoesNotHaveFlag_Nullable_ValueWithoutFlag_DoesNothing()
    {
       // Arrange
       TestFlagEnum? value = TestFlagEnum.A | TestFlagEnum.B;
@@ -266,7 +130,7 @@ public class HasFlagAsserts
    }
 
    [TestMethod]
-   public void DoesNotHaveFlag_BothNullable_ValueHasFlag_CallsFail()
+   public void DoesNotHaveFlag_Nullable_ValueHasFlag_CallsFail()
    {
       // Arrange
       TestFlagEnum? value = TestFlagEnum.A | TestFlagEnum.B;

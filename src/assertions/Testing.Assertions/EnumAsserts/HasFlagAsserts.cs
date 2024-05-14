@@ -21,60 +21,6 @@ public static partial class AssertExtensions
    /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
    public static IAssert HasFlag<T>(
       this IAssert assert,
-      T value,
-      T flag,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(flag))] string flagArgument = "<flag>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, Enum
-   {
-      bool result = value.HasFlag(flag);
-
-      if (result is false)
-         assert.Fail(HasFlagFormat, value, flag, valueArgument, flagArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="HasFlag{T}(IAssert, T, T, string, string, int)"/>
-   public static IAssert HasFlag<T>(
-      this IAssert assert,
-      [DisallowNull] T? value,
-      T flag,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(flag))] string flagArgument = "<flag>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, Enum
-   {
-      bool result = value.Value.HasFlag(flag);
-
-      if (result is false)
-         assert.Fail(HasFlagFormat, value, flag, valueArgument, flagArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="HasFlag{T}(IAssert, T, T, string, string, int)"/>
-   public static IAssert HasFlag<T>(
-      this IAssert assert,
-      T value,
-      [DisallowNull] T? flag,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(flag))] string flagArgument = "<flag>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, Enum
-   {
-      bool result = value.HasFlag(flag.Value);
-
-      if (result is false)
-         assert.Fail(HasFlagFormat, value, flag, valueArgument, flagArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="HasFlag{T}(IAssert, T, T, string, string, int)"/>
-   public static IAssert HasFlag<T>(
-      this IAssert assert,
       [DisallowNull] T? value,
       [DisallowNull] T? flag,
       [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
@@ -83,6 +29,24 @@ public static partial class AssertExtensions
       where T : struct, Enum
    {
       bool result = value.Value.HasFlag(flag.Value);
+
+      if (result is false)
+         assert.Fail(HasFlagFormat, value, flag, valueArgument, flagArgument, line);
+
+      return assert;
+   }
+
+   /// <inheritdoc cref="HasFlag{T}(IAssert, T?, T?, string, string, int)"/>
+   public static IAssert HasFlag<T>(
+      this IAssert assert,
+      T value,
+      T flag,
+      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
+      [CallerArgumentExpression(nameof(flag))] string flagArgument = "<flag>",
+      [CallerLineNumber] int line = 0)
+      where T : struct, Enum
+   {
+      bool result = value.HasFlag(flag);
 
       if (result is false)
          assert.Fail(HasFlagFormat, value, flag, valueArgument, flagArgument, line);
@@ -105,60 +69,6 @@ public static partial class AssertExtensions
    /// <returns>The <see cref="IAssert"/> instance this extension method was called on to allow for chaining assertions.</returns>
    public static IAssert DoesNotHaveFlag<T>(
       this IAssert assert,
-      T value,
-      T flag,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(flag))] string flagArgument = "<flag>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, Enum
-   {
-      bool result = value.HasFlag(flag);
-
-      if (result)
-         assert.Fail(DoesNotHaveFlagFormat, value, flag, valueArgument, flagArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="DoesNotHaveFlag{T}(IAssert, T, T, string, string, int)"/>
-   public static IAssert DoesNotHaveFlag<T>(
-      this IAssert assert,
-      [DisallowNull] T? value,
-      T flag,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(flag))] string flagArgument = "<flag>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, Enum
-   {
-      bool result = value.Value.HasFlag(flag);
-
-      if (result)
-         assert.Fail(DoesNotHaveFlagFormat, value, flag, valueArgument, flagArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="DoesNotHaveFlag{T}(IAssert, T, T, string, string, int)"/>
-   public static IAssert DoesNotHaveFlag<T>(
-      this IAssert assert,
-      T value,
-      [DisallowNull] T? flag,
-      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
-      [CallerArgumentExpression(nameof(flag))] string flagArgument = "<flag>",
-      [CallerLineNumber] int line = 0)
-      where T : struct, Enum
-   {
-      bool result = value.HasFlag(flag.Value);
-
-      if (result)
-         assert.Fail(DoesNotHaveFlagFormat, value, flag, valueArgument, flagArgument, line);
-
-      return assert;
-   }
-
-   /// <inheritdoc cref="DoesNotHaveFlag{T}(IAssert, T, T, string, string, int)"/>
-   public static IAssert DoesNotHaveFlag<T>(
-      this IAssert assert,
       [DisallowNull] T? value,
       [DisallowNull] T? flag,
       [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
@@ -167,6 +77,24 @@ public static partial class AssertExtensions
       where T : struct, Enum
    {
       bool result = value.Value.HasFlag(flag.Value);
+
+      if (result)
+         assert.Fail(DoesNotHaveFlagFormat, value, flag, valueArgument, flagArgument, line);
+
+      return assert;
+   }
+
+   /// <inheritdoc cref="DoesNotHaveFlag{T}(IAssert, T?, T?, string, string, int)"/>
+   public static IAssert DoesNotHaveFlag<T>(
+      this IAssert assert,
+      T value,
+      T flag,
+      [CallerArgumentExpression(nameof(value))] string valueArgument = "<value>",
+      [CallerArgumentExpression(nameof(flag))] string flagArgument = "<flag>",
+      [CallerLineNumber] int line = 0)
+      where T : struct, Enum
+   {
+      bool result = value.HasFlag(flag);
 
       if (result)
          assert.Fail(DoesNotHaveFlagFormat, value, flag, valueArgument, flagArgument, line);
