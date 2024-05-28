@@ -82,5 +82,77 @@ public static partial class AssertExtensions
       exception = null;
       return assert;
    }
+
+   /// <summary>
+   ///   Asserts that the given <paramref name="action"/> throws an <see cref="Exception"/>
+   ///   that is of the type <typeparamref name="T"/> or a derived type when invoked.
+   /// </summary>
+   /// <typeparam name="T">The type of the <see cref="Exception"/> to check for.</typeparam>
+   /// <param name="assert">The assertion instance.</param>
+   /// <param name="action">The action to check.</param>
+   /// <param name="actionArgument">The argument expression that was passed in as the <paramref name="action"/>.</param>
+   /// <param name="line">The line in the source file where this assertion was made.</param>
+   /// <returns>The exception that was thrown.</returns>
+   public static async ValueTask<T> ThrowsExceptionOfTypeAsync<T>(
+      this IAssert assert,
+      Func<ValueTask> action,
+      [CallerArgumentExpression(nameof(action))] string actionArgument = "<action>",
+      [CallerLineNumber] int line = 0)
+      where T : notnull, Exception
+   {
+      try
+      {
+         await action.Invoke();
+      }
+      catch (Exception exception)
+      {
+         if (exception is not T)
+         {
+            assert.Fail(ThrowsExceptionOfTypeWrongTypeFormat, action, typeof(T), exception, exception.GetType(), actionArgument, line);
+            return default;
+         }
+
+         return (T)exception;
+      }
+
+      assert.Fail(ThrowsExceptionOfTypeNoExceptionFormat, action, typeof(T), actionArgument, line);
+      return default;
+   }
+
+   /// <summary>
+   ///   Asserts that the given <paramref name="action"/> throws an <see cref="Exception"/>
+   ///   that is of the type <typeparamref name="T"/> or a derived type when invoked.
+   /// </summary>
+   /// <typeparam name="T">The type of the <see cref="Exception"/> to check for.</typeparam>
+   /// <param name="assert">The assertion instance.</param>
+   /// <param name="action">The action to check.</param>
+   /// <param name="actionArgument">The argument expression that was passed in as the <paramref name="action"/>.</param>
+   /// <param name="line">The line in the source file where this assertion was made.</param>
+   /// <returns>The exception that was thrown.</returns>
+   public static async ValueTask<T> ThrowsExceptionOfTypeAsync<T>(
+      this IAssert assert,
+      Func<Task> action,
+      [CallerArgumentExpression(nameof(action))] string actionArgument = "<action>",
+      [CallerLineNumber] int line = 0)
+      where T : notnull, Exception
+   {
+      try
+      {
+         await action.Invoke();
+      }
+      catch (Exception exception)
+      {
+         if (exception is not T)
+         {
+            assert.Fail(ThrowsExceptionOfTypeWrongTypeFormat, action, typeof(T), exception, exception.GetType(), actionArgument, line);
+            return default;
+         }
+
+         return (T)exception;
+      }
+
+      assert.Fail(ThrowsExceptionOfTypeNoExceptionFormat, action, typeof(T), actionArgument, line);
+      return default;
+   }
    #endregion
 }

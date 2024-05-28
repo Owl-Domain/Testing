@@ -61,5 +61,56 @@ public static partial class AssertExtensions
 
       return assert;
    }
+
+
+   /// <summary>Asserts that the given <paramref name="action"/> throws any type of an <see cref="Exception"/> when invoked.</summary>
+   /// <param name="assert">The assertion instance.</param>
+   /// <param name="action">The action to check.</param>
+   /// <param name="actionArgument">The argument expression that was passed in as the <paramref name="action"/>.</param>
+   /// <param name="line">The line in the source file where this assertion was made.</param>
+   /// <returns>The <see cref="Exception"/> that was thrown.</returns>
+   public static async ValueTask<Exception> ThrowsAnyExceptionAsync(
+      this IAssert assert,
+      Func<ValueTask> action,
+      [CallerArgumentExpression(nameof(action))] string actionArgument = "<action>",
+      [CallerLineNumber] int line = 0)
+   {
+      try
+      {
+         await action.Invoke();
+      }
+      catch (Exception exception)
+      {
+         return exception;
+      }
+
+      assert.Fail(ThrowsAnyExceptionFormat, action, actionArgument, line);
+      return default;
+   }
+
+   /// <summary>Asserts that the given <paramref name="action"/> throws any type of an <see cref="Exception"/> when invoked.</summary>
+   /// <param name="assert">The assertion instance.</param>
+   /// <param name="action">The action to check.</param>
+   /// <param name="actionArgument">The argument expression that was passed in as the <paramref name="action"/>.</param>
+   /// <param name="line">The line in the source file where this assertion was made.</param>
+   /// <returns>The <see cref="Exception"/> that was thrown.</returns>
+   public static async ValueTask<Exception> ThrowsAnyExceptionAsync(
+      this IAssert assert,
+      Func<Task> action,
+      [CallerArgumentExpression(nameof(action))] string actionArgument = "<action>",
+      [CallerLineNumber] int line = 0)
+   {
+      try
+      {
+         await action.Invoke();
+      }
+      catch (Exception exception)
+      {
+         return exception;
+      }
+
+      assert.Fail(ThrowsAnyExceptionFormat, action, actionArgument, line);
+      return default;
+   }
    #endregion
 }
