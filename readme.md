@@ -48,7 +48,7 @@ methods, as well as making it extremely easy to create new test framework adapte
 In C# and for the MSTest adapter, that would look like this:
 ```csproj
 <ItemGroup>
-  <PackageReference Include="OwlDomain.Testing.Assertions" Version="1.1.0" />
+  <PackageReference Include="OwlDomain.Testing.Assertions" Version="1.2.0" />
   <PackageReference Include="OwlDomain.Testing.MSTest" Version="1.0.0" />
 </ItemGroup>
 ```
