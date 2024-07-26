@@ -1,7 +1,7 @@
 ﻿namespace Testing.Assertions.Tests.EnumAsserts;
 
 [TestClass]
-public class HasFlagAsserts
+public sealed class HasFlagAsserts
 {
    #region Fields
    private readonly Mock<IAssert> _assert = new Mock<IAssert>();

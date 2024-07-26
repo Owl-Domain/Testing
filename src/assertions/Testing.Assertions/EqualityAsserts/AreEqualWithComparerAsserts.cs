@@ -34,7 +34,7 @@ public static partial class AssertExtensions
    {
       bool equality = comparer.Equals(value, expected);
 
-      if (equality == false)
+      if (equality is false)
          assert.Fail(AreEqualWithComparerFormat, value, expected, comparer, valueArgument, expectedArgument, comparerArgument, line);
 
       return assert;

@@ -1,7 +1,7 @@
 ﻿namespace Testing.Assertions.Tests;
 
 [TestClass]
-public class NullAssertTests
+public sealed class NullAssertTests
 {
    #region Fields
    private readonly Mock<IAssert> _assert = new Mock<IAssert>();

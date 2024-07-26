@@ -1,7 +1,7 @@
 ﻿namespace Testing.Assertions.Tests.ComparisonAsserts;
 
 [TestClass]
-public class IsBetweenAssertTests
+public sealed class IsBetweenAssertTests
 {
    #region Fields
    private readonly Mock<IAssert> _assert = new Mock<IAssert>();

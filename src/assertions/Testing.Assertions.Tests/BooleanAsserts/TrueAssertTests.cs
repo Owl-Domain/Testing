@@ -1,7 +1,7 @@
 ﻿namespace Testing.Assertions.Tests.BooleanAsserts;
 
 [TestClass]
-public class TrueAssertTests
+public sealed class TrueAssertTests
 {
    #region Fields
    private readonly Mock<IAssert> _assert = new Mock<IAssert>();

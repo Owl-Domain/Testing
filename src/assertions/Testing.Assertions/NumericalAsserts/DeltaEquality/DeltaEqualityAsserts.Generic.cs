@@ -38,7 +38,7 @@ public static partial class AssertExtensions
       T actualDelta = T.Max(value.Value, expected.Value) - T.Min(value.Value, expected.Value);
       bool equality = actualDelta <= delta.Value;
 
-      if (equality == false)
+      if (equality is false)
          assert.Fail(AreEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
 
       return assert;
@@ -59,7 +59,7 @@ public static partial class AssertExtensions
       T actualDelta = T.Max(value, expected) - T.Min(value, expected);
       bool equality = actualDelta <= delta;
 
-      if (equality == false)
+      if (equality is false)
          assert.Fail(AreEqualDeltaFormat, value, expected, delta, actualDelta, valueArgument, expectedArgument, deltaArgument, line);
 
       return assert;

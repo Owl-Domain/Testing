@@ -1,7 +1,7 @@
 ﻿namespace Testing.MSTest.Tests;
 
 [TestClass]
-public class FailAssertTests
+public sealed class FailAssertTests
 {
    #region Fields
    private readonly FailAssert _sut = new();

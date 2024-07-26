@@ -4,7 +4,7 @@ using Assert = OwlDomain.Testing.MSTest.Assert;
 namespace Testing.MSTest.Tests;
 
 [TestClass]
-public class AssertTests
+public sealed class AssertTests
 {
    #region Tests
    [TestMethod]

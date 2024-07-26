@@ -1,7 +1,7 @@
 ﻿namespace Testing.Assertions.Tests.EqualityAsserts;
 
 [TestClass]
-public class AreEqualAssertTests
+public sealed class AreEqualAssertTests
 {
    #region Fields
    private readonly Mock<IAssert> _assert = new Mock<IAssert>();

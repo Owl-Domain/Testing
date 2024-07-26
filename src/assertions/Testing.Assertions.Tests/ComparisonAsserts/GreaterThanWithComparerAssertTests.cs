@@ -1,7 +1,7 @@
 ﻿namespace Testing.Assertions.Tests.ComparisonAsserts;
 
 [TestClass]
-public class GreaterThanWithComparerAssertTests
+public sealed class GreaterThanWithComparerAssertTests
 {
    #region Fields
    private readonly Mock<IAssert> _assert = new Mock<IAssert>();

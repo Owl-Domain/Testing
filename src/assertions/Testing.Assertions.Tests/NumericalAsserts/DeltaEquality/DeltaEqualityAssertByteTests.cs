@@ -1,7 +1,7 @@
 ﻿namespace Testing.Assertions.Tests.NumericalAsserts.DeltaEquality;
 
 [TestClass]
-public class DeltaEqualityAssertByteTests
+public sealed class DeltaEqualityAssertByteTests
 {
    #region Fields
    private readonly Mock<IAssert> _assert = new Mock<IAssert>();

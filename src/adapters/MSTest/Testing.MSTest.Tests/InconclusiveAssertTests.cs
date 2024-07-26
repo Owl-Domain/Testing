@@ -1,7 +1,7 @@
 ﻿namespace Testing.MSTest.Tests;
 
 [TestClass]
-public class InconclusiveAssertTests
+public sealed class InconclusiveAssertTests
 {
    #region Fields
    private readonly InconclusiveAssert _sut = new();

@@ -30,7 +30,7 @@ public static partial class AssertExtensions
    {
       bool equality = EqualityComparer<T>.Default.Equals(value, expected);
 
-      if (equality == false)
+      if (equality is false)
          assert.Fail(AreEqualFormat, value, expected, valueArgument, expectedArgument, line);
 
       return assert;

@@ -1,7 +1,7 @@
 ﻿namespace Testing.Base.Tests;
 
 [TestClass]
-public class FormattingHelperTests
+public sealed class FormattingHelperTests
 {
    #region Subclass
    private sealed class Stub(string? toStringResult)
