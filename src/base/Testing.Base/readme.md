@@ -14,5 +14,4 @@ test framework adapter.
 
 ## License
 
-This project (the source, and the release files, e.t.c) are not currently under any license, 
-all rights are reserved, however it will become more permissive at a later date.
+This project (the source, and the release files, e.t.c) is release under the [OwlDomain License](/license.md).

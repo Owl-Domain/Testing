@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <!-- Project -->
   <PropertyGroup Label="project">
@@ -12,6 +12,16 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
+  
+  <!-- Project references -->
+  <ItemGroup Label="projects">
+    <ProjectReference Include="..\..\base\Testing.Base\Testing.Base.csproj" />
+  </ItemGroup>
+
+  <!-- Package references -->
+  <ItemGroup Label="packages" Condition="'$(TargetFramework)' == 'netstandard2.1'">
+    <PackageReference Include="OwlDomain.Polyease" Version="1.3.2" />
+  </ItemGroup>
 
   <!-- Nuget package -->
   <PropertyGroup Label="nuget">
@@ -33,22 +43,18 @@
     <Company>OwlDomain</Company>
 
     <PackageReadmeFile>readme.md</PackageReadmeFile>
+    <PackageLicenseFile>license.md</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/Owl-Domain/Testing</PackageProjectUrl>
+    
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageIconUrl>https://github.com/Owl-Domain/Testing/blob/master/icon.png?raw=true</PackageIconUrl>
   </PropertyGroup>
-  
-  <!-- Project references -->
-  <ItemGroup Label="projects">
-    <ProjectReference Include="..\..\base\Testing.Base\Testing.Base.csproj" />
-  </ItemGroup>
 
-  <!-- Package references -->
-  <ItemGroup Label="packages" Condition="'$(TargetFramework)' == 'netstandard2.1'">
-    <PackageReference Include="OwlDomain.Polyease" Version="1.0.0" />
-  </ItemGroup>
-  
-  <!-- Readme -->
-  <ItemGroup Label="readme">
+  <!-- Resources -->
+  <ItemGroup Label="resources">
     <None Include="readme.md" Pack="true" PackagePath="\" />
+    <None Include="../../../license.md" Pack="true" PackagePath="\" />
+    <None Include="../../../icon.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <!-- Repository -->

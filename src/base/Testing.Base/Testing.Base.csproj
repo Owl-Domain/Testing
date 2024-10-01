@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <!-- Project -->
   <PropertyGroup Label="project">
@@ -33,12 +33,18 @@
     <Company>OwlDomain</Company>
 
     <PackageReadmeFile>readme.md</PackageReadmeFile>
+    <PackageLicenseFile>license.md</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/Owl-Domain/Testing</PackageProjectUrl>
+
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageIconUrl>https://github.com/Owl-Domain/Testing/blob/master/icon.png?raw=true</PackageIconUrl>
   </PropertyGroup>
 
-  <!-- Readme -->
-  <ItemGroup Label="readme">
+  <!-- Resources -->
+  <ItemGroup Label="resources">
     <None Include="readme.md" Pack="true" PackagePath="\" />
+    <None Include="../../../license.md" Pack="true" PackagePath="\" />
+    <None Include="../../../icon.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <!-- Repository -->
