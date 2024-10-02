@@ -1,4 +1,4 @@
-﻿namespace OwlDomain.Testing.Base;
+namespace OwlDomain.Testing.Base;
 
 /// <summary>
 /// Represents an assertion capable of throwing failed assertions.
@@ -15,10 +15,6 @@ public interface IAssert
    /// <param name="format">The format of the failed assertion to fill with the given <paramref name="arguments"/>.</param>
    /// <param name="arguments">The arguments to use along with the message <paramref name="format"/>.</param>
    [DoesNotReturn]
-#if NET7_0_OR_GREATER
    void Fail([StringSyntax(StringSyntaxAttribute.CompositeFormat)] string format, params object?[] arguments);
-#else
-   void Fail(string format, params object?[] arguments);
-#endif
    #endregion
 }

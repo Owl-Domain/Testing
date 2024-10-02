@@ -13,6 +13,19 @@
     <Deterministic>true</Deterministic>
   </PropertyGroup>
 
+  <!-- Package references -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
+    <PackageReference Include="OwlDomain.Polyease" Version="1.3.2"/>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
+    <PackageReference Include="OwlDomain.Polyease" Version="1.3.2"/>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
+    <PackageReference Include="OwlDomain.Polyease" Version="1.3.2"/>
+  </ItemGroup>
+
   <!-- Nuget package -->
   <PropertyGroup Label="nuget">
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>

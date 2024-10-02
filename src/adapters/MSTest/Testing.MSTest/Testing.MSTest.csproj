@@ -19,6 +19,18 @@
   </ItemGroup>
 
   <!-- Package references -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
+    <PackageReference Include="OwlDomain.Polyease" Version="1.3.2"/>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
+    <PackageReference Include="OwlDomain.Polyease" Version="1.3.2"/>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+    <PackageReference Include="OwlDomain.Polyease" Version="1.3.2"/>
+  </ItemGroup>
+
   <ItemGroup Label="packages">
     <PackageReference Include="MSTest.TestFramework" Version="3.0.0" />
   </ItemGroup>
