@@ -1,0 +1,22 @@
+name: test
+
+permissions:
+  contents: read
+
+on:
+  push:
+    paths:
+      - 'src/**' # React to source files changing
+
+  workflow_dispatch: # Allow manual runs
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        configuration: [Debug, Release]
+
+    uses: Owl-Domain/.github/.github/workflows/dotnet_test.yml@master
+    with:
+      configuration: ${{ matrix.configuration }}
