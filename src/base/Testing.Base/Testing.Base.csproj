@@ -2,8 +2,8 @@
 
   <!-- Project -->
   <PropertyGroup Label="project">
-    <TargetFrameworks>netstandard2.1; net5.0; net7.0</TargetFrameworks>
-    <LangVersion>12</LangVersion>
+    <TargetFrameworks>net7.0;net5.0;netstandard2.1</TargetFrameworks>
+    <LangVersion>13</LangVersion>
     <Nullable>enable</Nullable>
 
     <AssemblyName>OwlDomain.Testing.Base</AssemblyName>
@@ -35,7 +35,7 @@
 
     <Title>OwlDomain.Testing.Base</Title>
     <Description>
-      The base package for the OwlDomain.Testing framework that offers 
+      The base package for the OwlDomain.Testing framework that offers
       the bare minimum required for the framework structure.
     </Description>
     <PackageTags>owldomain, testing</PackageTags>

@@ -2,8 +2,8 @@
 
   <!-- Project -->
   <PropertyGroup Label="project">
-    <TargetFrameworks>netstandard2.1; netcoreapp3.0; net5.0; net7.0</TargetFrameworks>
-    <LangVersion>12</LangVersion>
+    <TargetFrameworks>net7.0;net5.0;netcoreapp3.0;netstandard2.1</TargetFrameworks>
+    <LangVersion>13</LangVersion>
     <Nullable>enable</Nullable>
 
     <AssemblyName>OwlDomain.Testing.Assertions</AssemblyName>
@@ -12,7 +12,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
-  
+
   <!-- Project references -->
   <ItemGroup Label="projects">
     <ProjectReference Include="..\..\base\Testing.Base\Testing.Base.csproj" />
@@ -26,26 +26,26 @@
   <!-- Nuget package -->
   <PropertyGroup Label="nuget">
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    
+
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
 
     <Title>OwlDomain.Testing.Assertions</Title>
     <Description>
-      The assertions package for the OwlDomain.Testing framework 
+      The assertions package for the OwlDomain.Testing framework
       that contains all of the official assertion methods.
     </Description>
     <PackageTags>owldomain, testing, assertions</PackageTags>
-    
+
     <Version>1.3.0</Version>
-    
+
     <Authors>Owl Domain, Nightowl</Authors>
     <Company>OwlDomain</Company>
 
     <PackageReadmeFile>readme.md</PackageReadmeFile>
     <PackageLicenseFile>license.md</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/Owl-Domain/Testing</PackageProjectUrl>
-    
+
     <PackageIcon>icon.png</PackageIcon>
     <PackageIconUrl>https://github.com/Owl-Domain/Testing/blob/master/icon.png?raw=true</PackageIconUrl>
   </PropertyGroup>

@@ -1,4 +1,4 @@
-﻿global using Microsoft.VisualStudio.TestTools.UnitTesting;
+global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using OwlDomain.Testing.Base;
 
 #if DEBUG

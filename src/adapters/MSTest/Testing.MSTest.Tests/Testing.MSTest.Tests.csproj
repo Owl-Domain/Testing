@@ -2,8 +2,8 @@
 
   <!-- Project -->
   <PropertyGroup Label="project">
-    <TargetFrameworks>netcoreapp3.1; net8.0</TargetFrameworks>
-    <LangVersion>12</LangVersion>
+    <TargetFrameworks>net8.0;netcoreapp3.1</TargetFrameworks>
+    <LangVersion>13</LangVersion>
     <Nullable>enable</Nullable>
 
     <IsPackable>false</IsPackable>
@@ -14,7 +14,7 @@
   <ItemGroup Label="projects">
     <ProjectReference Include="..\Testing.MSTest\Testing.MSTest.csproj" />
   </ItemGroup>
-  
+
   <!-- Package references-->
   <ItemGroup Label="packages">
     <PackageReference Include="coverlet.collector" Version="6.0.0" />

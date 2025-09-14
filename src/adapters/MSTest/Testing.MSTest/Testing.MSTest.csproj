@@ -2,8 +2,8 @@
 
   <!-- Project -->
   <PropertyGroup Label="project">
-    <TargetFrameworks>netstandard2.1; netcoreapp3.1; net6.0; net7.0; net8.0</TargetFrameworks>
-    <LangVersion>12</LangVersion>
+    <TargetFrameworks>net8.0;net7.0;net6.0;netcoreapp3.1;netstandard2.1</TargetFrameworks>
+    <LangVersion>13</LangVersion>
     <Nullable>enable</Nullable>
 
     <AssemblyName>OwlDomain.Testing.MSTest</AssemblyName>
@@ -12,7 +12,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
-  
+
   <!-- Project references -->
   <ItemGroup Label="projects">
     <ProjectReference Include="..\..\..\base\Testing.Base\Testing.Base.csproj" />
@@ -38,14 +38,14 @@
   <!-- Nuget package -->
   <PropertyGroup Label="nuget">
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    
+
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
 
     <Title>OwlDomain.Testing.MSTest</Title>
     <Description>An MSTest adapter package for the OwlDomain.Testing framework.</Description>
     <PackageTags>owldomain, testing, mstest</PackageTags>
-    
+
     <Version>1.1.0</Version>
 
     <Authors>Owl Domain, Nightowl</Authors>
@@ -54,7 +54,7 @@
     <PackageReadmeFile>readme.md</PackageReadmeFile>
     <PackageLicenseFile>license.md</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/Owl-Domain/Testing</PackageProjectUrl>
-    
+
     <PackageIcon>icon.png</PackageIcon>
     <PackageIconUrl>https://github.com/Owl-Domain/Testing/blob/master/icon.png?raw=true</PackageIconUrl>
   </PropertyGroup>
