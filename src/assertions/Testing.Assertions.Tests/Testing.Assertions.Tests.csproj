@@ -2,7 +2,7 @@
 
   <!-- Project -->
   <PropertyGroup Label="project">
-    <TargetFrameworks>net8.0;netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks>net8.0</TargetFrameworks>
     <LangVersion>13</LangVersion>
     <Nullable>enable</Nullable>
 
