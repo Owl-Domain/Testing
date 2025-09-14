@@ -4,6 +4,7 @@ obj/
 
 # IDEs
 .vs/
+.vscode/
 .idea/
 *.user
 *.pubxml

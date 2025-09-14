@@ -14,6 +14,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{C47F88EC-8
 		..\.gitattributes = ..\.gitattributes
 		..\.gitignore = ..\.gitignore
 		..\readme.md = ..\readme.md
+		..\playground_fix.sh = ..\playground_fix.sh
+		..\contributing.md = ..\contributing.md
+		..\license.md = ..\license.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assertions", "assertions", "{ED528DF1-3CD5-4B68-A981-496E6DDE48A7}"
