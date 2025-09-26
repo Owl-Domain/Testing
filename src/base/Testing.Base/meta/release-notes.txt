@@ -1,0 +1,3 @@
+latest []:
+	- Updated package to follow the current OwlDomain practices.
+	- Added release notes.
