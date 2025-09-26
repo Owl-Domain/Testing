@@ -101,14 +101,14 @@ The assertion methods in the `OwlDomain.Testing.Assertions` library also makes u
 and the
 [CallerLineNumberAttribute](https://learn.microsoft.com/dotnet/api/system.runtime.compilerservices.callerlinenumberattribute)
 to provide extra information in the test result output, meaning that if you have
-code like this (the numbers on the left representing the line numbers):
+code like this *(the `// Line 5` representing that that is line number 5 in the code file)*:
 
 ```csharp
-1 // Act
-2 bool result = ...;
-3
-4 // Assert
-5 Assert.That.IsTrue(result);
+// Act
+bool result = ...;
+
+// Assert
+Assert.That.IsTrue(result); // Line 5
 ```
 
 Then if the test fails (meaning that the `result` was false) the test output would look like this:

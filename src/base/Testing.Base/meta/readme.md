@@ -1,7 +1,7 @@
 Testing.Base
 ===
 
-The base library for the 
+The base library for the
 [OwlDomain.Testing](https://github.com/Owl-Domain/Testing)
 framework, this package only provides the `IAssert` interface,
 and the `FormattingHelper` static class.
