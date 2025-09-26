@@ -1,4 +1,4 @@
-namespace Testing.Assertions.Tests.ExceptionAsserts;
+namespace OwlDomain.Testing.Assertions.Tests.ExceptionAsserts;
 
 [TestClass]
 [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "Test methods don't need the 'async' suffix.")]
@@ -50,9 +50,9 @@ public sealed class ThrowsAnyExceptionTests
 
 		// Act
 		IAssert result = AssertExtensions.ThrowsAnyException(
-		   _assert.Object,
-		   Action,
-		   out Exception exception);
+			_assert.Object,
+			Action,
+			out Exception exception);
 
 		// Assert
 		_assert.VerifyFailFormat(Times.Never());
@@ -70,9 +70,9 @@ public sealed class ThrowsAnyExceptionTests
 
 		// Act
 		IAssert result = AssertExtensions.ThrowsAnyException(
-		   _assert.Object,
-		   Action,
-		   out Exception? exception);
+			_assert.Object,
+			Action,
+			out Exception? exception);
 
 		// Assert
 		_assert.VerifyFailFormat(Times.Once());

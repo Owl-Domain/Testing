@@ -1,4 +1,4 @@
-namespace Testing.Assertions.Tests.EnumAsserts;
+namespace OwlDomain.Testing.Assertions.Tests.EnumAsserts;
 
 [TestClass]
 public sealed class HasFlagAsserts

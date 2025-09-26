@@ -1,26 +1,20 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="MSTest.Sdk/3.6.4">
 
-  <!-- Project -->
-  <PropertyGroup Label="project">
-    <TargetFrameworks>net8.0</TargetFrameworks>
-    <LangVersion>13</LangVersion>
-    <Nullable>enable</Nullable>
+	<!-- Project -->
+	<PropertyGroup Label="project">
+		<TargetFrameworks>net8.0</TargetFrameworks>
+		<LangVersion>13</LangVersion>
+		<Nullable>enable</Nullable>
 
-    <IsPackable>false</IsPackable>
-    <IsTestProject>true</IsTestProject>
-  </PropertyGroup>
+		<AssemblyName>OwlDomain.Testing.MSTest.Tests</AssemblyName>
+		<RootNamespace>OwlDomain.Testing.MSTest.Tests</RootNamespace>
 
-  <!-- Project references -->
-  <ItemGroup Label="projects">
-    <ProjectReference Include="..\Testing.MSTest\Testing.MSTest.csproj" />
-  </ItemGroup>
+		<UseVSTest>true</UseVSTest>
+	</PropertyGroup>
 
-  <!-- Package references-->
-  <ItemGroup Label="packages">
-    <PackageReference Include="coverlet.collector" Version="6.0.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
-    <PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
-    <PackageReference Include="MSTest.TestFramework" Version="3.1.1" />
-  </ItemGroup>
+	<!-- Project references -->
+	<ItemGroup Label="projects">
+		<ProjectReference Include="..\Testing.MSTest\Testing.MSTest.csproj" />
+	</ItemGroup>
 
 </Project>

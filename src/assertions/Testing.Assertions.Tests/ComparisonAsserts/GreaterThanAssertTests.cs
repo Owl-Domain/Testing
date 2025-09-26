@@ -1,4 +1,4 @@
-namespace Testing.Assertions.Tests.ComparisonAsserts;
+namespace OwlDomain.Testing.Assertions.Tests.ComparisonAsserts;
 
 [TestClass]
 public sealed class GreaterThanAssertTests

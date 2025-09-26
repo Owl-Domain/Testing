@@ -1,4 +1,4 @@
-namespace Testing.Base.Tests;
+namespace OwlDomain.Testing.Base.Tests;
 
 [TestClass]
 public sealed class FormattingHelperTests

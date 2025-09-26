@@ -1,4 +1,4 @@
-namespace Testing.Assertions.Tests.ComparisonAsserts;
+namespace OwlDomain.Testing.Assertions.Tests.ComparisonAsserts;
 
 [TestClass]
 public sealed class GreaterThanWithComparerAssertTests
@@ -17,8 +17,8 @@ public sealed class GreaterThanWithComparerAssertTests
 		int? threshold = 5;
 
 		_comparer
-		   .Setup(c => c.Compare(value.Value, threshold.Value))
-		   .Returns(1);
+			.Setup(c => c.Compare(value.Value, threshold.Value))
+			.Returns(1);
 
 		// Act
 		IAssert result = AssertExtensions.IsGreaterThan(_assert.Object, value, threshold, _comparer.Object);
@@ -40,8 +40,8 @@ public sealed class GreaterThanWithComparerAssertTests
 	{
 		// Arrange
 		_comparer
-		   .Setup(c => c.Compare(value.Value, threshold.Value))
-		   .Returns(comparisonResult);
+			.Setup(c => c.Compare(value.Value, threshold.Value))
+			.Returns(comparisonResult);
 
 		// Act
 		IAssert result = AssertExtensions.IsGreaterThan(_assert.Object, value, threshold, _comparer.Object);
@@ -64,8 +64,8 @@ public sealed class GreaterThanWithComparerAssertTests
 		int threshold = 5;
 
 		_comparer
-		   .Setup(c => c.Compare(value, threshold))
-		   .Returns(1);
+			.Setup(c => c.Compare(value, threshold))
+			.Returns(1);
 
 		// Act
 		IAssert result = AssertExtensions.IsGreaterThan(_assert.Object, value, threshold, _comparer.Object);
@@ -87,8 +87,8 @@ public sealed class GreaterThanWithComparerAssertTests
 	{
 		// Arrange
 		_comparer
-		   .Setup(c => c.Compare(value, threshold))
-		   .Returns(comparisonResult);
+			.Setup(c => c.Compare(value, threshold))
+			.Returns(comparisonResult);
 
 		// Act
 		IAssert result = AssertExtensions.IsGreaterThan(_assert.Object, value, threshold, _comparer.Object);
@@ -112,8 +112,8 @@ public sealed class GreaterThanWithComparerAssertTests
 	{
 		// Arrange
 		_comparer
-		   .Setup(c => c.Compare(value.Value, threshold.Value))
-		   .Returns(comparisonResult);
+			.Setup(c => c.Compare(value.Value, threshold.Value))
+			.Returns(comparisonResult);
 
 		// Act
 		IAssert result = AssertExtensions.IsGreaterThanOrEqualTo(_assert.Object, value, threshold, _comparer.Object);
@@ -136,8 +136,8 @@ public sealed class GreaterThanWithComparerAssertTests
 		int? threshold = 5;
 
 		_comparer
-		   .Setup(c => c.Compare(value.Value, threshold.Value))
-		   .Returns(-1);
+			.Setup(c => c.Compare(value.Value, threshold.Value))
+			.Returns(-1);
 
 		// Act
 		IAssert result = AssertExtensions.IsGreaterThanOrEqualTo(_assert.Object, value, threshold, _comparer.Object);
@@ -159,8 +159,8 @@ public sealed class GreaterThanWithComparerAssertTests
 	{
 		// Arrange
 		_comparer
-		   .Setup(c => c.Compare(value, threshold))
-		   .Returns(comparisonResult);
+			.Setup(c => c.Compare(value, threshold))
+			.Returns(comparisonResult);
 
 		// Act
 		IAssert result = AssertExtensions.IsGreaterThanOrEqualTo(_assert.Object, value, threshold, _comparer.Object);
@@ -183,8 +183,8 @@ public sealed class GreaterThanWithComparerAssertTests
 		int threshold = 5;
 
 		_comparer
-		   .Setup(c => c.Compare(value, threshold))
-		   .Returns(-1);
+			.Setup(c => c.Compare(value, threshold))
+			.Returns(-1);
 
 		// Act
 		IAssert result = AssertExtensions.IsGreaterThanOrEqualTo(_assert.Object, value, threshold, _comparer.Object);
@@ -209,8 +209,8 @@ public sealed class GreaterThanWithComparerAssertTests
 		int? threshold = 5;
 
 		_comparer
-		   .Setup(c => c.Compare(value.Value, threshold.Value))
-		   .Returns(1);
+			.Setup(c => c.Compare(value.Value, threshold.Value))
+			.Returns(1);
 
 		// Act
 		IAssert result = AssertExtensions.IsNotGreaterThan(_assert.Object, value, threshold, _comparer.Object);
@@ -232,8 +232,8 @@ public sealed class GreaterThanWithComparerAssertTests
 	{
 		// Arrange
 		_comparer
-		   .Setup(c => c.Compare(value.Value, threshold.Value))
-		   .Returns(comparisonResult);
+			.Setup(c => c.Compare(value.Value, threshold.Value))
+			.Returns(comparisonResult);
 
 		// Act
 		IAssert result = AssertExtensions.IsNotGreaterThan(_assert.Object, value, threshold, _comparer.Object);
@@ -256,8 +256,8 @@ public sealed class GreaterThanWithComparerAssertTests
 		int threshold = 5;
 
 		_comparer
-		   .Setup(c => c.Compare(value, threshold))
-		   .Returns(1);
+			.Setup(c => c.Compare(value, threshold))
+			.Returns(1);
 
 		// Act
 		IAssert result = AssertExtensions.IsNotGreaterThan(_assert.Object, value, threshold, _comparer.Object);
@@ -279,8 +279,8 @@ public sealed class GreaterThanWithComparerAssertTests
 	{
 		// Arrange
 		_comparer
-		   .Setup(c => c.Compare(value, threshold))
-		   .Returns(comparisonResult);
+			.Setup(c => c.Compare(value, threshold))
+			.Returns(comparisonResult);
 
 		// Act
 		IAssert result = AssertExtensions.IsNotGreaterThan(_assert.Object, value, threshold, _comparer.Object);
@@ -304,8 +304,8 @@ public sealed class GreaterThanWithComparerAssertTests
 	{
 		// Arrange
 		_comparer
-		   .Setup(c => c.Compare(value.Value, threshold.Value))
-		   .Returns(comparisonResult);
+			.Setup(c => c.Compare(value.Value, threshold.Value))
+			.Returns(comparisonResult);
 
 		// Act
 		IAssert result = AssertExtensions.IsNotGreaterThanOrEqualTo(_assert.Object, value, threshold, _comparer.Object);
@@ -328,8 +328,8 @@ public sealed class GreaterThanWithComparerAssertTests
 		int? threshold = 5;
 
 		_comparer
-		   .Setup(c => c.Compare(value.Value, threshold.Value))
-		   .Returns(-1);
+			.Setup(c => c.Compare(value.Value, threshold.Value))
+			.Returns(-1);
 
 		// Act
 		IAssert result = AssertExtensions.IsNotGreaterThanOrEqualTo(_assert.Object, value, threshold, _comparer.Object);
@@ -351,8 +351,8 @@ public sealed class GreaterThanWithComparerAssertTests
 	{
 		// Arrange
 		_comparer
-		   .Setup(c => c.Compare(value, threshold))
-		   .Returns(comparisonResult);
+			.Setup(c => c.Compare(value, threshold))
+			.Returns(comparisonResult);
 
 		// Act
 		IAssert result = AssertExtensions.IsNotGreaterThanOrEqualTo(_assert.Object, value, threshold, _comparer.Object);
@@ -375,8 +375,8 @@ public sealed class GreaterThanWithComparerAssertTests
 		int threshold = 5;
 
 		_comparer
-		   .Setup(c => c.Compare(value, threshold))
-		   .Returns(-1);
+			.Setup(c => c.Compare(value, threshold))
+			.Returns(-1);
 
 		// Act
 		IAssert result = AssertExtensions.IsNotGreaterThanOrEqualTo(_assert.Object, value, threshold, _comparer.Object);

@@ -1,4 +1,4 @@
-namespace Testing.Assertions.Tests.ExceptionAsserts;
+namespace OwlDomain.Testing.Assertions.Tests.ExceptionAsserts;
 
 [TestClass]
 [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "Test methods don't need the 'async' suffix.")]

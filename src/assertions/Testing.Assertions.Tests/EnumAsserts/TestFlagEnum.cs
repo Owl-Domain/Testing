@@ -1,4 +1,4 @@
-namespace Testing.Assertions.Tests.EnumAsserts;
+namespace OwlDomain.Testing.Assertions.Tests.EnumAsserts;
 
 [Flags]
 public enum TestFlagEnum : byte

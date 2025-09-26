@@ -1,4 +1,4 @@
-namespace Testing.Assertions.Tests.ComparisonAsserts;
+namespace OwlDomain.Testing.Assertions.Tests.ComparisonAsserts;
 
 [TestClass]
 public sealed class IsBetweenWithComparerAssertTests
@@ -17,12 +17,12 @@ public sealed class IsBetweenWithComparerAssertTests
 	{
 		// Arrange
 		_comparer
-		   .Setup(c => c.Compare(value.Value, minimum.Value))
-		   .Returns(value.Value.CompareTo(minimum.Value));
+			.Setup(c => c.Compare(value.Value, minimum.Value))
+			.Returns(value.Value.CompareTo(minimum.Value));
 
 		_comparer
-		   .Setup(c => c.Compare(value.Value, maximum.Value))
-		   .Returns(value.Value.CompareTo(maximum.Value));
+			.Setup(c => c.Compare(value.Value, maximum.Value))
+			.Returns(value.Value.CompareTo(maximum.Value));
 
 		// Act
 		IAssert result = AssertExtensions.IsBetween(_assert.Object, value, minimum, maximum, _comparer.Object);
@@ -47,11 +47,11 @@ public sealed class IsBetweenWithComparerAssertTests
 		int? maximum = 10;
 
 		_comparer
-		   .Setup(c => c.Compare(value.Value, minimum.Value))
-		   .Returns(value.Value.CompareTo(minimum.Value));
+			.Setup(c => c.Compare(value.Value, minimum.Value))
+			.Returns(value.Value.CompareTo(minimum.Value));
 		_comparer
-		   .Setup(c => c.Compare(value.Value, maximum.Value))
-		   .Returns(value.Value.CompareTo(maximum.Value));
+			.Setup(c => c.Compare(value.Value, maximum.Value))
+			.Returns(value.Value.CompareTo(maximum.Value));
 
 		// Act
 		IAssert result = AssertExtensions.IsBetween(_assert.Object, value, minimum, maximum, _comparer.Object);
@@ -76,11 +76,11 @@ public sealed class IsBetweenWithComparerAssertTests
 		int? maximum = 10;
 
 		_comparer
-		   .Setup(c => c.Compare(value.Value, minimum.Value))
-		   .Returns(value.Value.CompareTo(minimum.Value));
+			.Setup(c => c.Compare(value.Value, minimum.Value))
+			.Returns(value.Value.CompareTo(minimum.Value));
 		_comparer
-		   .Setup(c => c.Compare(value.Value, maximum.Value))
-		   .Returns(value.Value.CompareTo(maximum.Value));
+			.Setup(c => c.Compare(value.Value, maximum.Value))
+			.Returns(value.Value.CompareTo(maximum.Value));
 
 		// Act
 		IAssert result = AssertExtensions.IsBetween(_assert.Object, value, minimum, maximum, _comparer.Object);
@@ -104,12 +104,12 @@ public sealed class IsBetweenWithComparerAssertTests
 	{
 		// Arrange
 		_comparer
-		   .Setup(c => c.Compare(value, minimum))
-		   .Returns(value.CompareTo(minimum));
+			.Setup(c => c.Compare(value, minimum))
+			.Returns(value.CompareTo(minimum));
 
 		_comparer
-		   .Setup(c => c.Compare(value, maximum))
-		   .Returns(value.CompareTo(maximum));
+			.Setup(c => c.Compare(value, maximum))
+			.Returns(value.CompareTo(maximum));
 
 		// Act
 		IAssert result = AssertExtensions.IsBetween(_assert.Object, value, minimum, maximum, _comparer.Object);
@@ -134,11 +134,11 @@ public sealed class IsBetweenWithComparerAssertTests
 		int maximum = 10;
 
 		_comparer
-		   .Setup(c => c.Compare(value, minimum))
-		   .Returns(value.CompareTo(minimum));
+			.Setup(c => c.Compare(value, minimum))
+			.Returns(value.CompareTo(minimum));
 		_comparer
-		   .Setup(c => c.Compare(value, maximum))
-		   .Returns(value.CompareTo(maximum));
+			.Setup(c => c.Compare(value, maximum))
+			.Returns(value.CompareTo(maximum));
 
 		// Act
 		IAssert result = AssertExtensions.IsBetween(_assert.Object, value, minimum, maximum, _comparer.Object);
@@ -163,11 +163,11 @@ public sealed class IsBetweenWithComparerAssertTests
 		int maximum = 10;
 
 		_comparer
-		   .Setup(c => c.Compare(value, minimum))
-		   .Returns(value.CompareTo(minimum));
+			.Setup(c => c.Compare(value, minimum))
+			.Returns(value.CompareTo(minimum));
 		_comparer
-		   .Setup(c => c.Compare(value, maximum))
-		   .Returns(value.CompareTo(maximum));
+			.Setup(c => c.Compare(value, maximum))
+			.Returns(value.CompareTo(maximum));
 
 		// Act
 		IAssert result = AssertExtensions.IsBetween(_assert.Object, value, minimum, maximum, _comparer.Object);
@@ -193,12 +193,12 @@ public sealed class IsBetweenWithComparerAssertTests
 	{
 		// Arrange
 		_comparer
-		   .Setup(c => c.Compare(value.Value, minimum.Value))
-		   .Returns(value.Value.CompareTo(minimum.Value));
+			.Setup(c => c.Compare(value.Value, minimum.Value))
+			.Returns(value.Value.CompareTo(minimum.Value));
 
 		_comparer
-		   .Setup(c => c.Compare(value.Value, maximum.Value))
-		   .Returns(value.Value.CompareTo(maximum.Value));
+			.Setup(c => c.Compare(value.Value, maximum.Value))
+			.Returns(value.Value.CompareTo(maximum.Value));
 
 		// Act
 		IAssert result = AssertExtensions.IsNotBetween(_assert.Object, value, minimum, maximum, _comparer.Object);
@@ -223,11 +223,11 @@ public sealed class IsBetweenWithComparerAssertTests
 		int? maximum = 10;
 
 		_comparer
-		   .Setup(c => c.Compare(value.Value, minimum.Value))
-		   .Returns(value.Value.CompareTo(minimum.Value));
+			.Setup(c => c.Compare(value.Value, minimum.Value))
+			.Returns(value.Value.CompareTo(minimum.Value));
 		_comparer
-		   .Setup(c => c.Compare(value.Value, maximum.Value))
-		   .Returns(value.Value.CompareTo(maximum.Value));
+			.Setup(c => c.Compare(value.Value, maximum.Value))
+			.Returns(value.Value.CompareTo(maximum.Value));
 
 		// Act
 		IAssert result = AssertExtensions.IsNotBetween(_assert.Object, value, minimum, maximum, _comparer.Object);
@@ -252,11 +252,11 @@ public sealed class IsBetweenWithComparerAssertTests
 		int? maximum = 10;
 
 		_comparer
-		   .Setup(c => c.Compare(value.Value, minimum.Value))
-		   .Returns(value.Value.CompareTo(minimum.Value));
+			.Setup(c => c.Compare(value.Value, minimum.Value))
+			.Returns(value.Value.CompareTo(minimum.Value));
 		_comparer
-		   .Setup(c => c.Compare(value.Value, maximum.Value))
-		   .Returns(value.Value.CompareTo(maximum.Value));
+			.Setup(c => c.Compare(value.Value, maximum.Value))
+			.Returns(value.Value.CompareTo(maximum.Value));
 
 		// Act
 		IAssert result = AssertExtensions.IsNotBetween(_assert.Object, value, minimum, maximum, _comparer.Object);
@@ -280,12 +280,12 @@ public sealed class IsBetweenWithComparerAssertTests
 	{
 		// Arrange
 		_comparer
-		   .Setup(c => c.Compare(value, minimum))
-		   .Returns(value.CompareTo(minimum));
+			.Setup(c => c.Compare(value, minimum))
+			.Returns(value.CompareTo(minimum));
 
 		_comparer
-		   .Setup(c => c.Compare(value, maximum))
-		   .Returns(value.CompareTo(maximum));
+			.Setup(c => c.Compare(value, maximum))
+			.Returns(value.CompareTo(maximum));
 
 		// Act
 		IAssert result = AssertExtensions.IsNotBetween(_assert.Object, value, minimum, maximum, _comparer.Object);
@@ -310,11 +310,11 @@ public sealed class IsBetweenWithComparerAssertTests
 		int maximum = 10;
 
 		_comparer
-		   .Setup(c => c.Compare(value, minimum))
-		   .Returns(value.CompareTo(minimum));
+			.Setup(c => c.Compare(value, minimum))
+			.Returns(value.CompareTo(minimum));
 		_comparer
-		   .Setup(c => c.Compare(value, maximum))
-		   .Returns(value.CompareTo(maximum));
+			.Setup(c => c.Compare(value, maximum))
+			.Returns(value.CompareTo(maximum));
 
 		// Act
 		IAssert result = AssertExtensions.IsNotBetween(_assert.Object, value, minimum, maximum, _comparer.Object);
@@ -339,11 +339,11 @@ public sealed class IsBetweenWithComparerAssertTests
 		int maximum = 10;
 
 		_comparer
-		   .Setup(c => c.Compare(value, minimum))
-		   .Returns(value.CompareTo(minimum));
+			.Setup(c => c.Compare(value, minimum))
+			.Returns(value.CompareTo(minimum));
 		_comparer
-		   .Setup(c => c.Compare(value, maximum))
-		   .Returns(value.CompareTo(maximum));
+			.Setup(c => c.Compare(value, maximum))
+			.Returns(value.CompareTo(maximum));
 
 		// Act
 		IAssert result = AssertExtensions.IsNotBetween(_assert.Object, value, minimum, maximum, _comparer.Object);

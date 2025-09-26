@@ -1,4 +1,4 @@
-namespace Testing.Assertions.Tests.ExceptionAsserts;
+namespace OwlDomain.Testing.Assertions.Tests.ExceptionAsserts;
 
 [ExcludeFromCodeCoverage]
 public class TestException : Exception

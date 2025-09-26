@@ -1,4 +1,4 @@
-namespace Testing.Assertions.Tests;
+namespace OwlDomain.Testing.Assertions.Tests;
 
 [TestClass]
 public sealed class NullAssertTests

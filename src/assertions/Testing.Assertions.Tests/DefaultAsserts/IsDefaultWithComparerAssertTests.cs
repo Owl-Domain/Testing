@@ -1,4 +1,4 @@
-namespace Testing.Assertions.Tests.DefaultAsserts;
+namespace OwlDomain.Testing.Assertions.Tests.DefaultAsserts;
 
 [TestClass]
 public sealed class IsDefaultWithComparerAssertTests
@@ -16,8 +16,8 @@ public sealed class IsDefaultWithComparerAssertTests
 		int value = default;
 
 		_comparer
-		   .Setup(c => c.Equals(value, default))
-		   .Returns(true);
+			.Setup(c => c.Equals(value, default))
+			.Returns(true);
 
 		// Act
 		IAssert result = AssertExtensions.IsDefault(_assert.Object, value, _comparer.Object);
@@ -39,8 +39,8 @@ public sealed class IsDefaultWithComparerAssertTests
 		int value = 1;
 
 		_comparer
-		   .Setup(c => c.Equals(value, default))
-		   .Returns(false);
+			.Setup(c => c.Equals(value, default))
+			.Returns(false);
 
 		// Act
 		IAssert result = AssertExtensions.IsDefault(_assert.Object, value, _comparer.Object);
@@ -64,8 +64,8 @@ public sealed class IsDefaultWithComparerAssertTests
 		int value = 1;
 
 		_comparer
-		   .Setup(c => c.Equals(value, default))
-		   .Returns(false);
+			.Setup(c => c.Equals(value, default))
+			.Returns(false);
 
 		// Act
 		IAssert result = AssertExtensions.IsNotDefault(_assert.Object, value, _comparer.Object);
@@ -87,8 +87,8 @@ public sealed class IsDefaultWithComparerAssertTests
 		int value = default;
 
 		_comparer
-		   .Setup(c => c.Equals(value, default))
-		   .Returns(true);
+			.Setup(c => c.Equals(value, default))
+			.Returns(true);
 
 		// Act
 		IAssert result = AssertExtensions.IsNotDefault(_assert.Object, value, _comparer.Object);

@@ -1,4 +1,4 @@
-namespace Testing.Assertions.Tests;
+namespace OwlDomain.Testing.Assertions.Tests;
 
 internal static class MoqExtensions
 {
@@ -6,10 +6,10 @@ internal static class MoqExtensions
 	public static void VerifyFailFormat(this Mock<IAssert> mock, Times times)
 	{
 		mock.Verify(
-		   a => a.Fail(
+			a => a.Fail(
 			  It.IsAny<string>(),
 			  It.IsAny<object?[]>()),
-		   times);
+			times);
 	}
 	#endregion
 }

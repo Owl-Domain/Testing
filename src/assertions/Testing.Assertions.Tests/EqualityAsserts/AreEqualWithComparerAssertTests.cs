@@ -1,4 +1,4 @@
-namespace Testing.Assertions.Tests.EqualityAsserts;
+namespace OwlDomain.Testing.Assertions.Tests.EqualityAsserts;
 
 [TestClass]
 public sealed class AreEqualWithComparerAssertTests
@@ -17,8 +17,8 @@ public sealed class AreEqualWithComparerAssertTests
 		int expected = 5;
 
 		_comparer
-		   .Setup(c => c.Equals(value, expected))
-		   .Returns(true);
+			.Setup(c => c.Equals(value, expected))
+			.Returns(true);
 
 		// Act
 		IAssert result = AssertExtensions.AreEqual(_assert.Object, value, expected, _comparer.Object);
@@ -41,8 +41,8 @@ public sealed class AreEqualWithComparerAssertTests
 		int expected = 6;
 
 		_comparer
-		   .Setup(c => c.Equals(value, expected))
-		   .Returns(false);
+			.Setup(c => c.Equals(value, expected))
+			.Returns(false);
 
 		// Act
 		IAssert result = AssertExtensions.AreEqual(_assert.Object, value, expected, _comparer.Object);
@@ -67,8 +67,8 @@ public sealed class AreEqualWithComparerAssertTests
 		int expected = 5;
 
 		_comparer
-		   .Setup(c => c.Equals(value, expected))
-		   .Returns(true);
+			.Setup(c => c.Equals(value, expected))
+			.Returns(true);
 
 		// Act
 		IAssert result = AssertExtensions.AreNotEqual(_assert.Object, value, expected, _comparer.Object);
@@ -91,8 +91,8 @@ public sealed class AreEqualWithComparerAssertTests
 		int expected = 6;
 
 		_comparer
-		   .Setup(c => c.Equals(value, expected))
-		   .Returns(false);
+			.Setup(c => c.Equals(value, expected))
+			.Returns(false);
 
 		// Act
 		IAssert result = AssertExtensions.AreNotEqual(_assert.Object, value, expected, _comparer.Object);

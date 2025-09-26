@@ -1,7 +1,4 @@
-using OwlDomain.Testing.Base;
-using Assert = OwlDomain.Testing.MSTest.Assert;
-
-namespace Testing.MSTest.Tests;
+namespace OwlDomain.Testing.MSTest.Tests;
 
 [TestClass]
 public sealed class AssertTests

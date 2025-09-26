@@ -1,4 +1,4 @@
-namespace Testing.Assertions.Tests.BooleanAsserts;
+namespace OwlDomain.Testing.Assertions.Tests.BooleanAsserts;
 
 [TestClass]
 public sealed class TrueAssertTests

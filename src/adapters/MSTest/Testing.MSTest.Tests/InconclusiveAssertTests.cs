@@ -1,4 +1,4 @@
-namespace Testing.MSTest.Tests;
+namespace OwlDomain.Testing.MSTest.Tests;
 
 [TestClass]
 public sealed class InconclusiveAssertTests

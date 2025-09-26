@@ -1,6 +1,6 @@
 #if NET7_0_OR_GREATER
 
-namespace Testing.Assertions.Tests.NumericalAsserts.DeltaEquality;
+namespace OwlDomain.Testing.Assertions.Tests.NumericalAsserts.DeltaEquality;
 
 [TestClass]
 public sealed class DeltaEqualityAssertGenericTests

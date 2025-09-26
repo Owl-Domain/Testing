@@ -1,4 +1,4 @@
-namespace Testing.Assertions.Tests.DefaultAsserts;
+namespace OwlDomain.Testing.Assertions.Tests.DefaultAsserts;
 
 [TestClass]
 public sealed class IsDefaultAssertTests

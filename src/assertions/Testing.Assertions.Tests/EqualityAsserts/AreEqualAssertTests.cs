@@ -1,4 +1,4 @@
-namespace Testing.Assertions.Tests.EqualityAsserts;
+namespace OwlDomain.Testing.Assertions.Tests.EqualityAsserts;
 
 [TestClass]
 public sealed class AreEqualAssertTests
