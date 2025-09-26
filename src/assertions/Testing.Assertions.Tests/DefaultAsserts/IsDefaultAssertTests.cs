@@ -4,7 +4,7 @@ namespace OwlDomain.Testing.Assertions.Tests.DefaultAsserts;
 public sealed class IsDefaultAssertTests
 {
 	#region Fields
-	private readonly Mock<IAssert> _assert = new();
+	private readonly IAssert _assert = Substitute.For<IAssert>();
 	#endregion
 
 	#region IsDefault tessts
@@ -15,13 +15,12 @@ public sealed class IsDefaultAssertTests
 		int value = default;
 
 		// Act
-		IAssert result = AssertExtensions.IsDefault(_assert.Object, value);
+		IAssert result = AssertExtensions.IsDefault(_assert, value);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -31,13 +30,12 @@ public sealed class IsDefaultAssertTests
 		int value = 1;
 
 		// Act
-		IAssert result = AssertExtensions.IsDefault(_assert.Object, value);
+		IAssert result = AssertExtensions.IsDefault(_assert, value);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 	#endregion
 
@@ -49,13 +47,12 @@ public sealed class IsDefaultAssertTests
 		int value = 1;
 
 		// Act
-		IAssert result = AssertExtensions.IsNotDefault(_assert.Object, value);
+		IAssert result = AssertExtensions.IsNotDefault(_assert, value);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -65,13 +62,12 @@ public sealed class IsDefaultAssertTests
 		int value = default;
 
 		// Act
-		IAssert result = AssertExtensions.IsNotDefault(_assert.Object, value);
+		IAssert result = AssertExtensions.IsNotDefault(_assert, value);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 	#endregion
 }

@@ -4,8 +4,8 @@ namespace OwlDomain.Testing.Assertions.Tests.DefaultAsserts;
 public sealed class IsDefaultWithComparerAssertTests
 {
 	#region Fields
-	private readonly Mock<IAssert> _assert = new();
-	private readonly Mock<IEqualityComparer<int>> _comparer = new();
+	private readonly IAssert _assert = Substitute.For<IAssert>();
+	private readonly IEqualityComparer<int> _comparer = Substitute.For<IEqualityComparer<int>>();
 	#endregion
 
 	#region IsDefault tests
@@ -15,21 +15,16 @@ public sealed class IsDefaultWithComparerAssertTests
 		// Arrange
 		int value = default;
 
-		_comparer
-			.Setup(c => c.Equals(value, default))
-			.Returns(true);
+		_comparer.Equals(value, default).Returns(true);
 
 		// Act
-		IAssert result = AssertExtensions.IsDefault(_assert.Object, value, _comparer.Object);
+		IAssert result = AssertExtensions.IsDefault(_assert, value, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
+		_comparer.Received(1).Equals(value, default);
 
-		_comparer.Verify(c => c.Equals(value, default), Times.Once());
-		_comparer.VerifyNoOtherCalls();
-
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -38,21 +33,16 @@ public sealed class IsDefaultWithComparerAssertTests
 		// Arrange
 		int value = 1;
 
-		_comparer
-			.Setup(c => c.Equals(value, default))
-			.Returns(false);
+		_comparer.Equals(value, default).Returns(false);
 
 		// Act
-		IAssert result = AssertExtensions.IsDefault(_assert.Object, value, _comparer.Object);
+		IAssert result = AssertExtensions.IsDefault(_assert, value, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
+		_comparer.Received(1).Equals(value, default);
 
-		_comparer.Verify(c => c.Equals(value, default), Times.Once());
-		_comparer.VerifyNoOtherCalls();
-
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 	#endregion
 
@@ -63,21 +53,16 @@ public sealed class IsDefaultWithComparerAssertTests
 		// Arrange
 		int value = 1;
 
-		_comparer
-			.Setup(c => c.Equals(value, default))
-			.Returns(false);
+		_comparer.Equals(value, default).Returns(false);
 
 		// Act
-		IAssert result = AssertExtensions.IsNotDefault(_assert.Object, value, _comparer.Object);
+		IAssert result = AssertExtensions.IsNotDefault(_assert, value, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
+		_comparer.Received(1).Equals(value, default);
 
-		_comparer.Verify(c => c.Equals(value, default), Times.Once());
-		_comparer.VerifyNoOtherCalls();
-
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -86,21 +71,16 @@ public sealed class IsDefaultWithComparerAssertTests
 		// Arrange
 		int value = default;
 
-		_comparer
-			.Setup(c => c.Equals(value, default))
-			.Returns(true);
+		_comparer.Equals(value, default).Returns(true);
 
 		// Act
-		IAssert result = AssertExtensions.IsNotDefault(_assert.Object, value, _comparer.Object);
+		IAssert result = AssertExtensions.IsNotDefault(_assert, value, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
+		_comparer.Received(1).Equals(value, default);
 
-		_comparer.Verify(c => c.Equals(value, default), Times.Once());
-		_comparer.VerifyNoOtherCalls();
-
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 	#endregion
 }

@@ -4,7 +4,7 @@ namespace OwlDomain.Testing.Assertions.Tests.ComparisonAsserts;
 public sealed class IsBetweenAssertTests
 {
 	#region Fields
-	private readonly Mock<IAssert> _assert = new Mock<IAssert>();
+	private readonly IAssert _assert = Substitute.For<IAssert>();
 	#endregion
 
 	#region IsBetween tests
@@ -15,13 +15,12 @@ public sealed class IsBetweenAssertTests
 	public void IsBetween_AllNullable_WithValueInRange_DoesNothing([DisallowNull] int? value, [DisallowNull] int? minimum, [DisallowNull] int? maximum)
 	{
 		// Act
-		IAssert result = AssertExtensions.IsBetween(_assert.Object, value, minimum, maximum);
+		IAssert result = AssertExtensions.IsBetween(_assert, value, minimum, maximum);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[DataRow(-1, 0, 10, DisplayName = "Below minimum")]
@@ -30,13 +29,12 @@ public sealed class IsBetweenAssertTests
 	public void IsBetween_AllNullable_WithValueOutsideRange_CallsFail([DisallowNull] int? value, [DisallowNull] int? minimum, [DisallowNull] int? maximum)
 	{
 		// Act
-		IAssert result = AssertExtensions.IsBetween(_assert.Object, value, minimum, maximum);
+		IAssert result = AssertExtensions.IsBetween(_assert, value, minimum, maximum);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[DataRow(5, 0, 10, DisplayName = "In-between")]
@@ -46,13 +44,12 @@ public sealed class IsBetweenAssertTests
 	public void IsBetween_NoneNullable_WithValueInRange_DoesNothing(int value, int minimum, int maximum)
 	{
 		// Act
-		IAssert result = AssertExtensions.IsBetween(_assert.Object, value, minimum, maximum);
+		IAssert result = AssertExtensions.IsBetween(_assert, value, minimum, maximum);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[DataRow(-1, 0, 10, DisplayName = "Below minimum")]
@@ -61,13 +58,12 @@ public sealed class IsBetweenAssertTests
 	public void IsBetween_NoneNullable_WithValueOutsideRange_CallsFail(int value, int minimum, int maximum)
 	{
 		// Act
-		IAssert result = AssertExtensions.IsBetween(_assert.Object, value, minimum, maximum);
+		IAssert result = AssertExtensions.IsBetween(_assert, value, minimum, maximum);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 	#endregion
 
@@ -79,13 +75,12 @@ public sealed class IsBetweenAssertTests
 	public void IsNotBetween_AllNullable_WithValueInRange_CallsFail([DisallowNull] int? value, [DisallowNull] int? minimum, [DisallowNull] int? maximum)
 	{
 		// Act
-		IAssert result = AssertExtensions.IsNotBetween(_assert.Object, value, minimum, maximum);
+		IAssert result = AssertExtensions.IsNotBetween(_assert, value, minimum, maximum);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[DataRow(-1, 0, 10, DisplayName = "Below minimum")]
@@ -94,13 +89,12 @@ public sealed class IsBetweenAssertTests
 	public void IsNotBetween_AllNullable_WithValueOutsideRange_DoesNothing([DisallowNull] int? value, [DisallowNull] int? minimum, [DisallowNull] int? maximum)
 	{
 		// Act
-		IAssert result = AssertExtensions.IsNotBetween(_assert.Object, value, minimum, maximum);
+		IAssert result = AssertExtensions.IsNotBetween(_assert, value, minimum, maximum);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[DataRow(5, 0, 10, DisplayName = "In-between")]
@@ -110,13 +104,12 @@ public sealed class IsBetweenAssertTests
 	public void IsNotBetween_NoneNullable_WithValueInRange_CallsFail(int value, int minimum, int maximum)
 	{
 		// Act
-		IAssert result = AssertExtensions.IsNotBetween(_assert.Object, value, minimum, maximum);
+		IAssert result = AssertExtensions.IsNotBetween(_assert, value, minimum, maximum);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[DataRow(-1, 0, 10, DisplayName = "Below minimum")]
@@ -125,13 +118,12 @@ public sealed class IsBetweenAssertTests
 	public void IsNotBetween_NoneNullable_WithValueOutsideRange_DoesNothing(int value, int minimum, int maximum)
 	{
 		// Act
-		IAssert result = AssertExtensions.IsNotBetween(_assert.Object, value, minimum, maximum);
+		IAssert result = AssertExtensions.IsNotBetween(_assert, value, minimum, maximum);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 	#endregion
 }

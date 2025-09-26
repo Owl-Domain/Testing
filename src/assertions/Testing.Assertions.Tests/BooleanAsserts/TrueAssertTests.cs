@@ -4,7 +4,7 @@ namespace OwlDomain.Testing.Assertions.Tests.BooleanAsserts;
 public sealed class TrueAssertTests
 {
 	#region Fields
-	private readonly Mock<IAssert> _assert = new Mock<IAssert>();
+	private readonly IAssert _assert = Substitute.For<IAssert>();
 	#endregion
 
 	#region IsTrue tests
@@ -15,13 +15,12 @@ public sealed class TrueAssertTests
 		bool? value = true;
 
 		// Act
-		IAssert result = AssertExtensions.IsTrue(_assert.Object, value);
+		IAssert result = AssertExtensions.IsTrue(_assert, value);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[DataRow(data: false, DisplayName = "False")]
@@ -30,13 +29,12 @@ public sealed class TrueAssertTests
 	public void IsTrue_WitNotTrueValue_CallsFail(bool? value)
 	{
 		// Act
-		IAssert result = AssertExtensions.IsTrue(_assert.Object, value);
+		IAssert result = AssertExtensions.IsTrue(_assert, value);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 	#endregion
 
@@ -48,13 +46,12 @@ public sealed class TrueAssertTests
 		bool? value = true;
 
 		// Act
-		IAssert result = AssertExtensions.IsNotTrue(_assert.Object, value);
+		IAssert result = AssertExtensions.IsNotTrue(_assert, value);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[DataRow(data: false, DisplayName = "False")]
@@ -63,13 +60,12 @@ public sealed class TrueAssertTests
 	public void IsNotTrue_WithNotTrueValue_DoesNothing(bool? value)
 	{
 		// Act
-		IAssert result = AssertExtensions.IsNotTrue(_assert.Object, value);
+		IAssert result = AssertExtensions.IsNotTrue(_assert, value);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 	#endregion
 }

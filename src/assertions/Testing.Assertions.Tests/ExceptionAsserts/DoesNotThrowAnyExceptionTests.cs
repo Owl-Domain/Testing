@@ -5,7 +5,7 @@ namespace OwlDomain.Testing.Assertions.Tests.ExceptionAsserts;
 public sealed class DoesNotThrowAnyExceptionTests
 {
 	#region Fields
-	private readonly Mock<IAssert> _assert = new Mock<IAssert>();
+	private readonly IAssert _assert = Substitute.For<IAssert>();
 	#endregion
 
 	#region Tests
@@ -16,13 +16,12 @@ public sealed class DoesNotThrowAnyExceptionTests
 		static void Action() => throw new Exception();
 
 		// Act
-		IAssert result = AssertExtensions.DoesNotThrowAnyException(_assert.Object, Action);
+		IAssert result = AssertExtensions.DoesNotThrowAnyException(_assert, Action);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -32,13 +31,12 @@ public sealed class DoesNotThrowAnyExceptionTests
 		static void Action() { }
 
 		// Act
-		IAssert result = AssertExtensions.DoesNotThrowAnyException(_assert.Object, Action);
+		IAssert result = AssertExtensions.DoesNotThrowAnyException(_assert, Action);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -48,13 +46,12 @@ public sealed class DoesNotThrowAnyExceptionTests
 		static int Action() => throw new TestException();
 
 		// Act
-		IAssert result = AssertExtensions.DoesNotThrowAnyException(_assert.Object, Action, out _);
+		IAssert result = AssertExtensions.DoesNotThrowAnyException(_assert, Action, out _);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -65,13 +62,12 @@ public sealed class DoesNotThrowAnyExceptionTests
 		static int Action() => expectedResult;
 
 		// Act
-		IAssert result = AssertExtensions.DoesNotThrowAnyException(_assert.Object, Action, out int actionResult);
+		IAssert result = AssertExtensions.DoesNotThrowAnyException(_assert, Action, out int actionResult);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 		MSAssert.AreEqual(expectedResult, actionResult);
 	}
 
@@ -82,13 +78,12 @@ public sealed class DoesNotThrowAnyExceptionTests
 		static ValueTask Action() => throw new Exception();
 
 		// Act
-		IAssert result = await AssertExtensions.DoesNotThrowAnyExceptionAsync(_assert.Object, Action);
+		IAssert result = await AssertExtensions.DoesNotThrowAnyExceptionAsync(_assert, Action);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -98,13 +93,12 @@ public sealed class DoesNotThrowAnyExceptionTests
 		static ValueTask Action() => default;
 
 		// Act
-		IAssert result = await AssertExtensions.DoesNotThrowAnyExceptionAsync(_assert.Object, Action);
+		IAssert result = await AssertExtensions.DoesNotThrowAnyExceptionAsync(_assert, Action);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -114,13 +108,12 @@ public sealed class DoesNotThrowAnyExceptionTests
 		static Task Action() => throw new Exception();
 
 		// Act
-		IAssert result = await AssertExtensions.DoesNotThrowAnyExceptionAsync(_assert.Object, Action);
+		IAssert result = await AssertExtensions.DoesNotThrowAnyExceptionAsync(_assert, Action);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -130,13 +123,12 @@ public sealed class DoesNotThrowAnyExceptionTests
 		static Task Action() => Task.CompletedTask;
 
 		// Act
-		IAssert result = await AssertExtensions.DoesNotThrowAnyExceptionAsync(_assert.Object, Action);
+		IAssert result = await AssertExtensions.DoesNotThrowAnyExceptionAsync(_assert, Action);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -146,11 +138,10 @@ public sealed class DoesNotThrowAnyExceptionTests
 		static ValueTask<int> Action() => throw new TestException();
 
 		// Act
-		int result = await AssertExtensions.DoesNotThrowAnyExceptionAsync(_assert.Object, Action);
+		int result = await AssertExtensions.DoesNotThrowAnyExceptionAsync(_assert, Action);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 	}
 
 	[TestMethod]
@@ -161,11 +152,10 @@ public sealed class DoesNotThrowAnyExceptionTests
 		static ValueTask<int> Action() => new(expectedResult);
 
 		// Act
-		int result = await AssertExtensions.DoesNotThrowAnyExceptionAsync(_assert.Object, Action);
+		int result = await AssertExtensions.DoesNotThrowAnyExceptionAsync(_assert, Action);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
 		MSAssert.AreEqual(expectedResult, result);
 	}
@@ -177,11 +167,10 @@ public sealed class DoesNotThrowAnyExceptionTests
 		static Task<int> Action() => throw new TestException();
 
 		// Act
-		int result = await AssertExtensions.DoesNotThrowAnyExceptionAsync(_assert.Object, Action);
+		int result = await AssertExtensions.DoesNotThrowAnyExceptionAsync(_assert, Action);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 	}
 
 	[TestMethod]
@@ -192,11 +181,10 @@ public sealed class DoesNotThrowAnyExceptionTests
 		static Task<int> Action() => Task.FromResult(expectedResult);
 
 		// Act
-		int result = await AssertExtensions.DoesNotThrowAnyExceptionAsync(_assert.Object, Action);
+		int result = await AssertExtensions.DoesNotThrowAnyExceptionAsync(_assert, Action);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
 		MSAssert.AreEqual(expectedResult, result);
 	}

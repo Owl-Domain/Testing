@@ -4,8 +4,8 @@ namespace OwlDomain.Testing.Assertions.Tests.ComparisonAsserts;
 public sealed class GreaterThanWithComparerAssertTests
 {
 	#region Fields
-	private readonly Mock<IAssert> _assert = new Mock<IAssert>();
-	private readonly Mock<IComparer<int>> _comparer = new Mock<IComparer<int>>();
+	private readonly IAssert _assert = Substitute.For<IAssert>();
+	private readonly IComparer<int> _comparer = Substitute.For<IComparer<int>>();
 	#endregion
 
 	#region IsGreaterThan tests
@@ -16,21 +16,17 @@ public sealed class GreaterThanWithComparerAssertTests
 		int? value = 6;
 		int? threshold = 5;
 
-		_comparer
-			.Setup(c => c.Compare(value.Value, threshold.Value))
-			.Returns(1);
+		_comparer.Compare(value.Value, threshold.Value).Returns(1);
 
 		// Act
-		IAssert result = AssertExtensions.IsGreaterThan(_assert.Object, value, threshold, _comparer.Object);
+		IAssert result = AssertExtensions.IsGreaterThan(_assert, value, threshold, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		_comparer.Verify(c => c.Compare(value.Value, threshold.Value), Times.Once());
-		_comparer.VerifyNoOtherCalls();
+		_comparer.Received(1).Compare(value.Value, threshold.Value);
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[DataRow(4, 5, -1, DisplayName = "Less than")]
@@ -39,21 +35,17 @@ public sealed class GreaterThanWithComparerAssertTests
 	public void IsGreaterThan_Nullable_WithNotGreaterValue_CallsFail([DisallowNull] int? value, [DisallowNull] int? threshold, int comparisonResult)
 	{
 		// Arrange
-		_comparer
-			.Setup(c => c.Compare(value.Value, threshold.Value))
-			.Returns(comparisonResult);
+		_comparer.Compare(value.Value, threshold.Value).Returns(comparisonResult);
 
 		// Act
-		IAssert result = AssertExtensions.IsGreaterThan(_assert.Object, value, threshold, _comparer.Object);
+		IAssert result = AssertExtensions.IsGreaterThan(_assert, value, threshold, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		_comparer.Verify(c => c.Compare(value.Value, threshold.Value), Times.Once());
-		_comparer.VerifyNoOtherCalls();
+		_comparer.Received(1).Compare(value.Value, threshold.Value);
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[TestMethod]
@@ -63,21 +55,17 @@ public sealed class GreaterThanWithComparerAssertTests
 		int value = 6;
 		int threshold = 5;
 
-		_comparer
-			.Setup(c => c.Compare(value, threshold))
-			.Returns(1);
+		_comparer.Compare(value, threshold).Returns(1);
 
 		// Act
-		IAssert result = AssertExtensions.IsGreaterThan(_assert.Object, value, threshold, _comparer.Object);
+		IAssert result = AssertExtensions.IsGreaterThan(_assert, value, threshold, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		_comparer.Verify(c => c.Compare(value, threshold), Times.Once());
-		_comparer.VerifyNoOtherCalls();
+		_comparer.Received(1).Compare(value, threshold);
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[DataRow(4, 5, -1, DisplayName = "Less than")]
@@ -86,21 +74,17 @@ public sealed class GreaterThanWithComparerAssertTests
 	public void IsGreaterThan_NoneNullable_WithNotGreaterValue_CallsFail(int value, int threshold, int comparisonResult)
 	{
 		// Arrange
-		_comparer
-			.Setup(c => c.Compare(value, threshold))
-			.Returns(comparisonResult);
+		_comparer.Compare(value, threshold).Returns(comparisonResult);
 
 		// Act
-		IAssert result = AssertExtensions.IsGreaterThan(_assert.Object, value, threshold, _comparer.Object);
+		IAssert result = AssertExtensions.IsGreaterThan(_assert, value, threshold, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		_comparer.Verify(c => c.Compare(value, threshold), Times.Once());
-		_comparer.VerifyNoOtherCalls();
+		_comparer.Received(1).Compare(value, threshold);
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 	#endregion
 
@@ -111,21 +95,17 @@ public sealed class GreaterThanWithComparerAssertTests
 	public void IsGreaterThanOrEqualTo_Nullable_WithGreaterOrEqualToValue_DoesNothing([DisallowNull] int? value, [DisallowNull] int? threshold, int comparisonResult)
 	{
 		// Arrange
-		_comparer
-			.Setup(c => c.Compare(value.Value, threshold.Value))
-			.Returns(comparisonResult);
+		_comparer.Compare(value.Value, threshold.Value).Returns(comparisonResult);
 
 		// Act
-		IAssert result = AssertExtensions.IsGreaterThanOrEqualTo(_assert.Object, value, threshold, _comparer.Object);
+		IAssert result = AssertExtensions.IsGreaterThanOrEqualTo(_assert, value, threshold, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		_comparer.Verify(c => c.Compare(value.Value, threshold.Value), Times.Once());
-		_comparer.VerifyNoOtherCalls();
+		_comparer.Received(1).Compare(value.Value, threshold.Value);
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -135,21 +115,17 @@ public sealed class GreaterThanWithComparerAssertTests
 		int? value = 4;
 		int? threshold = 5;
 
-		_comparer
-			.Setup(c => c.Compare(value.Value, threshold.Value))
-			.Returns(-1);
+		_comparer.Compare(value.Value, threshold.Value).Returns(-1);
 
 		// Act
-		IAssert result = AssertExtensions.IsGreaterThanOrEqualTo(_assert.Object, value, threshold, _comparer.Object);
+		IAssert result = AssertExtensions.IsGreaterThanOrEqualTo(_assert, value, threshold, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		_comparer.Verify(c => c.Compare(value.Value, threshold.Value), Times.Once());
-		_comparer.VerifyNoOtherCalls();
+		_comparer.Received(1).Compare(value.Value, threshold.Value);
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[DataRow(6, 5, 1, DisplayName = "Greater than")]
@@ -158,21 +134,17 @@ public sealed class GreaterThanWithComparerAssertTests
 	public void IsGreaterThanOrEqualTo_NoneNullable_WithGreaterOrEqualToValue_DoesNothing(int value, int threshold, int comparisonResult)
 	{
 		// Arrange
-		_comparer
-			.Setup(c => c.Compare(value, threshold))
-			.Returns(comparisonResult);
+		_comparer.Compare(value, threshold).Returns(comparisonResult);
 
 		// Act
-		IAssert result = AssertExtensions.IsGreaterThanOrEqualTo(_assert.Object, value, threshold, _comparer.Object);
+		IAssert result = AssertExtensions.IsGreaterThanOrEqualTo(_assert, value, threshold, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		_comparer.Verify(c => c.Compare(value, threshold), Times.Once());
-		_comparer.VerifyNoOtherCalls();
+		_comparer.Received(1).Compare(value, threshold);
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -182,21 +154,17 @@ public sealed class GreaterThanWithComparerAssertTests
 		int value = 4;
 		int threshold = 5;
 
-		_comparer
-			.Setup(c => c.Compare(value, threshold))
-			.Returns(-1);
+		_comparer.Compare(value, threshold).Returns(-1);
 
 		// Act
-		IAssert result = AssertExtensions.IsGreaterThanOrEqualTo(_assert.Object, value, threshold, _comparer.Object);
+		IAssert result = AssertExtensions.IsGreaterThanOrEqualTo(_assert, value, threshold, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		_comparer.Verify(c => c.Compare(value, threshold), Times.Once());
-		_comparer.VerifyNoOtherCalls();
+		_comparer.Received(1).Compare(value, threshold);
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 	#endregion
 
@@ -208,21 +176,17 @@ public sealed class GreaterThanWithComparerAssertTests
 		int? value = 6;
 		int? threshold = 5;
 
-		_comparer
-			.Setup(c => c.Compare(value.Value, threshold.Value))
-			.Returns(1);
+		_comparer.Compare(value.Value, threshold.Value).Returns(1);
 
 		// Act
-		IAssert result = AssertExtensions.IsNotGreaterThan(_assert.Object, value, threshold, _comparer.Object);
+		IAssert result = AssertExtensions.IsNotGreaterThan(_assert, value, threshold, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		_comparer.Verify(c => c.Compare(value.Value, threshold.Value), Times.Once());
-		_comparer.VerifyNoOtherCalls();
+		_comparer.Received(1).Compare(value.Value, threshold.Value);
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[DataRow(4, 5, -1, DisplayName = "Less than")]
@@ -231,21 +195,17 @@ public sealed class GreaterThanWithComparerAssertTests
 	public void IsNotGreaterThan_Nullable_WithNotGreaterValue_DoesNothing([DisallowNull] int? value, [DisallowNull] int? threshold, int comparisonResult)
 	{
 		// Arrange
-		_comparer
-			.Setup(c => c.Compare(value.Value, threshold.Value))
-			.Returns(comparisonResult);
+		_comparer.Compare(value.Value, threshold.Value).Returns(comparisonResult);
 
 		// Act
-		IAssert result = AssertExtensions.IsNotGreaterThan(_assert.Object, value, threshold, _comparer.Object);
+		IAssert result = AssertExtensions.IsNotGreaterThan(_assert, value, threshold, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		_comparer.Verify(c => c.Compare(value.Value, threshold.Value), Times.Once());
-		_comparer.VerifyNoOtherCalls();
+		_comparer.Received(1).Compare(value.Value, threshold.Value);
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[TestMethod]
@@ -255,21 +215,17 @@ public sealed class GreaterThanWithComparerAssertTests
 		int value = 6;
 		int threshold = 5;
 
-		_comparer
-			.Setup(c => c.Compare(value, threshold))
-			.Returns(1);
+		_comparer.Compare(value, threshold).Returns(1);
 
 		// Act
-		IAssert result = AssertExtensions.IsNotGreaterThan(_assert.Object, value, threshold, _comparer.Object);
+		IAssert result = AssertExtensions.IsNotGreaterThan(_assert, value, threshold, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		_comparer.Verify(c => c.Compare(value, threshold), Times.Once());
-		_comparer.VerifyNoOtherCalls();
+		_comparer.Received(1).Compare(value, threshold);
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[DataRow(4, 5, -1, DisplayName = "Less than")]
@@ -278,21 +234,17 @@ public sealed class GreaterThanWithComparerAssertTests
 	public void IsNotGreaterThan_NoneNullable_WithNotGreaterValue_DoesNothing(int value, int threshold, int comparisonResult)
 	{
 		// Arrange
-		_comparer
-			.Setup(c => c.Compare(value, threshold))
-			.Returns(comparisonResult);
+		_comparer.Compare(value, threshold).Returns(comparisonResult);
 
 		// Act
-		IAssert result = AssertExtensions.IsNotGreaterThan(_assert.Object, value, threshold, _comparer.Object);
+		IAssert result = AssertExtensions.IsNotGreaterThan(_assert, value, threshold, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		_comparer.Verify(c => c.Compare(value, threshold), Times.Once());
-		_comparer.VerifyNoOtherCalls();
+		_comparer.Received(1).Compare(value, threshold);
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 	#endregion
 
@@ -303,21 +255,17 @@ public sealed class GreaterThanWithComparerAssertTests
 	public void IsNotGreaterThanOrEqualTo_Nullable_WithGreaterOrEqualToValue_CallsFail([DisallowNull] int? value, [DisallowNull] int? threshold, int comparisonResult)
 	{
 		// Arrange
-		_comparer
-			.Setup(c => c.Compare(value.Value, threshold.Value))
-			.Returns(comparisonResult);
+		_comparer.Compare(value.Value, threshold.Value).Returns(comparisonResult);
 
 		// Act
-		IAssert result = AssertExtensions.IsNotGreaterThanOrEqualTo(_assert.Object, value, threshold, _comparer.Object);
+		IAssert result = AssertExtensions.IsNotGreaterThanOrEqualTo(_assert, value, threshold, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		_comparer.Verify(c => c.Compare(value.Value, threshold.Value), Times.Once());
-		_comparer.VerifyNoOtherCalls();
+		_comparer.Received(1).Compare(value.Value, threshold.Value);
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -327,21 +275,17 @@ public sealed class GreaterThanWithComparerAssertTests
 		int? value = 4;
 		int? threshold = 5;
 
-		_comparer
-			.Setup(c => c.Compare(value.Value, threshold.Value))
-			.Returns(-1);
+		_comparer.Compare(value.Value, threshold.Value).Returns(-1);
 
 		// Act
-		IAssert result = AssertExtensions.IsNotGreaterThanOrEqualTo(_assert.Object, value, threshold, _comparer.Object);
+		IAssert result = AssertExtensions.IsNotGreaterThanOrEqualTo(_assert, value, threshold, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		_comparer.Verify(c => c.Compare(value.Value, threshold.Value), Times.Once());
-		_comparer.VerifyNoOtherCalls();
+		_comparer.Received(1).Compare(value.Value, threshold.Value);
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[DataRow(6, 5, 1, DisplayName = "Greater than")]
@@ -350,21 +294,17 @@ public sealed class GreaterThanWithComparerAssertTests
 	public void IsNotGreaterThanOrEqualTo_NoneNullable_WithGreaterOrEqualToValue_CallsFail(int value, int threshold, int comparisonResult)
 	{
 		// Arrange
-		_comparer
-			.Setup(c => c.Compare(value, threshold))
-			.Returns(comparisonResult);
+		_comparer.Compare(value, threshold).Returns(comparisonResult);
 
 		// Act
-		IAssert result = AssertExtensions.IsNotGreaterThanOrEqualTo(_assert.Object, value, threshold, _comparer.Object);
+		IAssert result = AssertExtensions.IsNotGreaterThanOrEqualTo(_assert, value, threshold, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		_comparer.Verify(c => c.Compare(value, threshold), Times.Once());
-		_comparer.VerifyNoOtherCalls();
+		_comparer.Received(1).Compare(value, threshold);
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -374,21 +314,17 @@ public sealed class GreaterThanWithComparerAssertTests
 		int value = 4;
 		int threshold = 5;
 
-		_comparer
-			.Setup(c => c.Compare(value, threshold))
-			.Returns(-1);
+		_comparer.Compare(value, threshold).Returns(-1);
 
 		// Act
-		IAssert result = AssertExtensions.IsNotGreaterThanOrEqualTo(_assert.Object, value, threshold, _comparer.Object);
+		IAssert result = AssertExtensions.IsNotGreaterThanOrEqualTo(_assert, value, threshold, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		_comparer.Verify(c => c.Compare(value, threshold), Times.Once());
-		_comparer.VerifyNoOtherCalls();
+		_comparer.Received(1).Compare(value, threshold);
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 	#endregion
 }

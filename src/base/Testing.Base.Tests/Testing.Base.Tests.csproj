@@ -17,9 +17,4 @@
 		<ProjectReference Include="..\Testing.Base\Testing.Base.csproj" />
 	</ItemGroup>
 
-	<!-- Package references-->
-	<ItemGroup Label="packages">
-		<PackageReference Include="Moq" Version="4.20.70" />
-	</ItemGroup>
-
 </Project>

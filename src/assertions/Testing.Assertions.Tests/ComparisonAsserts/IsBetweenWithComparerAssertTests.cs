@@ -1,11 +1,13 @@
+using NSubstitute.ReceivedExtensions;
+
 namespace OwlDomain.Testing.Assertions.Tests.ComparisonAsserts;
 
 [TestClass]
 public sealed class IsBetweenWithComparerAssertTests
 {
 	#region Fields
-	private readonly Mock<IAssert> _assert = new Mock<IAssert>();
-	private readonly Mock<IComparer<int>> _comparer = new Mock<IComparer<int>>();
+	private readonly IAssert _assert = Substitute.For<IAssert>();
+	private readonly IComparer<int> _comparer = Substitute.For<IComparer<int>>();
 	#endregion
 
 	#region IsBetween tests
@@ -16,26 +18,20 @@ public sealed class IsBetweenWithComparerAssertTests
 	public void IsBetween_AllNullable_WithValueInsideRange_DoesNothing([DisallowNull] int? value, [DisallowNull] int? minimum, [DisallowNull] int? maximum)
 	{
 		// Arrange
-		_comparer
-			.Setup(c => c.Compare(value.Value, minimum.Value))
-			.Returns(value.Value.CompareTo(minimum.Value));
+		_comparer.Compare(value.Value, minimum.Value).Returns(value.Value.CompareTo(minimum.Value));
 
-		_comparer
-			.Setup(c => c.Compare(value.Value, maximum.Value))
-			.Returns(value.Value.CompareTo(maximum.Value));
+		_comparer.Compare(value.Value, maximum.Value).Returns(value.Value.CompareTo(maximum.Value));
 
 		// Act
-		IAssert result = AssertExtensions.IsBetween(_assert.Object, value, minimum, maximum, _comparer.Object);
+		IAssert result = AssertExtensions.IsBetween(_assert, value, minimum, maximum, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		_comparer.Verify(c => c.Compare(value.Value, minimum.Value), Times.Once());
-		_comparer.Verify(c => c.Compare(value.Value, maximum.Value), Times.Once());
-		_comparer.VerifyNoOtherCalls();
+		_comparer.Received(1).Compare(value.Value, minimum.Value);
+		_comparer.Received(1).Compare(value.Value, maximum.Value);
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[TestMethod]
@@ -46,25 +42,19 @@ public sealed class IsBetweenWithComparerAssertTests
 		int? minimum = 0;
 		int? maximum = 10;
 
-		_comparer
-			.Setup(c => c.Compare(value.Value, minimum.Value))
-			.Returns(value.Value.CompareTo(minimum.Value));
-		_comparer
-			.Setup(c => c.Compare(value.Value, maximum.Value))
-			.Returns(value.Value.CompareTo(maximum.Value));
+		_comparer.Compare(value.Value, minimum.Value).Returns(value.Value.CompareTo(minimum.Value));
+		_comparer.Compare(value.Value, maximum.Value).Returns(value.Value.CompareTo(maximum.Value));
 
 		// Act
-		IAssert result = AssertExtensions.IsBetween(_assert.Object, value, minimum, maximum, _comparer.Object);
+		IAssert result = AssertExtensions.IsBetween(_assert, value, minimum, maximum, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		_comparer.Verify(c => c.Compare(value.Value, minimum.Value), Times.Once());
-		_comparer.Verify(c => c.Compare(value.Value, maximum.Value), Times.AtMostOnce());
-		_comparer.VerifyNoOtherCalls();
+		_comparer.Received(1).Compare(value.Value, minimum.Value);
+		_comparer.ReceivedAtMostOnce().Compare(value.Value, maximum.Value);
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[TestMethod]
@@ -75,25 +65,19 @@ public sealed class IsBetweenWithComparerAssertTests
 		int? minimum = 0;
 		int? maximum = 10;
 
-		_comparer
-			.Setup(c => c.Compare(value.Value, minimum.Value))
-			.Returns(value.Value.CompareTo(minimum.Value));
-		_comparer
-			.Setup(c => c.Compare(value.Value, maximum.Value))
-			.Returns(value.Value.CompareTo(maximum.Value));
+		_comparer.Compare(value.Value, minimum.Value).Returns(value.Value.CompareTo(minimum.Value));
+		_comparer.Compare(value.Value, maximum.Value).Returns(value.Value.CompareTo(maximum.Value));
 
 		// Act
-		IAssert result = AssertExtensions.IsBetween(_assert.Object, value, minimum, maximum, _comparer.Object);
+		IAssert result = AssertExtensions.IsBetween(_assert, value, minimum, maximum, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		_comparer.Verify(c => c.Compare(value.Value, minimum.Value), Times.AtMostOnce());
-		_comparer.Verify(c => c.Compare(value.Value, maximum.Value), Times.Once());
-		_comparer.VerifyNoOtherCalls();
+		_comparer.ReceivedAtMostOnce().Compare(value.Value, minimum.Value);
+		_comparer.Received(1).Compare(value.Value, maximum.Value);
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[DataRow(5, 0, 10, DisplayName = "In-between")]
@@ -103,26 +87,20 @@ public sealed class IsBetweenWithComparerAssertTests
 	public void IsBetween_NoneNullable_WithValueInsideRange_DoesNothing(int value, int minimum, int maximum)
 	{
 		// Arrange
-		_comparer
-			.Setup(c => c.Compare(value, minimum))
-			.Returns(value.CompareTo(minimum));
+		_comparer.Compare(value, minimum).Returns(value.CompareTo(minimum));
 
-		_comparer
-			.Setup(c => c.Compare(value, maximum))
-			.Returns(value.CompareTo(maximum));
+		_comparer.Compare(value, maximum).Returns(value.CompareTo(maximum));
 
 		// Act
-		IAssert result = AssertExtensions.IsBetween(_assert.Object, value, minimum, maximum, _comparer.Object);
+		IAssert result = AssertExtensions.IsBetween(_assert, value, minimum, maximum, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		_comparer.Verify(c => c.Compare(value, minimum), Times.Once());
-		_comparer.Verify(c => c.Compare(value, maximum), Times.Once());
-		_comparer.VerifyNoOtherCalls();
+		_comparer.Received(1).Compare(value, minimum);
+		_comparer.Received(1).Compare(value, maximum);
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[TestMethod]
@@ -133,25 +111,19 @@ public sealed class IsBetweenWithComparerAssertTests
 		int minimum = 0;
 		int maximum = 10;
 
-		_comparer
-			.Setup(c => c.Compare(value, minimum))
-			.Returns(value.CompareTo(minimum));
-		_comparer
-			.Setup(c => c.Compare(value, maximum))
-			.Returns(value.CompareTo(maximum));
+		_comparer.Compare(value, minimum).Returns(value.CompareTo(minimum));
+		_comparer.Compare(value, maximum).Returns(value.CompareTo(maximum));
 
 		// Act
-		IAssert result = AssertExtensions.IsBetween(_assert.Object, value, minimum, maximum, _comparer.Object);
+		IAssert result = AssertExtensions.IsBetween(_assert, value, minimum, maximum, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		_comparer.Verify(c => c.Compare(value, minimum), Times.Once());
-		_comparer.Verify(c => c.Compare(value, maximum), Times.AtMostOnce());
-		_comparer.VerifyNoOtherCalls();
+		_comparer.Received(1).Compare(value, minimum);
+		_comparer.ReceivedAtMostOnce().Compare(value, maximum);
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[TestMethod]
@@ -162,25 +134,19 @@ public sealed class IsBetweenWithComparerAssertTests
 		int minimum = 0;
 		int maximum = 10;
 
-		_comparer
-			.Setup(c => c.Compare(value, minimum))
-			.Returns(value.CompareTo(minimum));
-		_comparer
-			.Setup(c => c.Compare(value, maximum))
-			.Returns(value.CompareTo(maximum));
+		_comparer.Compare(value, minimum).Returns(value.CompareTo(minimum));
+		_comparer.Compare(value, maximum).Returns(value.CompareTo(maximum));
 
 		// Act
-		IAssert result = AssertExtensions.IsBetween(_assert.Object, value, minimum, maximum, _comparer.Object);
+		IAssert result = AssertExtensions.IsBetween(_assert, value, minimum, maximum, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		_comparer.Verify(c => c.Compare(value, minimum), Times.AtMostOnce());
-		_comparer.Verify(c => c.Compare(value, maximum), Times.Once());
-		_comparer.VerifyNoOtherCalls();
+		_comparer.ReceivedAtMostOnce().Compare(value, minimum);
+		_comparer.Received(1).Compare(value, maximum);
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 	#endregion
 
@@ -192,26 +158,20 @@ public sealed class IsBetweenWithComparerAssertTests
 	public void IsNotBetween_AllNullable_WithValueInsideRange_CallsFail([DisallowNull] int? value, [DisallowNull] int? minimum, [DisallowNull] int? maximum)
 	{
 		// Arrange
-		_comparer
-			.Setup(c => c.Compare(value.Value, minimum.Value))
-			.Returns(value.Value.CompareTo(minimum.Value));
+		_comparer.Compare(value.Value, minimum.Value).Returns(value.Value.CompareTo(minimum.Value));
 
-		_comparer
-			.Setup(c => c.Compare(value.Value, maximum.Value))
-			.Returns(value.Value.CompareTo(maximum.Value));
+		_comparer.Compare(value.Value, maximum.Value).Returns(value.Value.CompareTo(maximum.Value));
 
 		// Act
-		IAssert result = AssertExtensions.IsNotBetween(_assert.Object, value, minimum, maximum, _comparer.Object);
+		IAssert result = AssertExtensions.IsNotBetween(_assert, value, minimum, maximum, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		_comparer.Verify(c => c.Compare(value.Value, minimum.Value), Times.AtMostOnce());
-		_comparer.Verify(c => c.Compare(value.Value, maximum.Value), Times.AtMostOnce());
-		_comparer.VerifyNoOtherCalls();
+		_comparer.ReceivedAtMostOnce().Compare(value.Value, minimum.Value);
+		_comparer.ReceivedAtMostOnce().Compare(value.Value, maximum.Value);
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[TestMethod]
@@ -222,25 +182,19 @@ public sealed class IsBetweenWithComparerAssertTests
 		int? minimum = 0;
 		int? maximum = 10;
 
-		_comparer
-			.Setup(c => c.Compare(value.Value, minimum.Value))
-			.Returns(value.Value.CompareTo(minimum.Value));
-		_comparer
-			.Setup(c => c.Compare(value.Value, maximum.Value))
-			.Returns(value.Value.CompareTo(maximum.Value));
+		_comparer.Compare(value.Value, minimum.Value).Returns(value.Value.CompareTo(minimum.Value));
+		_comparer.Compare(value.Value, maximum.Value).Returns(value.Value.CompareTo(maximum.Value));
 
 		// Act
-		IAssert result = AssertExtensions.IsNotBetween(_assert.Object, value, minimum, maximum, _comparer.Object);
+		IAssert result = AssertExtensions.IsNotBetween(_assert, value, minimum, maximum, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		_comparer.Verify(c => c.Compare(value.Value, minimum.Value), Times.AtMostOnce());
-		_comparer.Verify(c => c.Compare(value.Value, maximum.Value), Times.AtMostOnce());
-		_comparer.VerifyNoOtherCalls();
+		_comparer.ReceivedAtMostOnce().Compare(value.Value, minimum.Value);
+		_comparer.ReceivedAtMostOnce().Compare(value.Value, maximum.Value);
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[TestMethod]
@@ -251,25 +205,19 @@ public sealed class IsBetweenWithComparerAssertTests
 		int? minimum = 0;
 		int? maximum = 10;
 
-		_comparer
-			.Setup(c => c.Compare(value.Value, minimum.Value))
-			.Returns(value.Value.CompareTo(minimum.Value));
-		_comparer
-			.Setup(c => c.Compare(value.Value, maximum.Value))
-			.Returns(value.Value.CompareTo(maximum.Value));
+		_comparer.Compare(value.Value, minimum.Value).Returns(value.Value.CompareTo(minimum.Value));
+		_comparer.Compare(value.Value, maximum.Value).Returns(value.Value.CompareTo(maximum.Value));
 
 		// Act
-		IAssert result = AssertExtensions.IsNotBetween(_assert.Object, value, minimum, maximum, _comparer.Object);
+		IAssert result = AssertExtensions.IsNotBetween(_assert, value, minimum, maximum, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		_comparer.Verify(c => c.Compare(value.Value, minimum.Value), Times.AtMostOnce());
-		_comparer.Verify(c => c.Compare(value.Value, maximum.Value), Times.AtMostOnce());
-		_comparer.VerifyNoOtherCalls();
+		_comparer.ReceivedAtMostOnce().Compare(value.Value, minimum.Value);
+		_comparer.ReceivedAtMostOnce().Compare(value.Value, maximum.Value);
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[DataRow(5, 0, 10, DisplayName = "In-between")]
@@ -279,26 +227,20 @@ public sealed class IsBetweenWithComparerAssertTests
 	public void IsNotBetween_NoneNullable_WithValueInsideRange_CallsFail(int value, int minimum, int maximum)
 	{
 		// Arrange
-		_comparer
-			.Setup(c => c.Compare(value, minimum))
-			.Returns(value.CompareTo(minimum));
+		_comparer.Compare(value, minimum).Returns(value.CompareTo(minimum));
 
-		_comparer
-			.Setup(c => c.Compare(value, maximum))
-			.Returns(value.CompareTo(maximum));
+		_comparer.Compare(value, maximum).Returns(value.CompareTo(maximum));
 
 		// Act
-		IAssert result = AssertExtensions.IsNotBetween(_assert.Object, value, minimum, maximum, _comparer.Object);
+		IAssert result = AssertExtensions.IsNotBetween(_assert, value, minimum, maximum, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		_comparer.Verify(c => c.Compare(value, minimum), Times.AtMostOnce());
-		_comparer.Verify(c => c.Compare(value, maximum), Times.AtMostOnce());
-		_comparer.VerifyNoOtherCalls();
+		_comparer.ReceivedAtMostOnce().Compare(value, minimum);
+		_comparer.ReceivedAtMostOnce().Compare(value, maximum);
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[TestMethod]
@@ -309,25 +251,19 @@ public sealed class IsBetweenWithComparerAssertTests
 		int minimum = 0;
 		int maximum = 10;
 
-		_comparer
-			.Setup(c => c.Compare(value, minimum))
-			.Returns(value.CompareTo(minimum));
-		_comparer
-			.Setup(c => c.Compare(value, maximum))
-			.Returns(value.CompareTo(maximum));
+		_comparer.Compare(value, minimum).Returns(value.CompareTo(minimum));
+		_comparer.Compare(value, maximum).Returns(value.CompareTo(maximum));
 
 		// Act
-		IAssert result = AssertExtensions.IsNotBetween(_assert.Object, value, minimum, maximum, _comparer.Object);
+		IAssert result = AssertExtensions.IsNotBetween(_assert, value, minimum, maximum, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		_comparer.Verify(c => c.Compare(value, minimum), Times.AtMostOnce());
-		_comparer.Verify(c => c.Compare(value, maximum), Times.AtMostOnce());
-		_comparer.VerifyNoOtherCalls();
+		_comparer.ReceivedAtMostOnce().Compare(value, minimum);
+		_comparer.ReceivedAtMostOnce().Compare(value, maximum);
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[TestMethod]
@@ -338,25 +274,19 @@ public sealed class IsBetweenWithComparerAssertTests
 		int minimum = 0;
 		int maximum = 10;
 
-		_comparer
-			.Setup(c => c.Compare(value, minimum))
-			.Returns(value.CompareTo(minimum));
-		_comparer
-			.Setup(c => c.Compare(value, maximum))
-			.Returns(value.CompareTo(maximum));
+		_comparer.Compare(value, minimum).Returns(value.CompareTo(minimum));
+		_comparer.Compare(value, maximum).Returns(value.CompareTo(maximum));
 
 		// Act
-		IAssert result = AssertExtensions.IsNotBetween(_assert.Object, value, minimum, maximum, _comparer.Object);
+		IAssert result = AssertExtensions.IsNotBetween(_assert, value, minimum, maximum, _comparer);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		_comparer.Verify(c => c.Compare(value, minimum), Times.AtMostOnce());
-		_comparer.Verify(c => c.Compare(value, maximum), Times.AtMostOnce());
-		_comparer.VerifyNoOtherCalls();
+		_comparer.ReceivedAtMostOnce().Compare(value, minimum);
+		_comparer.ReceivedAtMostOnce().Compare(value, maximum);
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 	#endregion
 }

@@ -4,8 +4,8 @@ namespace OwlDomain.Testing.Assertions.Tests.EqualityAsserts;
 public sealed class AreEqualWithComparerAssertTests
 {
 	#region Fields
-	private readonly Mock<IAssert> _assert = new Mock<IAssert>();
-	private readonly Mock<IEqualityComparer<int>> _comparer = new Mock<IEqualityComparer<int>>();
+	private readonly IAssert _assert = Substitute.For<IAssert>();
+	private readonly IEqualityComparer<int> _comparer = Substitute.For<IEqualityComparer<int>>();
 	#endregion
 
 	#region AreEqual tests
@@ -16,21 +16,16 @@ public sealed class AreEqualWithComparerAssertTests
 		int value = 5;
 		int expected = 5;
 
-		_comparer
-			.Setup(c => c.Equals(value, expected))
-			.Returns(true);
+		_comparer.Equals(value, expected).Returns(true);
 
 		// Act
-		IAssert result = AssertExtensions.AreEqual(_assert.Object, value, expected, _comparer.Object);
+		IAssert result = AssertExtensions.AreEqual(_assert, value, expected, _comparer);
 
 		// Arrange
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
+		_comparer.Received(1).Equals(value, expected);
 
-		_comparer.Verify(c => c.Equals(value, expected), Times.Once());
-		_comparer.VerifyNoOtherCalls();
-
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -40,21 +35,16 @@ public sealed class AreEqualWithComparerAssertTests
 		int value = 5;
 		int expected = 6;
 
-		_comparer
-			.Setup(c => c.Equals(value, expected))
-			.Returns(false);
+		_comparer.Equals(value, expected).Returns(false);
 
 		// Act
-		IAssert result = AssertExtensions.AreEqual(_assert.Object, value, expected, _comparer.Object);
+		IAssert result = AssertExtensions.AreEqual(_assert, value, expected, _comparer);
 
 		// Arrange
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
+		_comparer.Received(1).Equals(value, expected);
 
-		_comparer.Verify(c => c.Equals(value, expected), Times.Once());
-		_comparer.VerifyNoOtherCalls();
-
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 	#endregion
 
@@ -66,21 +56,16 @@ public sealed class AreEqualWithComparerAssertTests
 		int value = 5;
 		int expected = 5;
 
-		_comparer
-			.Setup(c => c.Equals(value, expected))
-			.Returns(true);
+		_comparer.Equals(value, expected).Returns(true);
 
 		// Act
-		IAssert result = AssertExtensions.AreNotEqual(_assert.Object, value, expected, _comparer.Object);
+		IAssert result = AssertExtensions.AreNotEqual(_assert, value, expected, _comparer);
 
 		// Arrange
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
+		_comparer.Received(1).Equals(value, expected);
 
-		_comparer.Verify(c => c.Equals(value, expected), Times.Once());
-		_comparer.VerifyNoOtherCalls();
-
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -90,21 +75,16 @@ public sealed class AreEqualWithComparerAssertTests
 		int value = 5;
 		int expected = 6;
 
-		_comparer
-			.Setup(c => c.Equals(value, expected))
-			.Returns(false);
+		_comparer.Equals(value, expected).Returns(false);
 
 		// Act
-		IAssert result = AssertExtensions.AreNotEqual(_assert.Object, value, expected, _comparer.Object);
+		IAssert result = AssertExtensions.AreNotEqual(_assert, value, expected, _comparer);
 
 		// Arrange
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
+		_comparer.Received(1).Equals(value, expected);
 
-		_comparer.Verify(c => c.Equals(value, expected), Times.Once());
-		_comparer.VerifyNoOtherCalls();
-
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 	#endregion
 }

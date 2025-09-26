@@ -4,7 +4,7 @@ namespace OwlDomain.Testing.Assertions.Tests.EqualityAsserts;
 public sealed class AreSameInstanceAssertTests
 {
 	#region Fields
-	private readonly Mock<IAssert> _assert = new Mock<IAssert>();
+	private readonly IAssert _assert = Substitute.For<IAssert>();
 	#endregion
 
 	#region AreSameInstance tests
@@ -16,13 +16,12 @@ public sealed class AreSameInstanceAssertTests
 		object? expected = null;
 
 		// Act
-		IAssert result = AssertExtensions.AreSameInstance(_assert.Object, value, expected);
+		IAssert result = AssertExtensions.AreSameInstance(_assert, value, expected);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -32,13 +31,12 @@ public sealed class AreSameInstanceAssertTests
 		object? value = new();
 
 		// Act
-		IAssert result = AssertExtensions.AreSameInstance(_assert.Object, value, value);
+		IAssert result = AssertExtensions.AreSameInstance(_assert, value, value);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -49,13 +47,12 @@ public sealed class AreSameInstanceAssertTests
 		object? expected = new();
 
 		// Act
-		IAssert result = AssertExtensions.AreSameInstance(_assert.Object, value, expected);
+		IAssert result = AssertExtensions.AreSameInstance(_assert, value, expected);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -66,13 +63,12 @@ public sealed class AreSameInstanceAssertTests
 		object? expected = null;
 
 		// Act
-		IAssert result = AssertExtensions.AreSameInstance(_assert.Object, value, expected);
+		IAssert result = AssertExtensions.AreSameInstance(_assert, value, expected);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -83,13 +79,12 @@ public sealed class AreSameInstanceAssertTests
 		object? expected = new();
 
 		// Act
-		IAssert result = AssertExtensions.AreSameInstance(_assert.Object, value, expected);
+		IAssert result = AssertExtensions.AreSameInstance(_assert, value, expected);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 	#endregion
 
@@ -102,13 +97,12 @@ public sealed class AreSameInstanceAssertTests
 		object? expected = null;
 
 		// Act
-		IAssert result = AssertExtensions.AreNotSameInstance(_assert.Object, value, expected);
+		IAssert result = AssertExtensions.AreNotSameInstance(_assert, value, expected);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -118,13 +112,12 @@ public sealed class AreSameInstanceAssertTests
 		object? value = new();
 
 		// Act
-		IAssert result = AssertExtensions.AreNotSameInstance(_assert.Object, value, value);
+		IAssert result = AssertExtensions.AreNotSameInstance(_assert, value, value);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -135,13 +128,12 @@ public sealed class AreSameInstanceAssertTests
 		object? expected = new();
 
 		// Act
-		IAssert result = AssertExtensions.AreNotSameInstance(_assert.Object, value, expected);
+		IAssert result = AssertExtensions.AreNotSameInstance(_assert, value, expected);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -152,13 +144,12 @@ public sealed class AreSameInstanceAssertTests
 		object? expected = null;
 
 		// Act
-		IAssert result = AssertExtensions.AreNotSameInstance(_assert.Object, value, expected);
+		IAssert result = AssertExtensions.AreNotSameInstance(_assert, value, expected);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -169,13 +160,12 @@ public sealed class AreSameInstanceAssertTests
 		object? expected = new();
 
 		// Act
-		IAssert result = AssertExtensions.AreNotSameInstance(_assert.Object, value, expected);
+		IAssert result = AssertExtensions.AreNotSameInstance(_assert, value, expected);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 	#endregion
 }

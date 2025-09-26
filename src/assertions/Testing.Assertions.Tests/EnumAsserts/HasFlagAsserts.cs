@@ -4,7 +4,7 @@ namespace OwlDomain.Testing.Assertions.Tests.EnumAsserts;
 public sealed class HasFlagAsserts
 {
 	#region Fields
-	private readonly Mock<IAssert> _assert = new Mock<IAssert>();
+	private readonly IAssert _assert = Substitute.For<IAssert>();
 	#endregion
 
 	#region HasFlag tests
@@ -16,13 +16,12 @@ public sealed class HasFlagAsserts
 		TestFlagEnum flag = TestFlagEnum.B;
 
 		// Act
-		IAssert result = AssertExtensions.HasFlag(_assert.Object, value, flag);
+		IAssert result = AssertExtensions.HasFlag(_assert, value, flag);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[TestMethod]
@@ -33,13 +32,12 @@ public sealed class HasFlagAsserts
 		TestFlagEnum flag = TestFlagEnum.C;
 
 		// Act
-		IAssert result = AssertExtensions.HasFlag(_assert.Object, value, flag);
+		IAssert result = AssertExtensions.HasFlag(_assert, value, flag);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[TestMethod]
@@ -50,13 +48,12 @@ public sealed class HasFlagAsserts
 		TestFlagEnum? flag = TestFlagEnum.B;
 
 		// Act
-		IAssert result = AssertExtensions.HasFlag(_assert.Object, value, flag);
+		IAssert result = AssertExtensions.HasFlag(_assert, value, flag);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[TestMethod]
@@ -67,13 +64,12 @@ public sealed class HasFlagAsserts
 		TestFlagEnum? flag = TestFlagEnum.C;
 
 		// Act
-		IAssert result = AssertExtensions.HasFlag(_assert.Object, value, flag);
+		IAssert result = AssertExtensions.HasFlag(_assert, value, flag);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 	#endregion
 
@@ -86,13 +82,12 @@ public sealed class HasFlagAsserts
 		TestFlagEnum flag = TestFlagEnum.C;
 
 		// Act
-		IAssert result = AssertExtensions.DoesNotHaveFlag(_assert.Object, value, flag);
+		IAssert result = AssertExtensions.DoesNotHaveFlag(_assert, value, flag);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[TestMethod]
@@ -103,13 +98,12 @@ public sealed class HasFlagAsserts
 		TestFlagEnum flag = TestFlagEnum.B;
 
 		// Act
-		IAssert result = AssertExtensions.DoesNotHaveFlag(_assert.Object, value, flag);
+		IAssert result = AssertExtensions.DoesNotHaveFlag(_assert, value, flag);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[TestMethod]
@@ -120,13 +114,12 @@ public sealed class HasFlagAsserts
 		TestFlagEnum? flag = TestFlagEnum.C;
 
 		// Act
-		IAssert result = AssertExtensions.DoesNotHaveFlag(_assert.Object, value, flag);
+		IAssert result = AssertExtensions.DoesNotHaveFlag(_assert, value, flag);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[TestMethod]
@@ -137,13 +130,12 @@ public sealed class HasFlagAsserts
 		TestFlagEnum? flag = TestFlagEnum.B;
 
 		// Act
-		IAssert result = AssertExtensions.DoesNotHaveFlag(_assert.Object, value, flag);
+		IAssert result = AssertExtensions.DoesNotHaveFlag(_assert, value, flag);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 	#endregion
 }

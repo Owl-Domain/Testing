@@ -4,7 +4,7 @@ namespace OwlDomain.Testing.Assertions.Tests.ComparisonAsserts;
 public sealed class LessThanAssertTests
 {
 	#region Fields
-	private readonly Mock<IAssert> _assert = new Mock<IAssert>();
+	private readonly IAssert _assert = Substitute.For<IAssert>();
 	#endregion
 
 	#region IsLessThan tests
@@ -16,13 +16,12 @@ public sealed class LessThanAssertTests
 		int? threshold = 5;
 
 		// Act
-		IAssert result = AssertExtensions.IsLessThan(_assert.Object, value, threshold);
+		IAssert result = AssertExtensions.IsLessThan(_assert, value, threshold);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[DataRow(6, 5, DisplayName = "Greater than")]
@@ -31,13 +30,12 @@ public sealed class LessThanAssertTests
 	public void IsLessThan_Nullable_WithNotLesserValue_CallsFail([DisallowNull] int? value, [DisallowNull] int? threshold)
 	{
 		// Act
-		IAssert result = AssertExtensions.IsLessThan(_assert.Object, value, threshold);
+		IAssert result = AssertExtensions.IsLessThan(_assert, value, threshold);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[TestMethod]
@@ -48,13 +46,12 @@ public sealed class LessThanAssertTests
 		int threshold = 5;
 
 		// Act
-		IAssert result = AssertExtensions.IsLessThan(_assert.Object, value, threshold);
+		IAssert result = AssertExtensions.IsLessThan(_assert, value, threshold);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[DataRow(6, 5, DisplayName = "Greater than")]
@@ -63,13 +60,12 @@ public sealed class LessThanAssertTests
 	public void IsLessThan_NoneNullable_WithNotLesserValue_CallsFail(int value, int threshold)
 	{
 		// Act
-		IAssert result = AssertExtensions.IsLessThan(_assert.Object, value, threshold);
+		IAssert result = AssertExtensions.IsLessThan(_assert, value, threshold);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 	#endregion
 
@@ -80,13 +76,12 @@ public sealed class LessThanAssertTests
 	public void IsLessThanOrEqualTo_Nullable_WithLessOrEqualToValue_DoesNothing([DisallowNull] int? value, [DisallowNull] int? threshold)
 	{
 		// Act
-		IAssert result = AssertExtensions.IsLessThanOrEqualTo(_assert.Object, value, threshold);
+		IAssert result = AssertExtensions.IsLessThanOrEqualTo(_assert, value, threshold);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -97,13 +92,12 @@ public sealed class LessThanAssertTests
 		int? threshold = 5;
 
 		// Act
-		IAssert result = AssertExtensions.IsLessThanOrEqualTo(_assert.Object, value, threshold);
+		IAssert result = AssertExtensions.IsLessThanOrEqualTo(_assert, value, threshold);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[DataRow(4, 5, DisplayName = "Less than")]
@@ -112,13 +106,12 @@ public sealed class LessThanAssertTests
 	public void IsLessThanOrEqualTo_NoneNullable_WithLessOrEqualToValue_DoesNothing(int value, int threshold)
 	{
 		// Act
-		IAssert result = AssertExtensions.IsLessThanOrEqualTo(_assert.Object, value, threshold);
+		IAssert result = AssertExtensions.IsLessThanOrEqualTo(_assert, value, threshold);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -129,13 +122,12 @@ public sealed class LessThanAssertTests
 		int threshold = 5;
 
 		// Act
-		IAssert result = AssertExtensions.IsLessThanOrEqualTo(_assert.Object, value, threshold);
+		IAssert result = AssertExtensions.IsLessThanOrEqualTo(_assert, value, threshold);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 	#endregion
 
@@ -148,13 +140,12 @@ public sealed class LessThanAssertTests
 		int? threshold = 5;
 
 		// Act
-		IAssert result = AssertExtensions.IsNotLessThan(_assert.Object, value, threshold);
+		IAssert result = AssertExtensions.IsNotLessThan(_assert, value, threshold);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[DataRow(6, 5, DisplayName = "Greater than")]
@@ -163,13 +154,12 @@ public sealed class LessThanAssertTests
 	public void IsNotLessThan_Nullable_WithNotLesserValue_DoesNothing([DisallowNull] int? value, [DisallowNull] int? threshold)
 	{
 		// Act
-		IAssert result = AssertExtensions.IsNotLessThan(_assert.Object, value, threshold);
+		IAssert result = AssertExtensions.IsNotLessThan(_assert, value, threshold);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[TestMethod]
@@ -180,13 +170,12 @@ public sealed class LessThanAssertTests
 		int threshold = 5;
 
 		// Act
-		IAssert result = AssertExtensions.IsNotLessThan(_assert.Object, value, threshold);
+		IAssert result = AssertExtensions.IsNotLessThan(_assert, value, threshold);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 
 	[DataRow(6, 5, DisplayName = "Greater than")]
@@ -195,13 +184,12 @@ public sealed class LessThanAssertTests
 	public void IsNotLessThan_NoneNullable_WithNotLesserValue_DoesNothing(int value, int threshold)
 	{
 		// Act
-		IAssert result = AssertExtensions.IsNotLessThan(_assert.Object, value, threshold);
+		IAssert result = AssertExtensions.IsNotLessThan(_assert, value, threshold);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreEqual(_assert.Object, result);
+		MSAssert.AreEqual(_assert, result);
 	}
 	#endregion
 
@@ -212,13 +200,12 @@ public sealed class LessThanAssertTests
 	public void IsNotLessThanOrEqualTo_Nullable_WithLessOrEqualToValue_CallsFail([DisallowNull] int? value, [DisallowNull] int? threshold)
 	{
 		// Act
-		IAssert result = AssertExtensions.IsNotLessThanOrEqualTo(_assert.Object, value, threshold);
+		IAssert result = AssertExtensions.IsNotLessThanOrEqualTo(_assert, value, threshold);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -229,13 +216,12 @@ public sealed class LessThanAssertTests
 		int? threshold = 5;
 
 		// Act
-		IAssert result = AssertExtensions.IsNotLessThanOrEqualTo(_assert.Object, value, threshold);
+		IAssert result = AssertExtensions.IsNotLessThanOrEqualTo(_assert, value, threshold);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[DataRow(4, 5, DisplayName = "Less than")]
@@ -244,13 +230,12 @@ public sealed class LessThanAssertTests
 	public void IsNotLessThanOrEqualTo_NoneNullable_WithLessOrEqualToValue_CallsFail(int value, int threshold)
 	{
 		// Act
-		IAssert result = AssertExtensions.IsNotLessThanOrEqualTo(_assert.Object, value, threshold);
+		IAssert result = AssertExtensions.IsNotLessThanOrEqualTo(_assert, value, threshold);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -261,13 +246,12 @@ public sealed class LessThanAssertTests
 		int threshold = 5;
 
 		// Act
-		IAssert result = AssertExtensions.IsNotLessThanOrEqualTo(_assert.Object, value, threshold);
+		IAssert result = AssertExtensions.IsNotLessThanOrEqualTo(_assert, value, threshold);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 	#endregion
 }

@@ -4,7 +4,7 @@ namespace OwlDomain.Testing.Assertions.Tests.NumericalAsserts.DeltaEquality;
 public sealed class DeltaEqualityAssertByteTests
 {
 	#region Fields
-	private readonly Mock<IAssert> _assert = new Mock<IAssert>();
+	private readonly IAssert _assert = Substitute.For<IAssert>();
 	#endregion
 
 	#region AreEqual tests
@@ -17,13 +17,12 @@ public sealed class DeltaEqualityAssertByteTests
 		byte? delta = 10;
 
 		// Act
-		IAssert result = AssertExtensions.AreEqual(_assert.Object, value, expected, delta);
+		IAssert result = AssertExtensions.AreEqual(_assert, value, expected, delta);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -35,13 +34,12 @@ public sealed class DeltaEqualityAssertByteTests
 		byte? delta = 1;
 
 		// Act
-		IAssert result = AssertExtensions.AreEqual(_assert.Object, value, expected, delta);
+		IAssert result = AssertExtensions.AreEqual(_assert, value, expected, delta);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -53,13 +51,12 @@ public sealed class DeltaEqualityAssertByteTests
 		byte delta = 10;
 
 		// Act
-		IAssert result = AssertExtensions.AreEqual(_assert.Object, value, expected, delta);
+		IAssert result = AssertExtensions.AreEqual(_assert, value, expected, delta);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -71,13 +68,12 @@ public sealed class DeltaEqualityAssertByteTests
 		byte delta = 1;
 
 		// Act
-		IAssert result = AssertExtensions.AreEqual(_assert.Object, value, expected, delta);
+		IAssert result = AssertExtensions.AreEqual(_assert, value, expected, delta);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 	#endregion
 
@@ -91,13 +87,12 @@ public sealed class DeltaEqualityAssertByteTests
 		byte? delta = 10;
 
 		// Act
-		IAssert result = AssertExtensions.AreNotEqual(_assert.Object, value, expected, delta);
+		IAssert result = AssertExtensions.AreNotEqual(_assert, value, expected, delta);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -109,13 +104,12 @@ public sealed class DeltaEqualityAssertByteTests
 		byte? delta = 1;
 
 		// Act
-		IAssert result = AssertExtensions.AreNotEqual(_assert.Object, value, expected, delta);
+		IAssert result = AssertExtensions.AreNotEqual(_assert, value, expected, delta);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -127,13 +121,12 @@ public sealed class DeltaEqualityAssertByteTests
 		byte delta = 10;
 
 		// Act
-		IAssert result = AssertExtensions.AreNotEqual(_assert.Object, value, expected, delta);
+		IAssert result = AssertExtensions.AreNotEqual(_assert, value, expected, delta);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -145,13 +138,12 @@ public sealed class DeltaEqualityAssertByteTests
 		byte delta = 1;
 
 		// Act
-		IAssert result = AssertExtensions.AreNotEqual(_assert.Object, value, expected, delta);
+		IAssert result = AssertExtensions.AreNotEqual(_assert, value, expected, delta);
 
 		// Assert
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 	#endregion
 }

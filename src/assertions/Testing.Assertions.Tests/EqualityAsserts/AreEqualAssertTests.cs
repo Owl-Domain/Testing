@@ -4,7 +4,7 @@ namespace OwlDomain.Testing.Assertions.Tests.EqualityAsserts;
 public sealed class AreEqualAssertTests
 {
 	#region Fields
-	private readonly Mock<IAssert> _assert = new Mock<IAssert>();
+	private readonly IAssert _assert = Substitute.For<IAssert>();
 	#endregion
 
 	#region AreEqual tests
@@ -16,13 +16,12 @@ public sealed class AreEqualAssertTests
 		int expected = 5;
 
 		// Act
-		IAssert result = AssertExtensions.AreEqual(_assert.Object, value, expected);
+		IAssert result = AssertExtensions.AreEqual(_assert, value, expected);
 
 		// Arrange
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -33,13 +32,12 @@ public sealed class AreEqualAssertTests
 		int expected = 6;
 
 		// Act
-		IAssert result = AssertExtensions.AreEqual(_assert.Object, value, expected);
+		IAssert result = AssertExtensions.AreEqual(_assert, value, expected);
 
 		// Arrange
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 	#endregion
 
@@ -52,13 +50,12 @@ public sealed class AreEqualAssertTests
 		int expected = 5;
 
 		// Act
-		IAssert result = AssertExtensions.AreNotEqual(_assert.Object, value, expected);
+		IAssert result = AssertExtensions.AreNotEqual(_assert, value, expected);
 
 		// Arrange
-		_assert.VerifyFailFormat(Times.Once());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyFailFormatOnce();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 
 	[TestMethod]
@@ -69,13 +66,12 @@ public sealed class AreEqualAssertTests
 		int expected = 6;
 
 		// Act
-		IAssert result = AssertExtensions.AreNotEqual(_assert.Object, value, expected);
+		IAssert result = AssertExtensions.AreNotEqual(_assert, value, expected);
 
 		// Arrange
-		_assert.VerifyFailFormat(Times.Never());
-		_assert.VerifyNoOtherCalls();
+		_assert.VerifyNoFailFormat();
 
-		MSAssert.AreSame(_assert.Object, result);
+		MSAssert.AreSame(_assert, result);
 	}
 	#endregion
 }
