@@ -25,7 +25,7 @@ jobs:
 
   publish_packages:
     needs: ensure_release
-    uses: Owl-Domain/.github/.github/workflows/dotnet_package_publish.yml@master
+    uses: Owl-Domain/.github/.github/workflows/dotnet_package_publish.yml@main
     secrets:
       NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
     with:

@@ -12,4 +12,4 @@ on:
 
 jobs:
   lint:
-    uses: Owl-Domain/.github/.github/workflows/dotnet_lint.yml@master
+    uses: Owl-Domain/.github/.github/workflows/dotnet_lint.yml@main

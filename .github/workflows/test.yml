@@ -17,6 +17,6 @@ jobs:
       matrix:
         configuration: [Debug, Release]
 
-    uses: Owl-Domain/.github/.github/workflows/dotnet_test.yml@master
+    uses: Owl-Domain/.github/.github/workflows/dotnet_test.yml@main
     with:
       configuration: ${{ matrix.configuration }}

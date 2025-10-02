@@ -11,4 +11,4 @@ on:
 
 jobs:
   pull_editorconfig:
-    uses: Owl-Domain/editorconfig/.github/workflows/pull_editorconfig.yml@master
+    uses: Owl-Domain/editorconfig/.github/workflows/pull_editorconfig.yml@main
