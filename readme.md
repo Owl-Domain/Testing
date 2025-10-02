@@ -140,5 +140,4 @@ concern / suggestion has already been raised.
 
 ## License
 
-This project (the source, the release files, e.t.c) is released under the
-[OwlDomain License](https://github.com/Owl-Domain/Testing/blob/master/license.md).
+This project (the source, the release files, e.t.c) is released under the [OwlDomain License](/license.md).
