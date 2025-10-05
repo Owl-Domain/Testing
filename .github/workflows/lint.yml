@@ -5,6 +5,7 @@ permissions:
 
 on:
   push:
+    branches: '**'
     paths:
       - 'src/**' # React to source files changing
 
